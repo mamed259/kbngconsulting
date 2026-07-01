@@ -1,35 +1,41 @@
 {
-  "name": "kbng",
+  "name": "cms",
   "version": "0.1.0",
   "private": true,
-  "description": "KB&G marketing website boilerplate — Next.js + Strapi",
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "next": "16.2.1",
-    "qs": "^6.15.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwind-merge": "^3.5.0"
+    "@strapi/plugin-cloud": "5.49.0",
+    "@strapi/plugin-users-permissions": "5.49.0",
+    "@strapi/strapi": "5.49.0",
+    "better-sqlite3": "12.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
-    "@types/node": "^20.19.4",
-    "@types/qs": "^6.14.0",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "eslint": "^9.31.0",
-    "eslint-config-next": "16.2.1",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.0.0 <=26.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "7135af07-de66-454c-a5c7-825f6c1d0308",
+    "installId": "3c59d64d745d8f0264d5c4c6805bf2cdbdb170e1ac24fee4632c8f94e5598078"
   }
 }
