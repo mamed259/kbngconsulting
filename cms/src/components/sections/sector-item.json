@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_sector_items",
+  "info": {
+    "displayName": "Sector Item",
+    "icon": "grid",
+    "description": "Sector card item"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

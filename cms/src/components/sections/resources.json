@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_resources",
+  "info": {
+    "displayName": "Resources",
+    "icon": "file",
+    "description": "Resources list section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.resource-card"
+    }
+  }
+}

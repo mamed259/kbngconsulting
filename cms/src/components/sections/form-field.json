@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_form_fields",
+  "info": {
+    "displayName": "Form Field",
+    "icon": "pencil",
+    "description": "Dynamic form field configuration"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["text", "email", "textarea"],
+      "default": "text",
+      "required": true
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

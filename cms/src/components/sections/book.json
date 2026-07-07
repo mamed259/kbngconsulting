@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_sections_books",
+  "info": {
+    "displayName": "Book",
+    "icon": "cursor",
+    "description": "Book call section with optional form"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "ctaText": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "showForm": {
+      "type": "boolean",
+      "default": false
+    },
+    "formFields": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.form-field"
+    }
+  }
+}

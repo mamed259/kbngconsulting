@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_sectors",
+  "info": {
+    "displayName": "Sectors",
+    "icon": "grid",
+    "description": "Sectors section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.sector-item"
+    }
+  }
+}

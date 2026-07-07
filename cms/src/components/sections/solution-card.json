@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_solution_cards",
+  "info": {
+    "displayName": "Solution Card",
+    "icon": "layout",
+    "description": "Card item for solutions section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "href": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "accentTheme": {
+      "type": "enumeration",
+      "enum": ["yellow", "green", "coral", "slate"],
+      "default": "yellow"
+    }
+  }
+}

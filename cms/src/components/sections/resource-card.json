@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_resource_cards",
+  "info": {
+    "displayName": "Resource Card",
+    "icon": "file",
+    "description": "Resource card item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "href": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

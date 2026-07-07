@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_consulting_cards",
+  "info": {
+    "displayName": "Consulting Card",
+    "icon": "briefcase",
+    "description": "Card item for consulting section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "href": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "tags": {
+      "type": "json"
+    },
+    "accentTheme": {
+      "type": "enumeration",
+      "enum": ["yellow", "green", "coral", "slate"],
+      "default": "green"
+    }
+  }
+}
