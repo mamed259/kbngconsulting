@@ -1,61 +1,49 @@
-# 🚀 Getting started with Strapi
+# kbng
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+KB&G boilerplate project built with Next.js App Router and Strapi.
 
-### `develop`
+## Stack
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind v4 (base)
+- Custom marketing CSS (HTML-faithful styles)
+- Remote Strapi integration (`qs` + typed section renderer)
 
-```
-npm run develop
-# or
-yarn develop
-```
+## Run locally
 
-### `start`
+1. Copy env file:
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
+```bash
+cp .env.example .env.local
 ```
 
-### `build`
+2. Install dependencies:
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
+```bash
+npm install
 ```
 
-## ⚙️ Deployment
+3. Run dev server:
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
+```bash
+npm run dev
 ```
 
-## 📚 Learn more
+## Strapi
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+- Main API access is implemented in `lib/api.ts`.
+- Page model uses dynamic zone sections and is rendered through `components/DynamicRenderer.tsx`.
+- Strapi schema recommendation is documented in `docs/STRAPI_SCHEMA.md`.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+## Homepage
 
-## ✨ Community
+- Homepage fallback content is in `content/home-fallback.ts`.
+- Main stylesheet is `app/marketing.css`.
+- The design uses classes aligned with the provided HTML structure.
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+## Fonts
 
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- Current fallback uses Inter.
+- To enable Forma DJR Deck, add licensed font files to `public/fonts` and uncomment `@font-face` in `app/marketing.css`.
