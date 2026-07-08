@@ -14,7 +14,7 @@ export function Footer() {
           </small>
         </div>
         <div className="foot-mark" aria-hidden>
-          KB&amp;G
+          KBNG
         </div>
       </div>
     </footer>
