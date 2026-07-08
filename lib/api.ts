@@ -44,22 +44,42 @@ function buildPagePopulateQuery() {
         sections: {
           on: {
             "sections.hero": {
-              populate: ["sectionConfig"],
+              populate: "*",
             },
             "sections.solutions": {
-              populate: ["sectionConfig", "cards"],
+              populate: {
+                sectionConfig: true,
+                cards: {
+                  populate: ["image"],
+                },
+              },
             },
             "sections.consulting": {
-              populate: ["sectionConfig", "cards"],
+              populate: {
+                sectionConfig: true,
+                cards: {
+                  populate: ["image"],
+                },
+              },
             },
             "sections.sectors": {
-              populate: ["sectionConfig", "items"],
+              populate: {
+                sectionConfig: true,
+                items: {
+                  populate: ["image"],
+                },
+              },
             },
             "sections.book": {
               populate: ["sectionConfig", "formFields"],
             },
             "sections.resources": {
-              populate: ["sectionConfig", "cards"],
+              populate: {
+                sectionConfig: true,
+                cards: {
+                  populate: ["image"],
+                },
+              },
             },
           },
         },

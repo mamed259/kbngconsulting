@@ -6,6 +6,13 @@ export interface StrapiImage {
   height?: number;
 }
 
+export type StrapiMediaField =
+  | StrapiImage
+  | {
+      data?: StrapiImage | null;
+    }
+  | null;
+
 export interface StrapiCollectionResponse<T> {
   data: Array<T & { id: number; documentId?: string }>;
   meta: {
@@ -52,6 +59,8 @@ export interface HeroSectionData {
   primaryCtaHref?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
 }
 
 export type AccentTheme = "yellow" | "green" | "coral" | "slate";
@@ -61,6 +70,7 @@ export interface SolutionCardData {
   title: string;
   body?: string;
   href?: string;
+  image?: StrapiMediaField;
   imageUrl?: string;
   accentTheme?: AccentTheme;
 }
@@ -79,6 +89,7 @@ export interface ConsultingCardData {
   title: string;
   body?: string;
   href?: string;
+  image?: StrapiMediaField;
   imageUrl?: string;
   tags?: string[];
   accentTheme?: AccentTheme;
@@ -95,6 +106,7 @@ export interface ConsultingSectionData {
 export interface SectorItemData {
   id: number;
   label: string;
+  image?: StrapiMediaField;
   imageUrl?: string;
 }
 
@@ -131,6 +143,7 @@ export interface ResourceCardData {
   title: string;
   excerpt?: string;
   href?: string;
+  image?: StrapiMediaField;
   imageUrl?: string;
   tag?: string;
 }

@@ -27,3 +27,26 @@ export function getStrapiMedia(url: string | null | undefined): string {
   if (url.startsWith("http://") || url.startsWith("https://")) return url;
   return `${getStrapiBaseUrl()}${url.startsWith("/") ? "" : "/"}${url}`;
 }
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+export function extractStrapiImageUrl(value: unknown): string {
+  if (!value) return "";
+  if (typeof value === "string") return getStrapiMedia(value);
+
+  if (isRecord(value)) {
+    const directUrl = value.url;
+    if (typeof directUrl === "string") {
+      return getStrapiMedia(directUrl);
+    }
+
+    const data = value.data;
+    if (isRecord(data) && typeof data.url === "string") {
+      return getStrapiMedia(data.url);
+    }
+  }
+
+  return "";
+}

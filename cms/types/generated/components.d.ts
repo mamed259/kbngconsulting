@@ -79,12 +79,14 @@ export interface SectionsHero extends Struct.ComponentSchema {
   attributes: {
     eyebrow: Schema.Attribute.String;
     heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
     primaryCtaHref: Schema.Attribute.String;
     primaryCtaText: Schema.Attribute.String;
     secondaryCtaHref: Schema.Attribute.String;
     secondaryCtaText: Schema.Attribute.String;
     sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
     subtitle: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
   };
 }
 
