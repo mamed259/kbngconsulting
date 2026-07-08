@@ -1,0 +1,11 @@
+# Next.js on Netlify — do not set `publish` to the repo root.
+# @netlify/plugin-nextjs manages the output directory during build.
+
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
