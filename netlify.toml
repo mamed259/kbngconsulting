@@ -3,6 +3,8 @@
 
 [build]
   command = "npm run build"
+  # Required: UI default (repo root) breaks @netlify/plugin-nextjs
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
