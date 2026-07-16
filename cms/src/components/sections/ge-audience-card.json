@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_ge_audience_cards",
+  "info": {
+    "displayName": "GE Audience Card",
+    "icon": "user",
+    "description": "Who Georgia is for card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

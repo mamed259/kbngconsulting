@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_ge_statses",
+  "info": {
+    "displayName": "GE Stats",
+    "icon": "chartBubble",
+    "description": "Georgia stats band"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.ge-stat"
+    }
+  }
+}

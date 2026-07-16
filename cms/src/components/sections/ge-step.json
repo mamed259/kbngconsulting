@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_ge_steps",
+  "info": {
+    "displayName": "GE Step",
+    "icon": "bulletList",
+    "description": "Georgia how-it-works step"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

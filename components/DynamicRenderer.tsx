@@ -46,6 +46,15 @@ import { AuMeaningSection } from "@/components/sections/au/AuMeaningSection";
 import { AuTimelineSection } from "@/components/sections/au/AuTimelineSection";
 import { AuTeamSection } from "@/components/sections/au/AuTeamSection";
 import { AuCtaSection } from "@/components/sections/au/AuCtaSection";
+import { GeHeroSection } from "@/components/sections/ge/GeHeroSection";
+import { GeStatsSection } from "@/components/sections/ge/GeStatsSection";
+import { GeServiceSection } from "@/components/sections/ge/GeServiceSection";
+import { GeAbeSection } from "@/components/sections/ge/GeAbeSection";
+import { GeAudienceSection } from "@/components/sections/ge/GeAudienceSection";
+import { GeQuoteSection } from "@/components/sections/ge/GeQuoteSection";
+import { GeRoleSection } from "@/components/sections/ge/GeRoleSection";
+import { GeFaqSection } from "@/components/sections/ge/GeFaqSection";
+import { GeCtaSection } from "@/components/sections/ge/GeCtaSection";
 
 interface DynamicRendererProps {
   sections: StrapiSection[];
@@ -69,6 +78,10 @@ export function isConsultingServicesPage(sections: StrapiSection[]): boolean {
 
 export function isAboutUsPage(sections: StrapiSection[]): boolean {
   return sections.some((section) => section.__component.startsWith("sections.au-"));
+}
+
+export function isGeorgiaPage(sections: StrapiSection[]): boolean {
+  return sections.some((section) => section.__component.startsWith("sections.ge-"));
 }
 
 function renderSection(section: StrapiSection, index: number): React.ReactNode {
@@ -261,6 +274,42 @@ function renderSection(section: StrapiSection, index: number): React.ReactNode {
       const { __component, ...props } = section;
       return <AuCtaSection key={`${__component}-${index}`} {...props} />;
     }
+    case "sections.ge-hero": {
+      const { __component, ...props } = section;
+      return <GeHeroSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-stats": {
+      const { __component, ...props } = section;
+      return <GeStatsSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-service": {
+      const { __component, ...props } = section;
+      return <GeServiceSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-abe": {
+      const { __component, ...props } = section;
+      return <GeAbeSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-audience": {
+      const { __component, ...props } = section;
+      return <GeAudienceSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-quote": {
+      const { __component, ...props } = section;
+      return <GeQuoteSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-role": {
+      const { __component, ...props } = section;
+      return <GeRoleSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-faq": {
+      const { __component, ...props } = section;
+      return <GeFaqSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.ge-cta": {
+      const { __component, ...props } = section;
+      return <GeCtaSection key={`${__component}-${index}`} {...props} />;
+    }
     default:
       return null;
   }
@@ -289,6 +338,10 @@ export function DynamicRenderer({ sections }: DynamicRendererProps) {
 
   if (isAboutUsPage(sections)) {
     return <main className="au-page">{content}</main>;
+  }
+
+  if (isGeorgiaPage(sections)) {
+    return <main className="ge-page">{content}</main>;
   }
 
   return content;

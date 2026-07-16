@@ -787,6 +787,130 @@ export interface AuCtaSectionData {
   contactEmail?: string;
 }
 
+export interface GeStatItemData {
+  id: number;
+  number: string;
+  label: string;
+  source?: string;
+}
+
+export interface GeOfferData {
+  id: number;
+  title: string;
+  quoteLine?: string;
+  what?: string;
+  practices?: unknown;
+  chips?: unknown;
+  audience?: string;
+}
+
+export interface GeStepData {
+  id: number;
+  number: string;
+  title: string;
+  body?: string;
+}
+
+export interface GeAudienceCardData {
+  id: number;
+  title: string;
+  body?: string;
+}
+
+export interface GeHeroSectionData {
+  __component: "sections.ge-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  subtitle?: string;
+  lead?: string;
+  leadBold?: string;
+  leadAfter?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
+export interface GeStatsSectionData {
+  __component: "sections.ge-stats";
+  id: number;
+  sectionConfig?: SectionConfig;
+  items: GeStatItemData[];
+}
+
+export interface GeServiceSectionData {
+  __component: "sections.ge-service";
+  id: number;
+  sectionConfig?: SectionConfig;
+  themeTone?: "mint" | "yellow" | "pink" | "slate" | "blue";
+  altBackground?: boolean;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+  pills?: unknown;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+  offers?: GeOfferData[];
+}
+
+export interface GeAbeSectionData {
+  __component: "sections.ge-abe";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lead?: string;
+  steps?: GeStepData[];
+}
+
+export interface GeAudienceSectionData {
+  __component: "sections.ge-audience";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  promise?: string;
+  cards?: GeAudienceCardData[];
+}
+
+export interface GeQuoteSectionData {
+  __component: "sections.ge-quote";
+  id: number;
+  sectionConfig?: SectionConfig;
+  body: string;
+}
+
+export interface GeRoleSectionData {
+  __component: "sections.ge-role";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body: string;
+}
+
+export interface GeFaqSectionData {
+  __component: "sections.ge-faq";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  items: FaqItemData[];
+}
+
+export interface GeCtaSectionData {
+  __component: "sections.ge-cta";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
 export type StrapiSection =
   | HeroSectionData
   | SolutionsSectionData
@@ -834,4 +958,13 @@ export type StrapiSection =
   | AuMeaningSectionData
   | AuTimelineSectionData
   | AuTeamSectionData
-  | AuCtaSectionData;
+  | AuCtaSectionData
+  | GeHeroSectionData
+  | GeStatsSectionData
+  | GeServiceSectionData
+  | GeAbeSectionData
+  | GeAudienceSectionData
+  | GeQuoteSectionData
+  | GeRoleSectionData
+  | GeFaqSectionData
+  | GeCtaSectionData;

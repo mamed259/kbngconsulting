@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_sections_ge_heroes",
+  "info": {
+    "displayName": "GE Hero",
+    "icon": "star",
+    "description": "Georgia hero with lead and CTAs"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "lead": {
+      "type": "text"
+    },
+    "leadBold": {
+      "type": "string"
+    },
+    "leadAfter": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    }
+  }
+}

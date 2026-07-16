@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_ge_stats_items",
+  "info": {
+    "displayName": "GE Stat",
+    "icon": "chartBubble",
+    "description": "Georgia stat card"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "required": true
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

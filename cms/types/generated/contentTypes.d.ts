@@ -589,6 +589,15 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.au-timeline',
         'sections.au-team',
         'sections.au-cta',
+        'sections.ge-hero',
+        'sections.ge-stats',
+        'sections.ge-service',
+        'sections.ge-abe',
+        'sections.ge-audience',
+        'sections.ge-quote',
+        'sections.ge-role',
+        'sections.ge-faq',
+        'sections.ge-cta',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;

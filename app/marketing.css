@@ -1085,22 +1085,14 @@ footer {
   background: transparent;
 }
 
-/* Letter silhouettes only — no SVG fill/blur/gradient on the footer bg */
-.foot-mark-glyph {
+.foot-mark-svg {
   display: block;
   width: 100%;
   max-width: 1480px;
-  aspect-ratio: 1584 / 396;
+  height: auto;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.05);
-  -webkit-mask-image: url("/images/footer-watermark.svg");
-  mask-image: url("/images/footer-watermark.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center bottom;
-  mask-position: center bottom;
+  color: rgba(255, 255, 255, 0.05);
+  background: transparent;
 }
 
 .reveal {

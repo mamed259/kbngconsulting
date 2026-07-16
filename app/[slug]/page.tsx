@@ -9,11 +9,13 @@ import { visionAiFallbackSections } from "@/content/vision-ai-fallback";
 import { innovationStudioFallbackSections } from "@/content/innovation-studio-fallback";
 import { consultingServicesFallbackSections } from "@/content/consulting-services-fallback";
 import { aboutUsFallbackSections } from "@/content/about-us-fallback";
+import { georgiaFallbackSections } from "@/content/georgia-fallback";
 import "../canary-waves.css";
 import "../vision-ai.css";
 import "../innovation-studio.css";
 import "../consulting-services.css";
 import "../about-us.css";
+import "../georgia.css";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -25,12 +27,15 @@ const PAGE_FALLBACKS: Record<
     title: string;
     description: string;
     url: string;
+    ogTitle?: string;
+    ogDescription?: string;
     sections:
       | typeof canaryWavesFallbackSections
       | typeof visionAiFallbackSections
       | typeof innovationStudioFallbackSections
       | typeof consultingServicesFallbackSections
-      | typeof aboutUsFallbackSections;
+      | typeof aboutUsFallbackSections
+      | typeof georgiaFallbackSections;
   }
 > = {
   "canary-waves": {
@@ -68,6 +73,16 @@ const PAGE_FALLBACKS: Record<
     url: "https://kbngconsulting.com/about-kbng",
     sections: aboutUsFallbackSections,
   },
+  georgia: {
+    title: "Georgia: AI Role-Play Coach for Industrial Communication Training | KB&G",
+    description:
+      "Georgia strengthens frontline communication in high-pressure industries like mining, aggregates, and ready mix through AI-powered coaching and realistic industrial scenario role-play.",
+    url: "https://kbngconsulting.com/georgia",
+    ogTitle: "Georgia: AI Role-Play Coach for Industrial Communication Training",
+    ogDescription:
+      "Corporate AI role-play for soft skills. Georgia trains your team to handle the high-pressure conversations that decide margin, safety, and retention, built for the field.",
+    sections: georgiaFallbackSections,
+  },
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -93,8 +108,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: fallback.title,
       description: fallback.description,
       openGraph: {
-        title: fallback.title,
-        description: fallback.description,
+        title: fallback.ogTitle ?? fallback.title,
+        description: fallback.ogDescription ?? fallback.description,
         type: "website",
         url: fallback.url,
       },

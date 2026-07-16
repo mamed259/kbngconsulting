@@ -714,6 +714,13 @@
 }
 
 /* FAQ */
+.cw-page .faq-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .cw-page .faq h2 {
   font-size: clamp(1.8rem, 3.8vw, 2.5rem);
 }

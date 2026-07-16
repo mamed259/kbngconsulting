@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_ge_faqs",
+  "info": {
+    "displayName": "GE FAQ",
+    "icon": "question",
+    "description": "Georgia FAQ"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.faq-item"
+    }
+  }
+}

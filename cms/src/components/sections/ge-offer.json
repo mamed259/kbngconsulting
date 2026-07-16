@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_ge_offers",
+  "info": {
+    "displayName": "GE Offer",
+    "icon": "layer",
+    "description": "Georgia offer / scenario card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "quoteLine": {
+      "type": "string"
+    },
+    "what": {
+      "type": "text"
+    },
+    "practices": {
+      "type": "json"
+    },
+    "chips": {
+      "type": "json"
+    },
+    "audience": {
+      "type": "text"
+    }
+  }
+}

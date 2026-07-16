@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_ge_audiences",
+  "info": {
+    "displayName": "GE Audience",
+    "icon": "user",
+    "description": "Who Georgia is for section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.ge-audience-card"
+    }
+  }
+}

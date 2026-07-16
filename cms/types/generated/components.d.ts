@@ -633,6 +633,215 @@ export interface SectionsFormField extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsGeAbe extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_abes';
+  info: {
+    description: 'How Georgia works process section';
+    displayName: 'GE ABE';
+    icon: 'layer';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    steps: Schema.Attribute.Component<'sections.ge-step', true>;
+  };
+}
+
+export interface SectionsGeAudience extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_audiences';
+  info: {
+    description: 'Who Georgia is for section';
+    displayName: 'GE Audience';
+    icon: 'user';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.ge-audience-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeAudienceCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_audience_cards';
+  info: {
+    description: 'Who Georgia is for card';
+    displayName: 'GE Audience Card';
+    icon: 'user';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsGeCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_ctas';
+  info: {
+    description: 'Georgia closing CTA';
+    displayName: 'GE CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeFaq extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_faqs';
+  info: {
+    description: 'Georgia FAQ';
+    displayName: 'GE FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'sections.faq-item', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_heroes';
+  info: {
+    description: 'Georgia hero with lead and CTAs';
+    displayName: 'GE Hero';
+    icon: 'star';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    leadAfter: Schema.Attribute.Text;
+    leadBold: Schema.Attribute.String;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    subtitle: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsGeOffer extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_offers';
+  info: {
+    description: 'Georgia offer / scenario card';
+    displayName: 'GE Offer';
+    icon: 'layer';
+  };
+  attributes: {
+    audience: Schema.Attribute.Text;
+    chips: Schema.Attribute.JSON;
+    practices: Schema.Attribute.JSON;
+    quoteLine: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    what: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsGeQuote extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_quotes';
+  info: {
+    description: 'Georgia quote band';
+    displayName: 'GE Quote';
+    icon: 'quote';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeRole extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_roles';
+  info: {
+    description: 'Georgia KB&G role band';
+    displayName: 'GE Role';
+    icon: 'puzzle';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeService extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_services';
+  info: {
+    description: 'Georgia service band with offers';
+    displayName: 'GE Service';
+    icon: 'grid';
+  };
+  attributes: {
+    altBackground: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    kicker: Schema.Attribute.String;
+    offers: Schema.Attribute.Component<'sections.ge-offer', true>;
+    pills: Schema.Attribute.JSON;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    themeTone: Schema.Attribute.Enumeration<
+      ['mint', 'yellow', 'pink', 'slate', 'blue']
+    > &
+      Schema.Attribute.DefaultTo<'mint'>;
+  };
+}
+
+export interface SectionsGeStat extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_stats_items';
+  info: {
+    description: 'Georgia stat card';
+    displayName: 'GE Stat';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    label: Schema.Attribute.Text & Schema.Attribute.Required;
+    number: Schema.Attribute.String & Schema.Attribute.Required;
+    source: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsGeStats extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_statses';
+  info: {
+    description: 'Georgia stats band';
+    displayName: 'GE Stats';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'sections.ge-stat', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsGeStep extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ge_steps';
+  info: {
+    description: 'Georgia how-it-works step';
+    displayName: 'GE Step';
+    icon: 'bulletList';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    number: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: 'components_sections_heroes';
   info: {
@@ -1278,6 +1487,19 @@ declare module '@strapi/strapi' {
       'sections.cw-workflow-step': SectionsCwWorkflowStep;
       'sections.faq-item': SectionsFaqItem;
       'sections.form-field': SectionsFormField;
+      'sections.ge-abe': SectionsGeAbe;
+      'sections.ge-audience': SectionsGeAudience;
+      'sections.ge-audience-card': SectionsGeAudienceCard;
+      'sections.ge-cta': SectionsGeCta;
+      'sections.ge-faq': SectionsGeFaq;
+      'sections.ge-hero': SectionsGeHero;
+      'sections.ge-offer': SectionsGeOffer;
+      'sections.ge-quote': SectionsGeQuote;
+      'sections.ge-role': SectionsGeRole;
+      'sections.ge-service': SectionsGeService;
+      'sections.ge-stat': SectionsGeStat;
+      'sections.ge-stats': SectionsGeStats;
+      'sections.ge-step': SectionsGeStep;
       'sections.hero': SectionsHero;
       'sections.is-audience': SectionsIsAudience;
       'sections.is-audience-col': SectionsIsAudienceCol;

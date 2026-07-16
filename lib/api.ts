@@ -271,6 +271,61 @@ const AU_SECTION_POPULATE: SectionPopulateMap = {
   },
 };
 
+const GE_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.ge-hero": {
+    populate: {
+      sectionConfig: true,
+      image: true,
+    },
+  },
+  "sections.ge-stats": {
+    populate: {
+      sectionConfig: true,
+      items: true,
+    },
+  },
+  "sections.ge-service": {
+    populate: {
+      sectionConfig: true,
+      image: true,
+      offers: true,
+    },
+  },
+  "sections.ge-abe": {
+    populate: {
+      sectionConfig: true,
+      steps: true,
+    },
+  },
+  "sections.ge-audience": {
+    populate: {
+      sectionConfig: true,
+      cards: true,
+    },
+  },
+  "sections.ge-quote": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.ge-role": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.ge-faq": {
+    populate: {
+      sectionConfig: true,
+      items: true,
+    },
+  },
+  "sections.ge-cta": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+};
+
 function buildPagePopulateQuery(sectionPopulate: SectionPopulateMap) {
   return qs.stringify(
     {
@@ -351,6 +406,7 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
     ...IS_SECTION_POPULATE,
     ...CS_SECTION_POPULATE,
     ...AU_SECTION_POPULATE,
+    ...GE_SECTION_POPULATE,
   };
 
   try {
