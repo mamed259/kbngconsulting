@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_cw_adopt_cards",
+  "info": {
+    "displayName": "CW Adopt Card",
+    "icon": "check",
+    "description": "Adoption benefit card for Canary Waves"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

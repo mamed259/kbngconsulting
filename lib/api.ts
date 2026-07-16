@@ -8,6 +8,132 @@ const STRAPI_REVALIDATE_SECONDS = Number.isFinite(rawRevalidate)
   ? rawRevalidate
   : 60;
 
+type SectionPopulateMap = Record<string, unknown>;
+
+const BASE_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.hero": {
+    populate: "*",
+  },
+  "sections.solutions": {
+    populate: {
+      sectionConfig: true,
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.consulting": {
+    populate: {
+      sectionConfig: true,
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.sectors": {
+    populate: {
+      sectionConfig: true,
+      items: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.book": {
+    populate: ["sectionConfig", "formFields"],
+  },
+  "sections.resources": {
+    populate: {
+      sectionConfig: true,
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+};
+
+const CW_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.cw-hero": {
+    populate: "*",
+  },
+  "sections.cw-stats": {
+    populate: {
+      items: true,
+    },
+  },
+  "sections.cw-insight": {
+    populate: {
+      gapItems: true,
+      image: true,
+    },
+  },
+  "sections.cw-issues": {
+    populate: {
+      sectionConfig: true,
+      cards: true,
+    },
+  },
+  "sections.cw-culture": {
+    populate: {
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.cw-pills": {
+    populate: true,
+  },
+  "sections.cw-workflow": {
+    populate: {
+      sectionConfig: true,
+      steps: true,
+    },
+  },
+  "sections.cw-adopt": {
+    populate: {
+      cards: true,
+    },
+  },
+  "sections.cw-quote": {
+    populate: true,
+  },
+  "sections.cw-faq": {
+    populate: {
+      items: true,
+    },
+  },
+  "sections.cw-cta": {
+    populate: true,
+  },
+};
+
+function buildPagePopulateQuery(sectionPopulate: SectionPopulateMap) {
+  return qs.stringify(
+    {
+      populate: {
+        seo: {
+          populate: ["ogImage"],
+        },
+        sections: {
+          on: sectionPopulate,
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+}
+
+function extractInvalidPopulateKey(errorBody: unknown): string | null {
+  if (!errorBody || typeof errorBody !== "object") return null;
+  const error = (errorBody as { error?: { details?: { key?: string }; message?: string } })
+    .error;
+  if (error?.details?.key) return error.details.key;
+  const message = error?.message ?? "";
+  const match = message.match(/Invalid key ([^\s]+) at/);
+  return match?.[1] ?? null;
+}
+
 async function fetchStrapi<T>(path: string, query?: string): Promise<T> {
   const url = new URL(`/api${path}`, getStrapiBaseUrl());
   if (query) {
@@ -28,92 +154,79 @@ async function fetchStrapi<T>(path: string, query?: string): Promise<T> {
   });
 
   if (!response.ok) {
-    throw new Error(`Strapi fetch failed: ${response.status} ${response.statusText}`);
+    let details = "";
+    try {
+      details = await response.text();
+    } catch {
+      details = "";
+    }
+
+    const error = new Error(
+      `Strapi fetch failed: ${response.status} ${response.statusText}${details ? ` -> ${details}` : ""}`,
+    ) as Error & { status?: number; body?: unknown };
+    error.status = response.status;
+    try {
+      error.body = details ? JSON.parse(details) : null;
+    } catch {
+      error.body = details;
+    }
+    throw error;
   }
 
   return response.json() as Promise<T>;
 }
 
-function buildPagePopulateQuery() {
-  return qs.stringify(
-    {
-      populate: {
-        seo: {
-          populate: ["ogImage"],
-        },
-        sections: {
-          on: {
-            "sections.hero": {
-              populate: "*",
-            },
-            "sections.solutions": {
-              populate: {
-                sectionConfig: true,
-                cards: {
-                  populate: ["image"],
-                },
-              },
-            },
-            "sections.consulting": {
-              populate: {
-                sectionConfig: true,
-                cards: {
-                  populate: ["image"],
-                },
-              },
-            },
-            "sections.sectors": {
-              populate: {
-                sectionConfig: true,
-                items: {
-                  populate: ["image"],
-                },
-              },
-            },
-            "sections.book": {
-              populate: ["sectionConfig", "formFields"],
-            },
-            "sections.resources": {
-              populate: {
-                sectionConfig: true,
-                cards: {
-                  populate: ["image"],
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    {
-      encodeValuesOnly: true,
-    },
-  );
-}
-
 export async function getPageBySlug(slug: string): Promise<PageData | null> {
+  const sectionPopulate: SectionPopulateMap = {
+    ...BASE_SECTION_POPULATE,
+    ...CW_SECTION_POPULATE,
+  };
+
   try {
-    const query = `${qs.stringify(
-      {
-        filters: {
-          slug: {
-            $eq: slug,
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      const query = `${qs.stringify(
+        {
+          filters: {
+            slug: {
+              $eq: slug,
+            },
           },
         },
-      },
-      { encodeValuesOnly: true },
-    )}&${buildPagePopulateQuery()}`;
+        { encodeValuesOnly: true },
+      )}&${buildPagePopulateQuery(sectionPopulate)}`;
 
-    const response = await fetchStrapi<StrapiCollectionResponse<PageData>>(
-      "/pages",
-      query,
-    );
+      try {
+        const response = await fetchStrapi<StrapiCollectionResponse<PageData>>(
+          "/pages",
+          query,
+        );
 
-    if (!response.data?.length) {
-      return null;
+        if (!response.data?.length) {
+          return null;
+        }
+
+        return response.data[0];
+      } catch (error) {
+        const status =
+          error && typeof error === "object" && "status" in error
+            ? Number((error as { status?: number }).status)
+            : undefined;
+        const body =
+          error && typeof error === "object" && "body" in error
+            ? (error as { body?: unknown }).body
+            : undefined;
+        const invalidKey = status === 400 ? extractInvalidPopulateKey(body) : null;
+
+        if (invalidKey && invalidKey in sectionPopulate) {
+          delete sectionPopulate[invalidKey];
+          continue;
+        }
+
+        throw error;
+      }
     }
 
-    return response.data[0];
+    return null;
   } catch (error) {
     console.error("Failed to fetch page from Strapi:", error);
     return null;

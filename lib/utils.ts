@@ -34,7 +34,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 export function extractStrapiImageUrl(value: unknown): string {
   if (!value) return "";
-  if (typeof value === "string") return getStrapiMedia(value);
+  if (typeof value === "string") {
+    if (value.startsWith("/")) return value;
+    return getStrapiMedia(value);
+  }
 
   if (isRecord(value)) {
     const directUrl = value.url;

@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_cw_culture_cards",
+  "info": {
+    "displayName": "CW Culture Card",
+    "icon": "discuss",
+    "description": "Culture card for Canary Waves communication section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": ["radio", "tone", "network"],
+      "default": "radio"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_cw_issue_cards",
+  "info": {
+    "displayName": "CW Issue Card",
+    "icon": "exclamation",
+    "description": "Issue card for Canary Waves haulage section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "quote": {
+      "type": "text"
+    },
+    "body": {
+      "type": "text"
+    },
+    "bullets": {
+      "type": "json"
+    },
+    "forLabel": {
+      "type": "string"
+    },
+    "accentTheme": {
+      "type": "enumeration",
+      "enum": ["coral", "yellow"],
+      "default": "yellow"
+    }
+  }
+}

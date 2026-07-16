@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_cw_ctas",
+  "info": {
+    "displayName": "CW CTA",
+    "icon": "cursor",
+    "description": "Canary Waves closing call-to-action"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    }
+  }
+}

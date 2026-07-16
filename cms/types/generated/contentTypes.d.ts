@@ -503,6 +503,17 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.sectors',
         'sections.book',
         'sections.resources',
+        'sections.cw-hero',
+        'sections.cw-stats',
+        'sections.cw-insight',
+        'sections.cw-issues',
+        'sections.cw-culture',
+        'sections.cw-pills',
+        'sections.cw-workflow',
+        'sections.cw-adopt',
+        'sections.cw-quote',
+        'sections.cw-faq',
+        'sections.cw-cta',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;

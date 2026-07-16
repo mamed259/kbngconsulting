@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_cw_issues",
+  "info": {
+    "displayName": "CW Issues",
+    "icon": "exclamation",
+    "description": "Canary Waves haulage issues section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-issue-card"
+    }
+  }
+}

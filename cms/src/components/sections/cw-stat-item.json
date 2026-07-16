@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cw_stat_items",
+  "info": {
+    "displayName": "CW Stat Item",
+    "icon": "chartBubble",
+    "description": "Statistic block for Canary Waves stats band"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "required": true
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

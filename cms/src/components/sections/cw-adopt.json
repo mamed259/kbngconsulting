@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_cw_adopts",
+  "info": {
+    "displayName": "CW Adopt",
+    "icon": "check",
+    "description": "Canary Waves adoption benefits section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "footnote": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-adopt-card"
+    }
+  }
+}

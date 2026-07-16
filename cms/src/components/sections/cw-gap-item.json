@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cw_gap_items",
+  "info": {
+    "displayName": "CW Gap Item",
+    "icon": "minus",
+    "description": "Gap strip item for Canary Waves insight section"
+  },
+  "options": {},
+  "attributes": {
+    "num": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "until": {
+      "type": "string"
+    }
+  }
+}

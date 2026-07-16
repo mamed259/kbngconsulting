@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_sections_cw_insights",
+  "info": {
+    "displayName": "CW Insight",
+    "icon": "lightbulb",
+    "description": "Canary Waves insight section with gap strip"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "gapItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-gap-item"
+    }
+  }
+}

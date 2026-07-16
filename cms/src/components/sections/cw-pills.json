@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cw_pills",
+  "info": {
+    "displayName": "CW Pills",
+    "icon": "bulletList",
+    "description": "Canary Waves capability pills band"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "label": {
+      "type": "string"
+    },
+    "items": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_cw_faqs",
+  "info": {
+    "displayName": "CW FAQ",
+    "icon": "question",
+    "description": "Canary Waves FAQ section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.faq-item"
+    }
+  }
+}

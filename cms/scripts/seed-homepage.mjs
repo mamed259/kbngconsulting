@@ -5,10 +5,10 @@ const STRAPI_URL = (process.env.STRAPI_URL || "http://localhost:1337")
   .replace(/\/+$/, "")
   .replace(/\/admin$/, "")
   .replace(/\/api$/, "");
-const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
+const STRAPI_TOKEN = process.env.STRAPI_SEED_TOKEN || process.env.STRAPI_API_TOKEN;
 
 if (!STRAPI_TOKEN) {
-  console.error("Missing STRAPI_API_TOKEN. Export it before running seed.");
+  console.error("Missing STRAPI_SEED_TOKEN or STRAPI_API_TOKEN. Export one before running seed.");
   process.exit(1);
 }
 

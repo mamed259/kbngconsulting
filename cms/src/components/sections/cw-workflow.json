@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_cw_workflows",
+  "info": {
+    "displayName": "CW Workflow",
+    "icon": "layer",
+    "description": "Canary Waves workflow steps section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-workflow-step"
+    }
+  }
+}

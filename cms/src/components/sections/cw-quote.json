@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_cw_quotes",
+  "info": {
+    "displayName": "CW Quote",
+    "icon": "quote",
+    "description": "Canary Waves quote band"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "attr": {
+      "type": "string"
+    },
+    "footnote": {
+      "type": "text"
+    }
+  }
+}

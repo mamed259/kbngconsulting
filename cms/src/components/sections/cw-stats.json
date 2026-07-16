@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_cw_stats",
+  "info": {
+    "displayName": "CW Stats",
+    "icon": "chartBubble",
+    "description": "Canary Waves statistics band"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "label": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-stat-item"
+    }
+  }
+}

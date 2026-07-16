@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_cw_cultures",
+  "info": {
+    "displayName": "CW Culture",
+    "icon": "discuss",
+    "description": "Canary Waves communication culture section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cw-culture-card"
+    }
+  }
+}

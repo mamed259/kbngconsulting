@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cw_workflow_steps",
+  "info": {
+    "displayName": "CW Workflow Step",
+    "icon": "layer",
+    "description": "Workflow step for Canary Waves process section"
+  },
+  "options": {},
+  "attributes": {
+    "num": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}
