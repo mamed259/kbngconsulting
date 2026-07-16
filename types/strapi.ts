@@ -48,6 +48,20 @@ export interface PageData {
   sections: StrapiSection[];
 }
 
+export interface ArticleData {
+  id: number;
+  documentId?: string;
+  slug: string;
+  title: string;
+  excerpt?: string;
+  publishedOn: string;
+  coverImage?: StrapiMediaField;
+  coverImageUrl?: string;
+  coverImageAlt?: string;
+  body: string;
+  seo?: SeoData;
+}
+
 export interface HeroSectionData {
   __component: "sections.hero";
   id: number;

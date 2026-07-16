@@ -15,6 +15,7 @@
     "seed:innovation-studio": "node scripts/seed-innovation-studio.mjs",
     "seed:consulting-services": "node scripts/seed-consulting-services.mjs",
     "seed:about-us": "node scripts/seed-about-us.mjs",
+    "seed:articles": "node scripts/seed-articles.mjs",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

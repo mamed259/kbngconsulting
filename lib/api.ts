@@ -1,5 +1,5 @@
 import qs from "qs";
-import type { PageData, StrapiCollectionResponse } from "@/types/strapi";
+import type { ArticleData, PageData, StrapiCollectionResponse } from "@/types/strapi";
 import { getStrapiBaseUrl } from "@/lib/utils";
 
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -398,6 +398,66 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
     return null;
   } catch (error) {
     console.error("Failed to fetch page from Strapi:", error);
+    return null;
+  }
+}
+
+const ARTICLE_POPULATE = {
+  seo: {
+    populate: ["ogImage"],
+  },
+  coverImage: true,
+} as const;
+
+export async function getArticles(): Promise<ArticleData[]> {
+  try {
+    const query = qs.stringify(
+      {
+        sort: ["publishedOn:desc"],
+        populate: ARTICLE_POPULATE,
+        pagination: { pageSize: 100 },
+      },
+      { encodeValuesOnly: true },
+    );
+
+    const response = await fetchStrapi<StrapiCollectionResponse<ArticleData>>(
+      "/articles",
+      query,
+    );
+
+    return response.data ?? [];
+  } catch (error) {
+    console.error("Failed to fetch articles from Strapi:", error);
+    return [];
+  }
+}
+
+export async function getArticleBySlug(slug: string): Promise<ArticleData | null> {
+  try {
+    const query = qs.stringify(
+      {
+        filters: {
+          slug: {
+            $eq: slug,
+          },
+        },
+        populate: ARTICLE_POPULATE,
+      },
+      { encodeValuesOnly: true },
+    );
+
+    const response = await fetchStrapi<StrapiCollectionResponse<ArticleData>>(
+      "/articles",
+      query,
+    );
+
+    if (!response.data?.length) {
+      return null;
+    }
+
+    return response.data[0];
+  } catch (error) {
+    console.error("Failed to fetch article from Strapi:", error);
     return null;
   }
 }

@@ -19,7 +19,7 @@ export function CwFaqSection({ heading, items }: Props) {
           {items.map((item) => {
             const isOpen = openId === item.id;
             return (
-              <div key={item.id} className={`qa reveal${isOpen ? " is-open" : ""}`}>
+              <div key={item.id} className={`qa${isOpen ? " is-open" : ""}`}>
                 <button
                   type="button"
                   className="qa-trigger"

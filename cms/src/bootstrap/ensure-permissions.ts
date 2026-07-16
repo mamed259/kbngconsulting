@@ -1,6 +1,7 @@
 import type { Core } from "@strapi/strapi";
 
 const PAGE_ACTIONS = ["find", "findOne"] as const;
+const ARTICLE_ACTIONS = ["find", "findOne"] as const;
 const FORM_ACTIONS = ["create"] as const;
 
 async function ensureRolePermissions(
@@ -41,6 +42,7 @@ async function ensureRolePermissions(
 
 export async function ensurePublicApiAccess(strapi: Core.Strapi) {
   await ensureRolePermissions(strapi, "public", "api::page.page", PAGE_ACTIONS);
+  await ensureRolePermissions(strapi, "public", "api::article.article", ARTICLE_ACTIONS);
   await ensureRolePermissions(
     strapi,
     "public",

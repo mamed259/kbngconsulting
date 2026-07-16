@@ -1,5 +1,6 @@
 import type { Core } from "@strapi/strapi";
 import { seedProductPages } from "./bootstrap/seed-pages";
+import { seedBlogArticles } from "./bootstrap/seed-articles";
 import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
 
@@ -10,5 +11,6 @@ export default {
     await ensurePublicApiAccess(strapi);
     await ensureLocalReadToken(strapi);
     await seedProductPages(strapi);
+    await seedBlogArticles(strapi);
   },
 };
