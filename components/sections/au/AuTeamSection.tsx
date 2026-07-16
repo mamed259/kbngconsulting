@@ -19,7 +19,7 @@ function MemberBand({ member }: { member: AuMemberData }) {
     <div className={`member tone-${tone} reveal`}>
       <div className="member-mark">
         {src ? (
-          <Image src={src} alt={member.name} width={72} height={72} />
+          <Image src={src} alt={member.name} width={72} height={72} style={{ objectFit: "cover" }} />
         ) : (
           <span>{getInitials(member.name)}</span>
         )}

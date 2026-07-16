@@ -36,7 +36,13 @@ export function CwCultureSection({ kicker, heading, promise, cards }: Props) {
             return (
               <article key={card.id} className="ccard reveal">
                 {src ? (
-                  <Image src={src} alt={card.imageAlt || ""} width={640} height={360} />
+                  <Image
+                    src={src}
+                    alt={card.imageAlt || ""}
+                    width={640}
+                    height={360}
+                    style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                  />
                 ) : null}
                 <div className="cc-in">
                   <div className="cc-head">

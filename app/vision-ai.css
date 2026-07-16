@@ -118,13 +118,21 @@
   }
 }
 
-.va-page .hero-art img {
-  width: 100%;
-  height: auto;
-  display: block;
+.va-page .hero-art {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
   border-radius: 18px;
   border: 1px solid var(--line);
   box-shadow: 0 26px 64px rgba(0, 0, 0, 0.5);
+  background: var(--panel);
+}
+
+.va-page .hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .va-page .cw-btn-ghost {
@@ -446,7 +454,9 @@
 
 .va-page .ccard > img {
   width: 100%;
+  aspect-ratio: 16 / 9;
   height: auto;
+  object-fit: cover;
   display: block;
   border-bottom: 1px solid var(--line);
 }
@@ -839,7 +849,9 @@
 
 .va-page .wb-card > img {
   width: 100%;
+  aspect-ratio: 16 / 10;
   height: auto;
+  object-fit: cover;
   display: block;
   border-bottom: 1px solid var(--line);
 }

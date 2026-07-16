@@ -41,6 +41,7 @@ export function CwInsightSection({
                   width={960}
                   height={600}
                   sizes="(min-width: 860px) 50vw, 100vw"
+                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
                 />
               </div>
             </div>

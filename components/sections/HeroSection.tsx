@@ -61,6 +61,7 @@ export function HeroSection({
             height={500}
             sizes="(min-width: 1100px) 38vw, 0px"
             priority
+            style={{ objectFit: "cover" }}
           />
         </div>
       ) : null}

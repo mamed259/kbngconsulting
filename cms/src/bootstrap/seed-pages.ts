@@ -16,14 +16,24 @@ async function findPageBySlug(strapi: Core.Strapi, slug: string) {
   return pages[0] ?? null;
 }
 
+function sanitizePagePayload(data: Record<string, unknown> & { slug: string }) {
+  const payload = JSON.parse(JSON.stringify(data)) as Record<string, unknown> & { slug: string };
+  if (payload.seo && typeof payload.seo === "object" && !Array.isArray(payload.seo)) {
+    const seo = payload.seo as Record<string, unknown>;
+    const { id: _id, documentId: _documentId, ...rest } = seo;
+    payload.seo = rest;
+  }
+  return payload;
+}
+
 async function upsertPage(strapi: Core.Strapi, data: Record<string, unknown> & { slug: string }) {
-  const payload = JSON.parse(JSON.stringify(data));
+  const payload = sanitizePagePayload(data);
   const existing = await findPageBySlug(strapi, payload.slug);
 
   if (existing?.documentId) {
     await strapi.documents(PAGE_UID).update({
       documentId: existing.documentId,
-      data: payload,
+      data: payload as never,
       status: "published",
     });
     strapi.log.info(`[seed] Updated page: ${payload.slug}`);
@@ -31,7 +41,7 @@ async function upsertPage(strapi: Core.Strapi, data: Record<string, unknown> & {
   }
 
   await strapi.documents(PAGE_UID).create({
-    data: payload,
+    data: payload as never,
     status: "published",
   });
   strapi.log.info(`[seed] Created page: ${payload.slug}`);

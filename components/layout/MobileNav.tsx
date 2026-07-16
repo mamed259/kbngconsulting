@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { navLinks } from "@/components/layout/nav-links";
 
@@ -26,9 +27,9 @@ export function MobileNav() {
           <ul>
             {navLinks.map((item) => (
               <li key={item.href}>
-                <a href={item.href} onClick={() => setIsOpen(false)}>
+                <Link href={item.href} onClick={() => setIsOpen(false)}>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

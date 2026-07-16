@@ -4,9 +4,13 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: "Innovation Studio", href: "#solutions" },
-  { label: "Consulting", href: "#consulting" },
-  { label: "Sectors", href: "#sectors" },
-  { label: "Resources", href: "#resources" },
-  { label: "Let's talk", href: "#book" },
+  { label: "Main", href: "/" },
+  { label: "Canary Waves", href: "/canary-waves" },
+  { label: "Georgia", href: "/georgia" },
+  { label: "Vision AI", href: "/vision-ai" },
+  { label: "Innovation Studio", href: "/innovation-studio" },
+  { label: "Consulting Services", href: "/consulting-services" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Blog", href: "/blog" },
+  { label: "Founder consultation", href: "/founder-diagnostic" },
 ];

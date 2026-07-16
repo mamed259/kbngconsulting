@@ -61,6 +61,7 @@ export function CwHeroSection({
                 height={720}
                 priority
                 sizes="(min-width: 920px) 45vw, 100vw"
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
             </div>
           ) : null}

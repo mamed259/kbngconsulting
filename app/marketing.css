@@ -1039,8 +1039,8 @@ footer {
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--line);
-  padding: 40px 0;
-  background: #06222a;
+  padding: 40px 0 0;
+  background: var(--teal);
 }
 
 .foot {
@@ -1073,16 +1073,34 @@ footer {
 }
 
 .foot-mark {
-  font-weight: 800;
-  font-size: clamp(5rem, 36vw, 28rem);
-  line-height: 0.74;
+  width: 100%;
+  margin: 28px 0 0;
+  padding: 0 clamp(20px, 4vw, 48px);
+  box-sizing: border-box;
+  line-height: 0;
   text-align: center;
-  letter-spacing: -0.03em;
-  color: rgba(255, 255, 255, 0.05);
   user-select: none;
   pointer-events: none;
-  margin: 26px 0 -0.14em;
-  white-space: nowrap;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Letter silhouettes only — no SVG fill/blur/gradient on the footer bg */
+.foot-mark-glyph {
+  display: block;
+  width: 100%;
+  max-width: 1480px;
+  aspect-ratio: 1584 / 396;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-mask-image: url("/images/footer-watermark.svg");
+  mask-image: url("/images/footer-watermark.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
 }
 
 .reveal {
@@ -1111,7 +1129,7 @@ footer {
 .hero-visual-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -1373,10 +1391,6 @@ footer {
 
   .metrics {
     grid-template-columns: 1fr;
-  }
-
-  .foot-mark {
-    font-size: clamp(3.5rem, 28vw, 8rem);
   }
 }
 

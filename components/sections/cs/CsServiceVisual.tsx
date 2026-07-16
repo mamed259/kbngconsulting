@@ -9,7 +9,7 @@ export function CsServiceVisual({ visualKind, heading, image, imageUrl, imageAlt
     const src = extractStrapiImageUrl(image || imageUrl);
     if (src) {
       return (
-        <Image src={src} alt={imageAlt || heading} fill sizes="(min-width: 860px) 50vw, 100vw" />
+        <Image src={src} alt={imageAlt || heading} fill sizes="(min-width: 860px) 50vw, 100vw" style={{ objectFit: "cover" }} />
       );
     }
   }

@@ -57,7 +57,7 @@ export function IsHeroSection({
         </div>
         {src ? (
           <div className="hero-visual">
-            <Image src={src} alt={imageAlt || ""} width={720} height={720} priority sizes="(min-width: 900px) 40vw, 100vw" />
+            <Image src={src} alt={imageAlt || ""} width={720} height={720} priority sizes="(min-width: 900px) 40vw, 100vw" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
           </div>
         ) : null}
       </Container>

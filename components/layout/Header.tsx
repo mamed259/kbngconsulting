@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/components/layout/nav-links";
 
@@ -54,7 +55,7 @@ export function Header() {
     <header id="top" className={showHeader ? "is-visible" : "is-hidden"}>
       <div className="header-shell">
         <div className="wrap nav">
-          <a className="brand" href="#top" aria-label="KB and G home">
+          <Link className="brand" href="/" aria-label="KB and G home">
             <svg
               className="brand-logo-svg"
               viewBox="0 0 482 34"
@@ -63,7 +64,7 @@ export function Header() {
             >
               <use href="#svg347873607_7690" />
             </svg>
-          </a>
+          </Link>
 
           <div className="nav-actions">
             <a className="btn btn-solid nav-cta" href="#book">
@@ -89,9 +90,9 @@ export function Header() {
             <ul>
               {navLinks.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} onClick={() => setIsOpen(false)}>
+                  <Link href={item.href} onClick={() => setIsOpen(false)}>
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -35,7 +35,13 @@ export function VaBuildSection({ kicker, heading, promise, cards }: Props) {
             return (
               <article key={card.id} className="wb-card reveal">
                 {src ? (
-                  <Image src={src} alt={card.imageAlt || ""} width={640} height={400} />
+                  <Image
+                    src={src}
+                    alt={card.imageAlt || ""}
+                    width={640}
+                    height={400}
+                    style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                  />
                 ) : null}
                 <div className="wb-in">
                   <div className="wb-head">

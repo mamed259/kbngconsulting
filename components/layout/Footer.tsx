@@ -20,9 +20,9 @@ export function Footer() {
             Building a startup? &rarr; the Founder Diagnostic &#8599;
           </Link>
         </div>
-        <div className="foot-mark" aria-hidden>
-          KBNG
-        </div>
+      </div>
+      <div className="foot-mark" aria-hidden>
+        <div className="foot-mark-glyph" />
       </div>
     </footer>
   );

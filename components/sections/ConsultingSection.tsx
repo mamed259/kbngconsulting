@@ -52,6 +52,7 @@ export function ConsultingSection({ heading, cards }: ConsultingSectionProps) {
                     aria-hidden
                     width={84}
                     height={84}
+                    style={{ objectFit: "cover" }}
                   />
                 ) : null}
                 <h3>{card.title}</h3>
