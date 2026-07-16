@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_is_products",
+  "info": {
+    "displayName": "IS Products",
+    "icon": "apps",
+    "description": "Flagships or foundations product list"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "spineYear": {
+      "type": "string"
+    },
+    "spineLabel": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.is-product-card"
+    }
+  }
+}

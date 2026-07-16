@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_is_ctas",
+  "info": {
+    "displayName": "IS CTA",
+    "icon": "cursor",
+    "description": "Closing CTA"
+  },
+  "options": {},
+  "attributes": {
+    "body": {
+      "type": "text",
+      "required": true
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    }
+  }
+}

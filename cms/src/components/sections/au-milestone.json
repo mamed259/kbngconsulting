@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_au_milestones",
+  "info": {
+    "displayName": "AU Milestone",
+    "icon": "calendar",
+    "description": "Single timeline milestone"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

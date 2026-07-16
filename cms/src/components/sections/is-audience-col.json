@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_is_audience_cols",
+  "info": {
+    "displayName": "IS Audience Column",
+    "icon": "user",
+    "description": "Audience column"
+  },
+  "options": {},
+  "attributes": {
+    "role": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "json"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "alt"
+      ],
+      "default": "default"
+    }
+  }
+}

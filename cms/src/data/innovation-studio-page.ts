@@ -1,0 +1,267 @@
+export const innovationStudioPageData = {
+  title: "Innovation Studio",
+  slug: "innovation-studio",
+  seo: {
+    metaTitle: "KB&G Innovation Studio | Industrial AI Built for the Field",
+    metaDescription:
+      "KB&G Innovation Studio builds industrial AI and software products shaped by real operators and proven on a real site before they scale.",
+    canonicalUrl: "https://kbngconsulting.com/kbng-innovation-studio",
+  },
+  sections: [
+    {
+      __component: "sections.is-hero",
+      heading: "Industrial AI,",
+      headingHighlight: "built for the field.",
+      lead:
+        "We are an industrial innovation consulting studio. We build AI and software products, shaped by real operators and proven on a real site before they scale.",
+      trustLabel: "Modern Thinking for Legacy Environments",
+      primaryCtaText: "Book a call",
+      primaryCtaHref: "https://kbngconsulting.com/contacts",
+      secondaryCtaText: "See what we build →",
+      secondaryCtaHref: "#flagships",
+      imageUrl: "/images/innovation-studio/hero.png",
+      imageAlt: "KB&G, built with heart",
+    },
+    {
+      __component: "sections.is-brandbar",
+      label: "Our products",
+      chips: [
+        { label: "Canary Waves", href: "#canary", targetId: "canary" },
+        { label: "Georgia", href: "#georgia", targetId: "georgia" },
+        { label: "Vision AI", href: "#vision-ai", targetId: "vision-ai" },
+        { label: "Micro-Market Analytics", href: "#market-analytics", targetId: "market-analytics" },
+        { label: "CPQ", href: "#cpq", targetId: "cpq" },
+      ],
+    },
+    {
+      __component: "sections.is-thesis",
+      heading: "We build software around the way your site actually runs.",
+      lead:
+        "Asset-heavy industries run on hard-won field knowledge that rarely makes it into the tools they're sold. KB&G Innovation Studio sits between that knowledge and modern AI. We bring industrial logic, data strategy, and real operator feedback into every build, so the result fits how your teams work and earns its place in daily operations.",
+      body:
+        "This is industrial AI adoption without the science project. We frame the right use case, build it, prove the value in a pilot, and leave your team able to run it.",
+      pillars: [
+        {
+          title: "Field credibility",
+          body: "Tested where it matters. Our tools are validated on real sites before anyone is asked to scale them.",
+        },
+        {
+          title: "Practical AI",
+          body: "We turn real-world challenges into intelligent, scalable systems, not demos that stall after the pitch.",
+        },
+        {
+          title: "Built around you",
+          body: "Operators shape the product from the first sketch, so it solves the bottleneck you actually have.",
+        },
+        {
+          title: "Trust & partnership",
+          body: "A reliable partner for industries that don't take risks lightly. Clear scope, honest pilots, no lock-in.",
+        },
+      ],
+    },
+    {
+      __component: "sections.is-products",
+      sectionConfig: { sectionId: "flagships" },
+      spineYear: "Since 2025",
+      spineLabel: "Flagship industrial AI",
+      heading: "Two platforms in the field right now",
+      lead:
+        "Our current flagships solve the two problems heavy industry asks about most: keeping people safe, and getting the high-stakes conversation right.",
+      cards: [
+        {
+          anchorId: "canary",
+          kicker: "Flagship · Safety intelligence",
+          kickerTone: "yellow",
+          title: "Canary Waves",
+          subtitle: "Voice-to-data safety intelligence for mining and quarrying.",
+          body:
+            "Canary Waves turns the two-way radio traffic already running across a site into real-time safety intelligence, surfacing collision risks, flagged hazards, and missed protocols to leadership before they reach the incident report. It runs passively on existing infrastructure, with no change to frontline operations.",
+          whoFor:
+            "safety and operations leaders in mining and quarrying who want insight from the comms they already have.",
+          proof: "Piloted on real mine sites.",
+          primaryCtaText: "Book a demo",
+          primaryCtaHref: "https://kbngconsulting.com/canary-waves",
+          secondaryCtaText: "How it works →",
+          secondaryCtaHref: "https://kbngconsulting.com/canary-waves",
+          imageUrl: "/images/innovation-studio/canary.jpg",
+          imageAlt: "Canary Waves safety intelligence on a mine site",
+          flip: false,
+        },
+        {
+          anchorId: "georgia",
+          kicker: "Flagship · Human performance",
+          kickerTone: "pink",
+          title: "Georgia",
+          subtitle: "Human-performance AI for the conversations that move money.",
+          body:
+            "Georgia is an AI role-play platform that trains teams for high-stakes moments: holding price under pressure, de-escalating an unhappy client before they walk away, and giving feedback before it becomes a crisis. Knowing what to say is not the same as saying it under pressure, so Georgia builds the skill through short, personalized practice.",
+          whoFor:
+            "sales, commercial, and site leaders in construction, mining, and building materials who need skill that holds in the room.",
+          proof: "Built in the field, for construction, mining, and building materials.",
+          primaryCtaText: "Book a demo",
+          primaryCtaHref: "https://kbngconsulting.com/georgia",
+          secondaryCtaText: "How it works →",
+          secondaryCtaHref: "https://kbngconsulting.com/georgia",
+          imageUrl: "/images/innovation-studio/georgia.jpg",
+          imageAlt: "Georgia AI role-play coaching in the field",
+          flip: true,
+        },
+      ],
+    },
+    {
+      __component: "sections.is-products",
+      sectionConfig: { sectionId: "foundations" },
+      spineYear: "The toolkit",
+      spineLabel: "AI and SaaS, proven on real sites",
+      heading: "Software we have already shipped",
+      lead:
+        "Before our current flagships, we built these AI and SaaS products with operators to solve specific bottlenecks, from site safety to market strategy to pricing. They are live, and they show the depth of what the studio can build for you.",
+      cards: [
+        {
+          anchorId: "vision-ai",
+          kicker: "Computer vision",
+          kickerTone: "default",
+          title: "Vision AI",
+          subtitle: "Computer vision, fine-tuned for your exact environment.",
+          body:
+            "Generic models look fine in a demo, then lose accuracy the moment they meet a real site: sodium-vapor lighting, dust, reflective rock, narrow tunnels. Vision AI is fine-tuned to the place it actually runs, so detection holds where safety and value are on the line. The same engine has gone from gold mines to luxury bags, which is the clearest proof of how far precise tuning can travel.",
+          features: [
+            "Safety on existing cameras: PPE detection, worker proximity alerts, restricted-zone and conveyor monitoring, ore classification.",
+            "Generative precision: brand-accurate product previews where stone counts, proportions, materials, and logos have to be exactly right.",
+            "Beats domain shift: site-specific tuning cuts false positives and stabilizes alerts where off-the-shelf models fail.",
+            "Staged to your budget: start with an MVP, validate the real problem, scale once the business case is proven.",
+          ],
+          primaryCtaText: "Ask about Vision AI",
+          primaryCtaHref: "/vision-ai",
+          imageUrl: "/images/innovation-studio/vision-ai.jpg",
+          imageAlt: "Vision AI real-time safety monitoring on a mine site",
+          flip: false,
+        },
+        {
+          anchorId: "market-analytics",
+          kicker: "Market intelligence",
+          kickerTone: "default",
+          title: "Micro-Market Analytics",
+          subtitle: "Market analysis built specifically for aggregates.",
+          body:
+            "Every producer and customer site in a market, mapped, scored, and turned into decisions. It maps quarries, pits, ready-mix and asphalt plants, depots, and resellers, then runs the analyses that tell you where to compete, where to price up, and where to invest. The methodology stays consistent across every region, so comparisons hold.",
+          statValue: "84%",
+          statLabel:
+            "of KB&G market analysis projects have led to a profit increase or a clear action plan to hold position.",
+          features: [
+            "Strategic decisions: justify investment or divestment in M&A, redesign operational strategy, compare regions on the same basis.",
+            "Go-to-market clarity: understand competitive context, identify your structural advantages, define the right sales approach.",
+            "Pricing strategy: increase price with evidence, understand the true value of your products, spot material shortages before they move the market.",
+            "Depth: a live map, 50 standard analyses, plus any custom analysis your team needs. Used across markets in North America, Europe, Africa, and Oceania.",
+          ],
+          primaryCtaText: "Ask about Micro-Market Analytics",
+          primaryCtaHref: "https://kbngconsulting.com/contacts",
+          imageUrl: "/images/innovation-studio/market-analytics.jpg",
+          imageAlt: "Market analysis dashboard for aggregates",
+          flip: true,
+        },
+        {
+          anchorId: "cpq",
+          kicker: "Quoting & pricing engine",
+          kickerTone: "default",
+          title: "CPQ",
+          subtitle: "Configure, price, and quote, engineered for building materials.",
+          body:
+            "A hybrid pricing and quoting engine that runs the full commercial loop: collect competitor intelligence, manage master data, configure plants and products, price, quote, and analyze. It establishes the pricing discipline that protects margin, gives sales accurate analytics, and closes deals faster.",
+          features: [
+            "80+ industry features, including a multi-bidder project quote flow with one-click closing and partial wins.",
+            "Margin control: approval management and email validation, strategy and price-range governance, leakage prevention.",
+            "Built-in intelligence: won and lost analysis by area with a heat map, competitor intel, and proximity advantage on every quote.",
+            "Operational fit: transport and freight calculation, customer and product tiers, automated tax via Avalara, template-specific terms.",
+          ],
+          primaryCtaText: "Ask about CPQ",
+          primaryCtaHref: "https://kbngconsulting.com/contacts",
+          imageUrl: "/images/innovation-studio/cpq.jpg",
+          imageAlt: "Configure Price Quote engine for building materials",
+          flip: false,
+        },
+      ],
+    },
+    {
+      __component: "sections.is-founders",
+      heading: "Got a problem worth solving in heavy industry? Reach out.",
+      body:
+        "Whether you are a founder, an innovator, or a forward-thinking leader, the studio is where an idea becomes something the field will actually use. We bring industrial access, real-world validation, and go-to-market clarity, then help you build and prove it on a real site.",
+      roles: ["Founders", "Innovators", "Forward-thinking leaders"],
+      primaryCtaText: "Start a conversation →",
+      primaryCtaHref: "https://kbngconsulting.com/contacts",
+      cardEyebrow: "Founders · Start here",
+      cardTitle: "The Founder Diagnostic",
+      cardBody:
+        "Strategic founder intelligence that kills the guesswork on what to build, who it's for, and why anyone will pay. The clarity of an incubator, without giving up equity for it.",
+      cardCtaText: "Explore the Founder Diagnostic →",
+      cardCtaHref: "https://kbngconsulting.com/founders-resources",
+    },
+    {
+      __component: "sections.is-audience",
+      heading: "Operators and innovators in asset-heavy industries",
+      columns: [
+        {
+          role: "Industry leaders",
+          heading: "Modernizing heavy industry",
+          variant: "default",
+          items: [
+            "Product and ops leaders modernizing their tools and processes",
+            "Safety and innovation teams that want AI proven before they scale it",
+            "B2B platforms sharpening pricing models and execution logic",
+            "Multi-site enterprises that need the change to hold across the field",
+          ],
+        },
+        {
+          role: "Founders & innovators",
+          heading: "Building what's next",
+          variant: "alt",
+          items: [
+            "Founders solving overlooked problems in heavy industry",
+            "Tech teams needing real-world validation and GTM clarity",
+            "Early-stage products looking for a route onto a real site",
+            "Innovators who want a partner with industrial access",
+          ],
+        },
+      ],
+    },
+    {
+      __component: "sections.is-bridge",
+      sectionConfig: { sectionId: "sectors" },
+      heading: "The studio builds. The consulting practice makes sure it pays off.",
+      lead:
+        "Tools are only as good as the strategy and people around them. Our Consulting Services advise across pricing, commercial performance, safety, and soft skills, then we build the tools and training that put that strategy to work on the ground.",
+      primaryCtaText: "See consulting services",
+      primaryCtaHref: "https://kbngconsulting.com/consulting-services",
+      secondaryCtaText: "360° Commercial Diagnostic →",
+      secondaryCtaHref: "https://kbngconsulting.com/360°-commercial-diagnostic",
+      pillars: [
+        {
+          title: "Pricing for heavy industry",
+          body: "Know your true cost on every job and hold the price that protects your margin.",
+        },
+        {
+          title: "Commercial performance",
+          body: "See where margin leaks, measure what matters, and train your team to plug it.",
+        },
+        {
+          title: "AI for safety & operations",
+          body: "Put AI where it protects people and uptime, tuned to your site and proven first.",
+        },
+        {
+          title: "Soft skill development",
+          body: "Build the everyday conversations that protect safety, performance, and wellbeing.",
+        },
+      ],
+    },
+    {
+      __component: "sections.is-cta",
+      body:
+        "Whether you're ready to modernize your sales engine, digitize your operations, or build the next tool for your industry, KB&G is your partner. No wasted time. Only real conversations.",
+      primaryCtaText: "Book a 30-min call",
+      primaryCtaHref: "https://kbngconsulting.com/contacts",
+      secondaryCtaText: "See our work →",
+      secondaryCtaHref: "https://kbngconsulting.com/consulting-services",
+    },
+  ],
+};

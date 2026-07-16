@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_au_timelines",
+  "info": {
+    "displayName": "AU Timeline",
+    "icon": "clock",
+    "description": "About Us milestones timeline"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.au-milestone"
+    }
+  }
+}

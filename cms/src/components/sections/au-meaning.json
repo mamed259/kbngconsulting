@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_au_meanings",
+  "info": {
+    "displayName": "AU Meaning",
+    "icon": "puzzle",
+    "description": "What KB&G stands for"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

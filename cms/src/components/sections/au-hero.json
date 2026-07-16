@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_au_heroes",
+  "info": {
+    "displayName": "AU Hero",
+    "icon": "star",
+    "description": "About Us hero"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "headingHighlight": {
+      "type": "string"
+    },
+    "lead": {
+      "type": "text"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    }
+  }
+}

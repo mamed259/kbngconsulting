@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_sections_au_members",
+  "info": {
+    "displayName": "AU Member",
+    "icon": "user",
+    "description": "Team member band"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "bio": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "accentTone": {
+      "type": "enumeration",
+      "enum": ["yellow", "mint", "coral", "blue"],
+      "default": "yellow"
+    }
+  }
+}

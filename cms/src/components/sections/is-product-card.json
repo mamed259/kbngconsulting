@@ -1,0 +1,81 @@
+{
+  "collectionName": "components_sections_is_product_cards",
+  "info": {
+    "displayName": "IS Product Card",
+    "icon": "picture",
+    "description": "Flagship or foundation product card"
+  },
+  "options": {},
+  "attributes": {
+    "anchorId": {
+      "type": "string"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "kickerTone": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "yellow",
+        "pink"
+      ],
+      "default": "default"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "whoFor": {
+      "type": "text"
+    },
+    "proof": {
+      "type": "string"
+    },
+    "features": {
+      "type": "json"
+    },
+    "statValue": {
+      "type": "string"
+    },
+    "statLabel": {
+      "type": "text"
+    },
+    "flip": {
+      "type": "boolean",
+      "default": false
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

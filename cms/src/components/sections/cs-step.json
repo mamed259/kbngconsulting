@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cs_steps",
+  "info": {
+    "displayName": "CS Step",
+    "icon": "bulletList",
+    "description": "Advise-Build-Embed process step"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

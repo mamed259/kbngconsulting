@@ -471,6 +471,307 @@ export interface VaCtaSectionData {
   secondaryCtaHref?: string;
 }
 
+export type IsKickerTone = "default" | "yellow" | "pink";
+
+export interface IsChipData {
+  id: number;
+  label: string;
+  href?: string;
+  targetId?: string;
+}
+
+export interface IsPillarData {
+  id: number;
+  title: string;
+  body?: string;
+}
+
+export interface IsProductCardData {
+  id: number;
+  anchorId?: string;
+  kicker?: string;
+  kickerTone?: IsKickerTone;
+  title: string;
+  subtitle?: string;
+  body?: string;
+  whoFor?: string;
+  proof?: string;
+  features?: unknown;
+  statValue?: string;
+  statLabel?: string;
+  flip?: boolean;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export interface IsAudienceColData {
+  id: number;
+  role?: string;
+  heading: string;
+  items?: unknown;
+  variant?: "default" | "alt";
+}
+
+export interface IsHeroSectionData {
+  __component: "sections.is-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  headingHighlight?: string;
+  lead?: string;
+  trustLabel?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export interface IsBrandbarSectionData {
+  __component: "sections.is-brandbar";
+  id: number;
+  label?: string;
+  chips: IsChipData[];
+}
+
+export interface IsThesisSectionData {
+  __component: "sections.is-thesis";
+  id: number;
+  heading: string;
+  lead?: string;
+  body?: string;
+  pillars: IsPillarData[];
+}
+
+export interface IsProductsSectionData {
+  __component: "sections.is-products";
+  id: number;
+  sectionConfig?: SectionConfig;
+  spineYear?: string;
+  spineLabel?: string;
+  heading: string;
+  lead?: string;
+  cards: IsProductCardData[];
+}
+
+export interface IsFoundersSectionData {
+  __component: "sections.is-founders";
+  id: number;
+  heading: string;
+  body?: string;
+  roles?: unknown;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  cardEyebrow?: string;
+  cardTitle?: string;
+  cardBody?: string;
+  cardCtaText?: string;
+  cardCtaHref?: string;
+}
+
+export interface IsAudienceSectionData {
+  __component: "sections.is-audience";
+  id: number;
+  heading: string;
+  columns: IsAudienceColData[];
+}
+
+export interface IsBridgeSectionData {
+  __component: "sections.is-bridge";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lead?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  pillars: IsPillarData[];
+}
+
+export interface IsCtaSectionData {
+  __component: "sections.is-cta";
+  id: number;
+  body: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
+export interface CsLogoData {
+  id: number;
+  label: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+}
+
+export interface CsOfferData {
+  id: number;
+  title: string;
+  what?: string;
+  chips?: unknown;
+  result?: string;
+  audience?: string;
+  note?: string;
+  segments?: unknown;
+}
+
+export interface CsStepData {
+  id: number;
+  number: string;
+  title: string;
+  body?: string;
+}
+
+export interface CsHeroSectionData {
+  __component: "sections.cs-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  subtitle?: string;
+  lead?: string;
+  trustLabel?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  logos?: CsLogoData[];
+}
+
+export interface CsServiceSectionData {
+  __component: "sections.cs-service";
+  id: number;
+  sectionConfig?: SectionConfig;
+  themeTone?: "mint" | "yellow" | "pink" | "slate";
+  altBackground?: boolean;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+  pills?: unknown;
+  visualKind?: "pricing" | "commercial" | "safety" | "soft-skills" | "image";
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+  offers?: CsOfferData[];
+}
+
+export interface CsAbeSectionData {
+  __component: "sections.cs-abe";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lead?: string;
+  steps?: CsStepData[];
+}
+
+export interface CsQuoteSectionData {
+  __component: "sections.cs-quote";
+  id: number;
+  sectionConfig?: SectionConfig;
+  body: string;
+}
+
+export interface CsCtaSectionData {
+  __component: "sections.cs-cta";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+export type AuAccentTone = "yellow" | "mint" | "coral" | "blue";
+
+export interface AuMilestoneData {
+  id: number;
+  year: string;
+  label: string;
+  description?: string;
+}
+
+export interface AuMemberData {
+  id: number;
+  name: string;
+  role: string;
+  bio?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  accentTone?: AuAccentTone;
+}
+
+export interface AuHeroSectionData {
+  __component: "sections.au-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  headingHighlight?: string;
+  lead?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+}
+
+export interface AuMissionSectionData {
+  __component: "sections.au-mission";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body: string;
+}
+
+export interface AuStorySectionData {
+  __component: "sections.au-story";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body: string;
+}
+
+export interface AuMeaningSectionData {
+  __component: "sections.au-meaning";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  title: string;
+  body: string;
+}
+
+export interface AuTimelineSectionData {
+  __component: "sections.au-timeline";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  items: AuMilestoneData[];
+}
+
+export interface AuTeamSectionData {
+  __component: "sections.au-team";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  members: AuMemberData[];
+}
+
+export interface AuCtaSectionData {
+  __component: "sections.au-cta";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  contactLabel?: string;
+  contactEmail?: string;
+}
+
 export type StrapiSection =
   | HeroSectionData
   | SolutionsSectionData
@@ -498,4 +799,24 @@ export type StrapiSection =
   | VaWorkflowSectionData
   | VaQuoteSectionData
   | VaFaqSectionData
-  | VaCtaSectionData;
+  | VaCtaSectionData
+  | IsHeroSectionData
+  | IsBrandbarSectionData
+  | IsThesisSectionData
+  | IsProductsSectionData
+  | IsFoundersSectionData
+  | IsAudienceSectionData
+  | IsBridgeSectionData
+  | IsCtaSectionData
+  | CsHeroSectionData
+  | CsServiceSectionData
+  | CsAbeSectionData
+  | CsQuoteSectionData
+  | CsCtaSectionData
+  | AuHeroSectionData
+  | AuMissionSectionData
+  | AuStorySectionData
+  | AuMeaningSectionData
+  | AuTimelineSectionData
+  | AuTeamSectionData
+  | AuCtaSectionData;

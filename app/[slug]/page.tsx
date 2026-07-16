@@ -6,8 +6,14 @@ import { getPageBySlug } from "@/lib/api";
 import { getStrapiMedia } from "@/lib/utils";
 import { canaryWavesFallbackSections } from "@/content/canary-waves-fallback";
 import { visionAiFallbackSections } from "@/content/vision-ai-fallback";
+import { innovationStudioFallbackSections } from "@/content/innovation-studio-fallback";
+import { consultingServicesFallbackSections } from "@/content/consulting-services-fallback";
+import { aboutUsFallbackSections } from "@/content/about-us-fallback";
 import "../canary-waves.css";
 import "../vision-ai.css";
+import "../innovation-studio.css";
+import "../consulting-services.css";
+import "../about-us.css";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,7 +25,12 @@ const PAGE_FALLBACKS: Record<
     title: string;
     description: string;
     url: string;
-    sections: typeof canaryWavesFallbackSections | typeof visionAiFallbackSections;
+    sections:
+      | typeof canaryWavesFallbackSections
+      | typeof visionAiFallbackSections
+      | typeof innovationStudioFallbackSections
+      | typeof consultingServicesFallbackSections
+      | typeof aboutUsFallbackSections;
   }
 > = {
   "canary-waves": {
@@ -35,6 +46,27 @@ const PAGE_FALLBACKS: Record<
       "Vision AI for industrial safety and beyond. Custom Vision AI development and fine-tuned computer vision for environments and products where off-the-shelf models fall short.",
     url: "https://kbngconsulting.com/kbng-innovation-studio/vision-ai",
     sections: visionAiFallbackSections,
+  },
+  "innovation-studio": {
+    title: "KB&G Innovation Studio | Industrial AI Built for the Field",
+    description:
+      "KB&G Innovation Studio builds industrial AI and software products shaped by real operators and proven on a real site before they scale.",
+    url: "https://kbngconsulting.com/kbng-innovation-studio",
+    sections: innovationStudioFallbackSections,
+  },
+  "consulting-services": {
+    title: "Consulting Services | KB&G",
+    description:
+      "Actionable strategy that moves with your operation. Pricing, commercial performance, AI for safety and operations, and soft-skill development for heavy industry.",
+    url: "https://kbngconsulting.com/consulting-services",
+    sections: consultingServicesFallbackSections,
+  },
+  "about-us": {
+    title: "About KB&G Consulting – Industrial Innovation Experts",
+    description:
+      "KB&G combines industrial consulting, commodity pricing, and AI innovation to serve asset‑heavy industries like gold mining, quarrying, aggregates & building materials.",
+    url: "https://kbngconsulting.com/about-kbng",
+    sections: aboutUsFallbackSections,
   },
 };
 

@@ -1,0 +1,60 @@
+{
+  "collectionName": "components_sections_cs_services",
+  "info": {
+    "displayName": "CS Service",
+    "icon": "grid",
+    "description": "Consulting service band with offers"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "themeTone": {
+      "type": "enumeration",
+      "enum": ["mint", "yellow", "pink", "slate"],
+      "default": "mint"
+    },
+    "altBackground": {
+      "type": "boolean",
+      "default": false
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "pills": {
+      "type": "json"
+    },
+    "visualKind": {
+      "type": "enumeration",
+      "enum": ["pricing", "commercial", "safety", "soft-skills", "image"],
+      "default": "pricing"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "offers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cs-offer"
+    }
+  }
+}

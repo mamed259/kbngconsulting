@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_sections_is_founders",
+  "info": {
+    "displayName": "IS Founders",
+    "icon": "user",
+    "description": "Founders CTA band"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "roles": {
+      "type": "json"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "cardEyebrow": {
+      "type": "string"
+    },
+    "cardTitle": {
+      "type": "string"
+    },
+    "cardBody": {
+      "type": "text"
+    },
+    "cardCtaText": {
+      "type": "string"
+    },
+    "cardCtaHref": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_au_teams",
+  "info": {
+    "displayName": "AU Team",
+    "icon": "users",
+    "description": "About Us team roster"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "members": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.au-member"
+    }
+  }
+}

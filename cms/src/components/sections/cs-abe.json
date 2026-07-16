@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_cs_abes",
+  "info": {
+    "displayName": "CS ABE",
+    "icon": "layer",
+    "description": "Advise-Build-Embed process section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cs-step"
+    }
+  }
+}

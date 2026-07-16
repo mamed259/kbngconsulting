@@ -1,5 +1,147 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SectionsAuCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_ctas';
+  info: {
+    description: 'About Us closing CTA';
+    displayName: 'AU CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    contactEmail: Schema.Attribute.String;
+    contactLabel: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsAuHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_heroes';
+  info: {
+    description: 'About Us hero';
+    displayName: 'AU Hero';
+    icon: 'star';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    headingHighlight: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsAuMeaning extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_meanings';
+  info: {
+    description: 'What KB&G stands for';
+    displayName: 'AU Meaning';
+    icon: 'puzzle';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsAuMember extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_members';
+  info: {
+    description: 'Team member band';
+    displayName: 'AU Member';
+    icon: 'user';
+  };
+  attributes: {
+    accentTone: Schema.Attribute.Enumeration<
+      ['yellow', 'mint', 'coral', 'blue']
+    > &
+      Schema.Attribute.DefaultTo<'yellow'>;
+    bio: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    imageUrl: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    role: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsAuMilestone extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_milestones';
+  info: {
+    description: 'Single timeline milestone';
+    displayName: 'AU Milestone';
+    icon: 'calendar';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    year: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsAuMission extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_missions';
+  info: {
+    description: 'About Us mission statement';
+    displayName: 'AU Mission';
+    icon: 'flag';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsAuStory extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_stories';
+  info: {
+    description: 'About Us origin story';
+    displayName: 'AU Story';
+    icon: 'book';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsAuTeam extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_teams';
+  info: {
+    description: 'About Us team roster';
+    displayName: 'AU Team';
+    icon: 'users';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    members: Schema.Attribute.Component<'sections.au-member', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsAuTimeline extends Struct.ComponentSchema {
+  collectionName: 'components_sections_au_timelines';
+  info: {
+    description: 'About Us milestones timeline';
+    displayName: 'AU Timeline';
+    icon: 'clock';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'sections.au-milestone', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
 export interface SectionsBook extends Struct.ComponentSchema {
   collectionName: 'components_sections_books';
   info: {
@@ -48,6 +190,144 @@ export interface SectionsConsultingCard extends Struct.ComponentSchema {
     href: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     tags: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsCsAbe extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_abes';
+  info: {
+    description: 'Advise-Build-Embed process section';
+    displayName: 'CS ABE';
+    icon: 'layer';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    steps: Schema.Attribute.Component<'sections.cs-step', true>;
+  };
+}
+
+export interface SectionsCsCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_ctas';
+  info: {
+    description: 'Consulting Services closing CTA';
+    displayName: 'CS CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    ctaHref: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsCsHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_heroes';
+  info: {
+    description: 'Consulting Services hero with client logos';
+    displayName: 'CS Hero';
+    icon: 'star';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    logos: Schema.Attribute.Component<'sections.cs-logo', true>;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    subtitle: Schema.Attribute.String;
+    trustLabel: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsCsLogo extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_logos';
+  info: {
+    description: 'Client logo for Consulting Services hero';
+    displayName: 'CS Logo';
+    icon: 'picture';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    imageUrl: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsCsOffer extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_offers';
+  info: {
+    description: 'Consulting service offer card';
+    displayName: 'CS Offer';
+    icon: 'layer';
+  };
+  attributes: {
+    audience: Schema.Attribute.Text;
+    chips: Schema.Attribute.JSON;
+    note: Schema.Attribute.Text;
+    result: Schema.Attribute.Text;
+    segments: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    what: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsCsQuote extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_quotes';
+  info: {
+    description: 'Consulting Services quote band';
+    displayName: 'CS Quote';
+    icon: 'quote';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsCsService extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_services';
+  info: {
+    description: 'Consulting service band with offers';
+    displayName: 'CS Service';
+    icon: 'grid';
+  };
+  attributes: {
+    altBackground: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    kicker: Schema.Attribute.String;
+    offers: Schema.Attribute.Component<'sections.cs-offer', true>;
+    pills: Schema.Attribute.JSON;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    themeTone: Schema.Attribute.Enumeration<
+      ['mint', 'yellow', 'pink', 'slate']
+    > &
+      Schema.Attribute.DefaultTo<'mint'>;
+    visualKind: Schema.Attribute.Enumeration<
+      ['pricing', 'commercial', 'safety', 'soft-skills', 'image']
+    > &
+      Schema.Attribute.DefaultTo<'pricing'>;
+  };
+}
+
+export interface SectionsCsStep extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cs_steps';
+  info: {
+    description: 'Advise-Build-Embed process step';
+    displayName: 'CS Step';
+    icon: 'bulletList';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    number: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -370,6 +650,217 @@ export interface SectionsHero extends Struct.ComponentSchema {
     secondaryCtaText: Schema.Attribute.String;
     sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
     subtitle: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsIsAudience extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_audiences';
+  info: {
+    description: 'Who the studio serves';
+    displayName: 'IS Audience';
+    icon: 'user';
+  };
+  attributes: {
+    columns: Schema.Attribute.Component<'sections.is-audience-col', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsIsAudienceCol extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_audience_cols';
+  info: {
+    description: 'Audience column';
+    displayName: 'IS Audience Column';
+    icon: 'user';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.JSON;
+    role: Schema.Attribute.String;
+    variant: Schema.Attribute.Enumeration<['default', 'alt']> &
+      Schema.Attribute.DefaultTo<'default'>;
+  };
+}
+
+export interface SectionsIsBrandbar extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_brandbars';
+  info: {
+    description: 'Product jump links';
+    displayName: 'IS Brandbar';
+    icon: 'bulletList';
+  };
+  attributes: {
+    chips: Schema.Attribute.Component<'sections.is-chip', true>;
+    label: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsIsBridge extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_bridges';
+  info: {
+    description: 'Consulting bridge section';
+    displayName: 'IS Bridge';
+    icon: 'link';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    pillars: Schema.Attribute.Component<'sections.is-pillar', true>;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsIsChip extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_chips';
+  info: {
+    description: 'Brandbar product chip';
+    displayName: 'IS Chip';
+    icon: 'bulletList';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    targetId: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsIsCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_ctas';
+  info: {
+    description: 'Closing CTA';
+    displayName: 'IS CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsIsFounders extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_founders';
+  info: {
+    description: 'Founders CTA band';
+    displayName: 'IS Founders';
+    icon: 'user';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    cardBody: Schema.Attribute.Text;
+    cardCtaHref: Schema.Attribute.String;
+    cardCtaText: Schema.Attribute.String;
+    cardEyebrow: Schema.Attribute.String;
+    cardTitle: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    roles: Schema.Attribute.JSON;
+  };
+}
+
+export interface SectionsIsHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_heroes';
+  info: {
+    description: 'Innovation Studio hero';
+    displayName: 'IS Hero';
+    icon: 'star';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    headingHighlight: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    trustLabel: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsIsPillar extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_pillars';
+  info: {
+    description: 'Thesis / bridge pillar';
+    displayName: 'IS Pillar';
+    icon: 'layer';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsIsProductCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_product_cards';
+  info: {
+    description: 'Flagship or foundation product card';
+    displayName: 'IS Product Card';
+    icon: 'picture';
+  };
+  attributes: {
+    anchorId: Schema.Attribute.String;
+    body: Schema.Attribute.Text;
+    features: Schema.Attribute.JSON;
+    flip: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    kicker: Schema.Attribute.String;
+    kickerTone: Schema.Attribute.Enumeration<['default', 'yellow', 'pink']> &
+      Schema.Attribute.DefaultTo<'default'>;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    proof: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    statLabel: Schema.Attribute.Text;
+    statValue: Schema.Attribute.String;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    whoFor: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsIsProducts extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_products';
+  info: {
+    description: 'Flagships or foundations product list';
+    displayName: 'IS Products';
+    icon: 'apps';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.is-product-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    spineLabel: Schema.Attribute.String;
+    spineYear: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsIsThesis extends Struct.ComponentSchema {
+  collectionName: 'components_sections_is_theses';
+  info: {
+    description: 'Studio thesis + pillars';
+    displayName: 'IS Thesis';
+    icon: 'layer';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lead: Schema.Attribute.Text;
+    pillars: Schema.Attribute.Component<'sections.is-pillar', true>;
   };
 }
 
@@ -748,9 +1239,26 @@ export interface SharedSeo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'sections.au-cta': SectionsAuCta;
+      'sections.au-hero': SectionsAuHero;
+      'sections.au-meaning': SectionsAuMeaning;
+      'sections.au-member': SectionsAuMember;
+      'sections.au-milestone': SectionsAuMilestone;
+      'sections.au-mission': SectionsAuMission;
+      'sections.au-story': SectionsAuStory;
+      'sections.au-team': SectionsAuTeam;
+      'sections.au-timeline': SectionsAuTimeline;
       'sections.book': SectionsBook;
       'sections.consulting': SectionsConsulting;
       'sections.consulting-card': SectionsConsultingCard;
+      'sections.cs-abe': SectionsCsAbe;
+      'sections.cs-cta': SectionsCsCta;
+      'sections.cs-hero': SectionsCsHero;
+      'sections.cs-logo': SectionsCsLogo;
+      'sections.cs-offer': SectionsCsOffer;
+      'sections.cs-quote': SectionsCsQuote;
+      'sections.cs-service': SectionsCsService;
+      'sections.cs-step': SectionsCsStep;
       'sections.cw-adopt': SectionsCwAdopt;
       'sections.cw-adopt-card': SectionsCwAdoptCard;
       'sections.cw-cta': SectionsCwCta;
@@ -771,6 +1279,18 @@ declare module '@strapi/strapi' {
       'sections.faq-item': SectionsFaqItem;
       'sections.form-field': SectionsFormField;
       'sections.hero': SectionsHero;
+      'sections.is-audience': SectionsIsAudience;
+      'sections.is-audience-col': SectionsIsAudienceCol;
+      'sections.is-brandbar': SectionsIsBrandbar;
+      'sections.is-bridge': SectionsIsBridge;
+      'sections.is-chip': SectionsIsChip;
+      'sections.is-cta': SectionsIsCta;
+      'sections.is-founders': SectionsIsFounders;
+      'sections.is-hero': SectionsIsHero;
+      'sections.is-pillar': SectionsIsPillar;
+      'sections.is-product-card': SectionsIsProductCard;
+      'sections.is-products': SectionsIsProducts;
+      'sections.is-thesis': SectionsIsThesis;
       'sections.resource-card': SectionsResourceCard;
       'sections.resources': SectionsResources;
       'sections.sector-item': SectionsSectorItem;

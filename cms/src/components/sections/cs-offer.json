@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sections_cs_offers",
+  "info": {
+    "displayName": "CS Offer",
+    "icon": "layer",
+    "description": "Consulting service offer card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "what": {
+      "type": "text"
+    },
+    "chips": {
+      "type": "json"
+    },
+    "result": {
+      "type": "text"
+    },
+    "audience": {
+      "type": "text"
+    },
+    "note": {
+      "type": "text"
+    },
+    "segments": {
+      "type": "json"
+    }
+  }
+}

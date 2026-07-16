@@ -1,0 +1,522 @@
+/* About Us — scoped under .au-page */
+.au-page {
+  --teal: #082b31;
+  --yellow: #fff275;
+  --mint: #68ffcf;
+  --coral: #ff5a75;
+  --blue: #7aa7d9;
+  --white: #ffffff;
+  --bg: #082b31;
+  --bg-2: #06222a;
+  --surface: #0c3a41;
+  --surface-2: #104650;
+  --line: rgba(255, 255, 255, 0.09);
+  --ink: rgba(255, 255, 255, 0.94);
+  --muted: rgba(255, 255, 255, 0.72);
+  --muted-2: rgba(255, 255, 255, 0.5);
+  --maxw: 1180px;
+  --r: 22px;
+  --font: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+  margin: 0;
+  font-family: var(--font);
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-synthesis: none;
+}
+
+.au-page * {
+  box-sizing: border-box;
+}
+
+.au-page img {
+  max-width: 100%;
+  display: block;
+}
+
+.au-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.au-page .wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.au-page h1,
+.au-page h2,
+.au-page h3,
+.au-page h4 {
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.au-page p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.au-page section {
+  padding: 64px 0;
+  position: relative;
+}
+
+@media (min-width: 860px) {
+  .au-page section {
+    padding: 88px 0;
+  }
+}
+
+.au-page .kicker {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.au-page .kicker::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--yellow);
+  display: inline-block;
+}
+
+.au-page .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.98rem;
+  padding: 0.9rem 1.7rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.au-page .btn-primary {
+  background: var(--yellow);
+  color: var(--teal);
+}
+
+.au-page .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(255, 242, 117, 0.22);
+}
+
+.au-page .btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.au-page .btn-ghost:hover {
+  border-color: var(--mint);
+  color: var(--mint);
+}
+
+/* Hero — override marketing.css global .hero */
+.au-page .hero {
+  display: block;
+  min-height: 0;
+  background: none;
+  padding-top: 120px;
+  padding-bottom: 64px;
+  overflow: hidden;
+}
+
+.au-page .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(60% 55% at 82% 8%, rgba(255, 242, 117, 0.14), transparent 60%),
+    radial-gradient(55% 45% at 8% 92%, rgba(104, 255, 207, 0.1), transparent 60%),
+    radial-gradient(40% 40% at 50% 40%, rgba(255, 90, 117, 0.06), transparent 65%);
+  pointer-events: none;
+}
+
+.au-page .hero-visual {
+  position: relative;
+  right: auto;
+  top: auto;
+  transform: none;
+  width: auto;
+  aspect-ratio: auto;
+  pointer-events: auto;
+}
+
+.au-page .hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.au-page .hero h1 {
+  font-size: clamp(3.4rem, 11vw, 8rem);
+  color: var(--ink);
+  max-width: 20ch;
+  margin: 0;
+}
+
+.au-page .hero h1 .hl {
+  color: var(--yellow);
+}
+
+.au-page .hero .lead {
+  margin: 1.6rem 0 0;
+  max-width: 56ch;
+  font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+  color: #c9d7d6;
+}
+
+.au-page .hero .btn {
+  margin-top: 2.4rem;
+}
+
+/* Mission */
+.au-page .mission {
+  border-top: 1px solid var(--line);
+}
+
+.au-page .mission-flag {
+  display: inline-block;
+  width: 26px;
+  height: 36px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%);
+  background: var(--mint);
+  margin-bottom: 1.4rem;
+}
+
+.au-page .mission .kicker {
+  display: block;
+  margin: 0 0 1.4rem;
+}
+
+.au-page .mission-statement {
+  font-size: clamp(1.7rem, 4.6vw, 3.1rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  max-width: 26ch;
+}
+
+/* Story */
+.au-page .story {
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.au-page .story h2 {
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  margin-bottom: 1.6rem;
+  max-width: 18ch;
+}
+
+.au-page .story-body {
+  font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+  color: var(--muted);
+  max-width: 72ch;
+  line-height: 1.65;
+}
+
+.au-page .story-body strong {
+  color: var(--mint);
+  font-weight: 700;
+}
+
+/* Meaning */
+.au-page .meaning {
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.au-page .meaning .kicker {
+  justify-content: center;
+}
+
+.au-page .meaning-title {
+  font-size: clamp(2.6rem, 9vw, 6.2rem);
+  margin: 1.4rem 0 2.4rem;
+  color: var(--yellow);
+  letter-spacing: -0.02em;
+}
+
+.au-page .meaning-body {
+  max-width: 68ch;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.au-page .meaning-body p {
+  font-size: clamp(1rem, 1.6vw, 1.14rem);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Timeline */
+.au-page .timeline {
+  border-top: 1px solid var(--line);
+}
+
+.au-page .timeline h2 {
+  margin-bottom: 2.6rem;
+}
+
+.au-page .tl-spine {
+  position: relative;
+  padding-left: 2.4rem;
+  border-left: 1px solid var(--line);
+  display: grid;
+  gap: 2.2rem;
+}
+
+.au-page .tl-item {
+  position: relative;
+}
+
+.au-page .tl-dot {
+  position: absolute;
+  left: -2.53rem;
+  top: 0.3rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 4px rgba(255, 242, 117, 0.16);
+}
+
+.au-page .tl-year {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--yellow);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+}
+
+.au-page .tl-label {
+  display: block;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.au-page .tl-desc {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* Team — horizontal bands, not cards */
+.au-page .team {
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.au-page .team h2 {
+  margin-bottom: 2.6rem;
+}
+
+.au-page .member-list {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.au-page .member {
+  background: var(--bg-2);
+  display: flex;
+  gap: 1.8rem;
+  align-items: flex-start;
+  padding: 2.2rem 1.6rem;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease;
+}
+
+.au-page .member:hover {
+  background: var(--surface);
+}
+
+.au-page .member.tone-yellow {
+  border-left-color: var(--yellow);
+}
+
+.au-page .member.tone-mint {
+  border-left-color: var(--mint);
+}
+
+.au-page .member.tone-coral {
+  border-left-color: var(--coral);
+}
+
+.au-page .member.tone-blue {
+  border-left-color: var(--blue);
+}
+
+.au-page .member-mark {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--teal);
+  background: var(--yellow);
+  overflow: hidden;
+}
+
+.au-page .member.tone-mint .member-mark {
+  background: var(--mint);
+}
+
+.au-page .member.tone-coral .member-mark {
+  background: var(--coral);
+  color: #fff;
+}
+
+.au-page .member.tone-blue .member-mark {
+  background: var(--blue);
+  color: var(--teal);
+}
+
+.au-page .member-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.au-page .member-copy {
+  min-width: 0;
+}
+
+.au-page .member-copy h3 {
+  font-size: 1.28rem;
+  margin-bottom: 0.2rem;
+}
+
+.au-page .member-role {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.au-page .member-bio {
+  font-size: 0.98rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 76ch;
+}
+
+@media (max-width: 700px) {
+  .au-page .member {
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+}
+
+/* CTA */
+.au-page .cta {
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.au-page .cta h2 {
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  max-width: 16ch;
+  margin: 0 auto;
+}
+
+.au-page .cta p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 54ch;
+  margin: 1.4rem auto 0;
+}
+
+.au-page .cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.au-page .cta-contact {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.au-page .contact-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.au-page .cta-contact a {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--mint);
+}
+
+.au-page .cta-contact a:hover {
+  color: var(--yellow);
+}
+
+/* Motion */
+.au-page .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.au-page .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .au-page .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.au-page :focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+  border-radius: 6px;
+}

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sections_is_bridges",
+  "info": {
+    "displayName": "IS Bridge",
+    "icon": "link",
+    "description": "Consulting bridge section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    },
+    "pillars": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.is-pillar"
+    }
+  }
+}

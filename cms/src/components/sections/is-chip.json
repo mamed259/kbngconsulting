@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_is_chips",
+  "info": {
+    "displayName": "IS Chip",
+    "icon": "bulletList",
+    "description": "Brandbar product chip"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string"
+    },
+    "targetId": {
+      "type": "string"
+    }
+  }
+}

@@ -154,6 +154,123 @@ const VA_SECTION_POPULATE: SectionPopulateMap = {
   },
 };
 
+const IS_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.is-hero": {
+    populate: "*",
+  },
+  "sections.is-brandbar": {
+    populate: {
+      chips: true,
+    },
+  },
+  "sections.is-thesis": {
+    populate: {
+      pillars: true,
+    },
+  },
+  "sections.is-products": {
+    populate: {
+      sectionConfig: true,
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.is-founders": {
+    populate: true,
+  },
+  "sections.is-audience": {
+    populate: {
+      columns: true,
+    },
+  },
+  "sections.is-bridge": {
+    populate: {
+      sectionConfig: true,
+      pillars: true,
+    },
+  },
+  "sections.is-cta": {
+    populate: true,
+  },
+};
+
+const CS_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.cs-hero": {
+    populate: {
+      sectionConfig: true,
+      logos: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.cs-service": {
+    populate: {
+      sectionConfig: true,
+      image: true,
+      offers: true,
+    },
+  },
+  "sections.cs-abe": {
+    populate: {
+      sectionConfig: true,
+      steps: true,
+    },
+  },
+  "sections.cs-quote": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.cs-cta": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+};
+
+const AU_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.au-hero": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.au-mission": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.au-story": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.au-meaning": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.au-timeline": {
+    populate: {
+      sectionConfig: true,
+      items: true,
+    },
+  },
+  "sections.au-team": {
+    populate: {
+      sectionConfig: true,
+      members: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.au-cta": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+};
+
 function buildPagePopulateQuery(sectionPopulate: SectionPopulateMap) {
   return qs.stringify(
     {
@@ -229,6 +346,9 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
     ...BASE_SECTION_POPULATE,
     ...CW_SECTION_POPULATE,
     ...VA_SECTION_POPULATE,
+    ...IS_SECTION_POPULATE,
+    ...CS_SECTION_POPULATE,
+    ...AU_SECTION_POPULATE,
   };
 
   try {

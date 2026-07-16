@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_au_stories",
+  "info": {
+    "displayName": "AU Story",
+    "icon": "book",
+    "description": "About Us origin story"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

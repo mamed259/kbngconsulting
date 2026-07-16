@@ -26,6 +26,26 @@ import { VaWorkflowSection } from "@/components/sections/va/VaWorkflowSection";
 import { VaQuoteSection } from "@/components/sections/va/VaQuoteSection";
 import { VaFaqSection } from "@/components/sections/va/VaFaqSection";
 import { VaCtaSection } from "@/components/sections/va/VaCtaSection";
+import { IsHeroSection } from "@/components/sections/is/IsHeroSection";
+import { IsBrandbarSection } from "@/components/sections/is/IsBrandbarSection";
+import { IsThesisSection } from "@/components/sections/is/IsThesisSection";
+import { IsProductsSection } from "@/components/sections/is/IsProductsSection";
+import { IsFoundersSection } from "@/components/sections/is/IsFoundersSection";
+import { IsAudienceSection } from "@/components/sections/is/IsAudienceSection";
+import { IsBridgeSection } from "@/components/sections/is/IsBridgeSection";
+import { IsCtaSection } from "@/components/sections/is/IsCtaSection";
+import { CsHeroSection } from "@/components/sections/cs/CsHeroSection";
+import { CsServiceSection } from "@/components/sections/cs/CsServiceSection";
+import { CsAbeSection } from "@/components/sections/cs/CsAbeSection";
+import { CsQuoteSection } from "@/components/sections/cs/CsQuoteSection";
+import { CsCtaSection } from "@/components/sections/cs/CsCtaSection";
+import { AuHeroSection } from "@/components/sections/au/AuHeroSection";
+import { AuMissionSection } from "@/components/sections/au/AuMissionSection";
+import { AuStorySection } from "@/components/sections/au/AuStorySection";
+import { AuMeaningSection } from "@/components/sections/au/AuMeaningSection";
+import { AuTimelineSection } from "@/components/sections/au/AuTimelineSection";
+import { AuTeamSection } from "@/components/sections/au/AuTeamSection";
+import { AuCtaSection } from "@/components/sections/au/AuCtaSection";
 
 interface DynamicRendererProps {
   sections: StrapiSection[];
@@ -37,6 +57,18 @@ export function isCanaryWavesPage(sections: StrapiSection[]): boolean {
 
 export function isVisionAiPage(sections: StrapiSection[]): boolean {
   return sections.some((section) => section.__component.startsWith("sections.va-"));
+}
+
+export function isInnovationStudioPage(sections: StrapiSection[]): boolean {
+  return sections.some((section) => section.__component.startsWith("sections.is-"));
+}
+
+export function isConsultingServicesPage(sections: StrapiSection[]): boolean {
+  return sections.some((section) => section.__component.startsWith("sections.cs-"));
+}
+
+export function isAboutUsPage(sections: StrapiSection[]): boolean {
+  return sections.some((section) => section.__component.startsWith("sections.au-"));
 }
 
 function renderSection(section: StrapiSection, index: number): React.ReactNode {
@@ -149,6 +181,86 @@ function renderSection(section: StrapiSection, index: number): React.ReactNode {
       const { __component, ...props } = section;
       return <VaCtaSection key={`${__component}-${index}`} {...props} />;
     }
+    case "sections.is-hero": {
+      const { __component, ...props } = section;
+      return <IsHeroSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-brandbar": {
+      const { __component, ...props } = section;
+      return <IsBrandbarSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-thesis": {
+      const { __component, ...props } = section;
+      return <IsThesisSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-products": {
+      const { __component, ...props } = section;
+      return <IsProductsSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-founders": {
+      const { __component, ...props } = section;
+      return <IsFoundersSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-audience": {
+      const { __component, ...props } = section;
+      return <IsAudienceSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-bridge": {
+      const { __component, ...props } = section;
+      return <IsBridgeSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.is-cta": {
+      const { __component, ...props } = section;
+      return <IsCtaSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.cs-hero": {
+      const { __component, ...props } = section;
+      return <CsHeroSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.cs-service": {
+      const { __component, ...props } = section;
+      return <CsServiceSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.cs-abe": {
+      const { __component, ...props } = section;
+      return <CsAbeSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.cs-quote": {
+      const { __component, ...props } = section;
+      return <CsQuoteSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.cs-cta": {
+      const { __component, ...props } = section;
+      return <CsCtaSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-hero": {
+      const { __component, ...props } = section;
+      return <AuHeroSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-mission": {
+      const { __component, ...props } = section;
+      return <AuMissionSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-story": {
+      const { __component, ...props } = section;
+      return <AuStorySection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-meaning": {
+      const { __component, ...props } = section;
+      return <AuMeaningSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-timeline": {
+      const { __component, ...props } = section;
+      return <AuTimelineSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-team": {
+      const { __component, ...props } = section;
+      return <AuTeamSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.au-cta": {
+      const { __component, ...props } = section;
+      return <AuCtaSection key={`${__component}-${index}`} {...props} />;
+    }
     default:
       return null;
   }
@@ -165,6 +277,18 @@ export function DynamicRenderer({ sections }: DynamicRendererProps) {
 
   if (isVisionAiPage(sections)) {
     return <main className="va-page">{content}</main>;
+  }
+
+  if (isInnovationStudioPage(sections)) {
+    return <main className="is-page">{content}</main>;
+  }
+
+  if (isConsultingServicesPage(sections)) {
+    return <main className="cs-page">{content}</main>;
+  }
+
+  if (isAboutUsPage(sections)) {
+    return <main className="au-page">{content}</main>;
   }
 
   return content;

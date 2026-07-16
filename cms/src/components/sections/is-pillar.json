@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_is_pillars",
+  "info": {
+    "displayName": "IS Pillar",
+    "icon": "layer",
+    "description": "Thesis / bridge pillar"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_cs_ctas",
+  "info": {
+    "displayName": "CS CTA",
+    "icon": "cursor",
+    "description": "Consulting Services closing CTA"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "ctaText": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sections_cs_heroes",
+  "info": {
+    "displayName": "CS Hero",
+    "icon": "star",
+    "description": "Consulting Services hero with client logos"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "lead": {
+      "type": "text"
+    },
+    "trustLabel": {
+      "type": "string"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.cs-logo"
+    }
+  }
+}

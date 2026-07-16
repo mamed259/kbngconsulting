@@ -1,6 +1,9 @@
 import type { Core } from "@strapi/strapi";
 import { canaryWavesPageData } from "../data/canary-waves-page";
 import { visionAiPageData } from "../data/vision-ai-page";
+import { innovationStudioPageData } from "../data/innovation-studio-page";
+import { consultingServicesPageData } from "../data/consulting-services-page";
+import { aboutUsPageData } from "../data/about-us-page";
 
 const PAGE_UID = "api::page.page" as const;
 
@@ -55,7 +58,28 @@ export async function seedVisionAiPage(strapi: Core.Strapi) {
   await seedPage(strapi, visionAiPageData as unknown as Record<string, unknown> & { slug: string });
 }
 
+export async function seedInnovationStudioPage(strapi: Core.Strapi) {
+  await seedPage(
+    strapi,
+    innovationStudioPageData as unknown as Record<string, unknown> & { slug: string },
+  );
+}
+
+export async function seedConsultingServicesPage(strapi: Core.Strapi) {
+  await seedPage(
+    strapi,
+    consultingServicesPageData as unknown as Record<string, unknown> & { slug: string },
+  );
+}
+
+export async function seedAboutUsPage(strapi: Core.Strapi) {
+  await seedPage(strapi, aboutUsPageData as unknown as Record<string, unknown> & { slug: string });
+}
+
 export async function seedProductPages(strapi: Core.Strapi) {
   await seedCanaryWavesPage(strapi);
   await seedVisionAiPage(strapi);
+  await seedInnovationStudioPage(strapi);
+  await seedConsultingServicesPage(strapi);
+  await seedAboutUsPage(strapi);
 }

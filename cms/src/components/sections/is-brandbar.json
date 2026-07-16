@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_is_brandbars",
+  "info": {
+    "displayName": "IS Brandbar",
+    "icon": "bulletList",
+    "description": "Product jump links"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "chips": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.is-chip"
+    }
+  }
+}
