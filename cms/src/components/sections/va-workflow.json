@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_va_workflows",
+  "info": {
+    "displayName": "VA Workflow",
+    "icon": "layer",
+    "description": "Vision AI process steps"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.va-workflow-step"
+    }
+  }
+}

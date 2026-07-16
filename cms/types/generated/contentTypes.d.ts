@@ -514,6 +514,16 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.cw-quote',
         'sections.cw-faq',
         'sections.cw-cta',
+        'sections.va-hero',
+        'sections.va-insight',
+        'sections.va-build',
+        'sections.va-examples',
+        'sections.va-lens',
+        'sections.va-audience',
+        'sections.va-workflow',
+        'sections.va-quote',
+        'sections.va-faq',
+        'sections.va-cta',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;

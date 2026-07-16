@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_va_lens_cards",
+  "info": {
+    "displayName": "VA Lens Card",
+    "icon": "bulletList",
+    "description": "Founder lens decision card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "bullets": {
+      "type": "json"
+    },
+    "accentTheme": {
+      "type": "enumeration",
+      "enum": [
+        "mint",
+        "slate",
+        "yellow",
+        "coral",
+        "blue"
+      ],
+      "default": "mint"
+    }
+  }
+}

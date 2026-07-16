@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_va_example_cards",
+  "info": {
+    "displayName": "VA Example Card",
+    "icon": "layer",
+    "description": "Vision AI example / use-case card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "bullets": {
+      "type": "json"
+    },
+    "forLabel": {
+      "type": "string"
+    },
+    "accentTheme": {
+      "type": "enumeration",
+      "enum": [
+        "coral",
+        "yellow",
+        "blue",
+        "mint"
+      ],
+      "default": "mint"
+    }
+  }
+}

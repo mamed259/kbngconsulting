@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_va_quotes",
+  "info": {
+    "displayName": "VA Quote",
+    "icon": "quote",
+    "description": "Vision AI quote band"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "attr": {
+      "type": "string"
+    }
+  }
+}

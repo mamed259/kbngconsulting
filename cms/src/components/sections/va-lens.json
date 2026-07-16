@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_va_lenses",
+  "info": {
+    "displayName": "VA Lens",
+    "icon": "eye",
+    "description": "Founder lens section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "footnote": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.va-lens-card"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_sections_va_heroes",
+  "info": {
+    "displayName": "VA Hero",
+    "icon": "star",
+    "description": "Vision AI hero"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "lead": {
+      "type": "text"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

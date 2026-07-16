@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_va_workflow_steps",
+  "info": {
+    "displayName": "VA Workflow Step",
+    "icon": "layer",
+    "description": "Vision AI process step"
+  },
+  "options": {},
+  "attributes": {
+    "num": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

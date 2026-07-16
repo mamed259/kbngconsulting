@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_va_insights",
+  "info": {
+    "displayName": "VA Insight",
+    "icon": "lightbulb",
+    "description": "Vision AI domain-shift insight"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    }
+  }
+}

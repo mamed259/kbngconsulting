@@ -326,6 +326,151 @@ export interface CwCtaSectionData {
   secondaryCtaHref?: string;
 }
 
+export type VaBuildIconType = "safety" | "count" | "brand" | "photo";
+export type VaExampleTheme = "coral" | "yellow" | "blue" | "mint";
+export type VaLensTheme = "mint" | "slate" | "yellow" | "coral" | "blue";
+
+export interface VaBuildCardData {
+  id: number;
+  title: string;
+  body?: string;
+  icon?: VaBuildIconType;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export interface VaExampleCardData {
+  id: number;
+  title: string;
+  body?: string;
+  bullets?: unknown;
+  forLabel?: string;
+  accentTheme?: VaExampleTheme;
+}
+
+export interface VaLensCardData {
+  id: number;
+  title: string;
+  bullets?: unknown;
+  accentTheme?: VaLensTheme;
+}
+
+export interface VaAudienceCardData {
+  id: number;
+  title: string;
+  body?: string;
+}
+
+export interface VaWorkflowStepData {
+  id: number;
+  num: string;
+  title: string;
+  body?: string;
+}
+
+export interface VaHeroSectionData {
+  __component: "sections.va-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  subtitle?: string;
+  lead?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export interface VaInsightSectionData {
+  __component: "sections.va-insight";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+}
+
+export interface VaBuildSectionData {
+  __component: "sections.va-build";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+  cards: VaBuildCardData[];
+}
+
+export interface VaExamplesSectionData {
+  __component: "sections.va-examples";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+  cards: VaExampleCardData[];
+}
+
+export interface VaLensSectionData {
+  __component: "sections.va-lens";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  promise?: string;
+  footnote?: string;
+  cards: VaLensCardData[];
+}
+
+export interface VaAudienceSectionData {
+  __component: "sections.va-audience";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  cards: VaAudienceCardData[];
+}
+
+export interface VaWorkflowSectionData {
+  __component: "sections.va-workflow";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  subtitle?: string;
+  steps: VaWorkflowStepData[];
+}
+
+export interface VaQuoteSectionData {
+  __component: "sections.va-quote";
+  id: number;
+  sectionConfig?: SectionConfig;
+  text: string;
+  attr?: string;
+}
+
+export interface VaFaqSectionData {
+  __component: "sections.va-faq";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  items: FaqItemData[];
+}
+
+export interface VaCtaSectionData {
+  __component: "sections.va-cta";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
 export type StrapiSection =
   | HeroSectionData
   | SolutionsSectionData
@@ -343,4 +488,14 @@ export type StrapiSection =
   | CwAdoptSectionData
   | CwQuoteSectionData
   | CwFaqSectionData
-  | CwCtaSectionData;
+  | CwCtaSectionData
+  | VaHeroSectionData
+  | VaInsightSectionData
+  | VaBuildSectionData
+  | VaExamplesSectionData
+  | VaLensSectionData
+  | VaAudienceSectionData
+  | VaWorkflowSectionData
+  | VaQuoteSectionData
+  | VaFaqSectionData
+  | VaCtaSectionData;

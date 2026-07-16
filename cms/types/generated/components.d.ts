@@ -464,6 +464,249 @@ export interface SectionsSolutions extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsVaAudience extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_audiences';
+  info: {
+    description: "Who it's for section";
+    displayName: 'VA Audience';
+    icon: 'user';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.va-audience-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaAudienceCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_audience_cards';
+  info: {
+    description: "Who it's for card";
+    displayName: 'VA Audience Card';
+    icon: 'user';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsVaBuild extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_builds';
+  info: {
+    description: 'What we build section';
+    displayName: 'VA Build';
+    icon: 'picture';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.va-build-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaBuildCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_build_cards';
+  info: {
+    description: 'Vision AI capability card';
+    displayName: 'VA Build Card';
+    icon: 'picture';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    icon: Schema.Attribute.Enumeration<['safety', 'count', 'brand', 'photo']> &
+      Schema.Attribute.DefaultTo<'safety'>;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsVaCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_ctas';
+  info: {
+    description: 'Vision AI closing CTA';
+    displayName: 'VA CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaExampleCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_example_cards';
+  info: {
+    description: 'Vision AI example / use-case card';
+    displayName: 'VA Example Card';
+    icon: 'layer';
+  };
+  attributes: {
+    accentTheme: Schema.Attribute.Enumeration<
+      ['coral', 'yellow', 'blue', 'mint']
+    > &
+      Schema.Attribute.DefaultTo<'mint'>;
+    body: Schema.Attribute.Text;
+    bullets: Schema.Attribute.JSON;
+    forLabel: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsVaExamples extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_examples';
+  info: {
+    description: 'Vision AI examples range';
+    displayName: 'VA Examples';
+    icon: 'apps';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.va-example-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaFaq extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_faqs';
+  info: {
+    description: 'Vision AI FAQ';
+    displayName: 'VA FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'sections.faq-item', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_heroes';
+  info: {
+    description: 'Vision AI hero';
+    displayName: 'VA Hero';
+    icon: 'star';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    subtitle: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsVaInsight extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_insights';
+  info: {
+    description: 'Vision AI domain-shift insight';
+    displayName: 'VA Insight';
+    icon: 'lightbulb';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaLens extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_lenses';
+  info: {
+    description: 'Founder lens section';
+    displayName: 'VA Lens';
+    icon: 'eye';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.va-lens-card', true>;
+    footnote: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    promise: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsVaLensCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_lens_cards';
+  info: {
+    description: 'Founder lens decision card';
+    displayName: 'VA Lens Card';
+    icon: 'bulletList';
+  };
+  attributes: {
+    accentTheme: Schema.Attribute.Enumeration<
+      ['mint', 'slate', 'yellow', 'coral', 'blue']
+    > &
+      Schema.Attribute.DefaultTo<'mint'>;
+    bullets: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsVaQuote extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_quotes';
+  info: {
+    description: 'Vision AI quote band';
+    displayName: 'VA Quote';
+    icon: 'quote';
+  };
+  attributes: {
+    attr: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsVaWorkflow extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_workflows';
+  info: {
+    description: 'Vision AI process steps';
+    displayName: 'VA Workflow';
+    icon: 'layer';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    steps: Schema.Attribute.Component<'sections.va-workflow-step', true>;
+    subtitle: Schema.Attribute.Text;
+  };
+}
+
+export interface SectionsVaWorkflowStep extends Struct.ComponentSchema {
+  collectionName: 'components_sections_va_workflow_steps';
+  info: {
+    description: 'Vision AI process step';
+    displayName: 'VA Workflow Step';
+    icon: 'layer';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    num: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSectionConfig extends Struct.ComponentSchema {
   collectionName: 'components_shared_section_configs';
   info: {
@@ -534,6 +777,21 @@ declare module '@strapi/strapi' {
       'sections.sectors': SectionsSectors;
       'sections.solution-card': SectionsSolutionCard;
       'sections.solutions': SectionsSolutions;
+      'sections.va-audience': SectionsVaAudience;
+      'sections.va-audience-card': SectionsVaAudienceCard;
+      'sections.va-build': SectionsVaBuild;
+      'sections.va-build-card': SectionsVaBuildCard;
+      'sections.va-cta': SectionsVaCta;
+      'sections.va-example-card': SectionsVaExampleCard;
+      'sections.va-examples': SectionsVaExamples;
+      'sections.va-faq': SectionsVaFaq;
+      'sections.va-hero': SectionsVaHero;
+      'sections.va-insight': SectionsVaInsight;
+      'sections.va-lens': SectionsVaLens;
+      'sections.va-lens-card': SectionsVaLensCard;
+      'sections.va-quote': SectionsVaQuote;
+      'sections.va-workflow': SectionsVaWorkflow;
+      'sections.va-workflow-step': SectionsVaWorkflowStep;
       'shared.section-config': SharedSectionConfig;
       'shared.seo': SharedSeo;
     }

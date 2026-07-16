@@ -1,5 +1,5 @@
 import type { Core } from "@strapi/strapi";
-import { seedCanaryWavesPage } from "./bootstrap/seed-pages";
+import { seedProductPages } from "./bootstrap/seed-pages";
 import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
 
@@ -9,6 +9,6 @@ export default {
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     await ensurePublicApiAccess(strapi);
     await ensureLocalReadToken(strapi);
-    await seedCanaryWavesPage(strapi);
+    await seedProductPages(strapi);
   },
 };

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_va_faqs",
+  "info": {
+    "displayName": "VA FAQ",
+    "icon": "question",
+    "description": "Vision AI FAQ"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.faq-item"
+    }
+  }
+}

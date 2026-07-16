@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_va_audience_cards",
+  "info": {
+    "displayName": "VA Audience Card",
+    "icon": "user",
+    "description": "Who it's for card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

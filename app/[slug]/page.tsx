@@ -5,17 +5,37 @@ import { MarketingEffects } from "@/components/MarketingEffects";
 import { getPageBySlug } from "@/lib/api";
 import { getStrapiMedia } from "@/lib/utils";
 import { canaryWavesFallbackSections } from "@/content/canary-waves-fallback";
+import { visionAiFallbackSections } from "@/content/vision-ai-fallback";
 import "../canary-waves.css";
+import "../vision-ai.css";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-const CANARY_WAVES_FALLBACK_META = {
-  title: "Canary Waves: AI Safety Intelligence for Mining and Quarrying Operations",
-  description:
-    "Canary Waves is a voice-to-data AI platform that applies machine learning for safety and industrial risk detection to your two-way radio traffic, surfacing hazards, equipment stress, and bottlenecks before they become incidents.",
-  url: "https://kbngconsulting.com/canary-waves",
+const PAGE_FALLBACKS: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    url: string;
+    sections: typeof canaryWavesFallbackSections | typeof visionAiFallbackSections;
+  }
+> = {
+  "canary-waves": {
+    title: "Canary Waves: AI Safety Intelligence for Mining and Quarrying Operations",
+    description:
+      "Canary Waves is a voice-to-data AI platform that applies machine learning for safety and industrial risk detection to your two-way radio traffic, surfacing hazards, equipment stress, and bottlenecks before they become incidents.",
+    url: "https://kbngconsulting.com/canary-waves",
+    sections: canaryWavesFallbackSections,
+  },
+  "vision-ai": {
+    title: "Vision AI: Custom Computer Vision Development | KB&G",
+    description:
+      "Vision AI for industrial safety and beyond. Custom Vision AI development and fine-tuned computer vision for environments and products where off-the-shelf models fall short.",
+    url: "https://kbngconsulting.com/kbng-innovation-studio/vision-ai",
+    sections: visionAiFallbackSections,
+  },
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -35,15 +55,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  if (slug === "canary-waves") {
+  const fallback = PAGE_FALLBACKS[slug];
+  if (fallback) {
     return {
-      title: CANARY_WAVES_FALLBACK_META.title,
-      description: CANARY_WAVES_FALLBACK_META.description,
+      title: fallback.title,
+      description: fallback.description,
       openGraph: {
-        title: CANARY_WAVES_FALLBACK_META.title,
-        description: CANARY_WAVES_FALLBACK_META.description,
+        title: fallback.title,
+        description: fallback.description,
         type: "website",
-        url: CANARY_WAVES_FALLBACK_META.url,
+        url: fallback.url,
       },
     };
   }
@@ -56,11 +77,12 @@ export default async function DynamicPage({ params }: PageProps) {
   const page = await getPageBySlug(slug);
 
   if (!page) {
-    if (slug === "canary-waves") {
+    const fallback = PAGE_FALLBACKS[slug];
+    if (fallback) {
       return (
         <>
           <MarketingEffects />
-          <DynamicRenderer sections={canaryWavesFallbackSections} />
+          <DynamicRenderer sections={fallback.sections} />
         </>
       );
     }

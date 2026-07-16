@@ -1,5 +1,6 @@
 import type { Core } from "@strapi/strapi";
 import { canaryWavesPageData } from "../data/canary-waves-page";
+import { visionAiPageData } from "../data/vision-ai-page";
 
 const PAGE_UID = "api::page.page" as const;
 
@@ -12,7 +13,7 @@ async function findPageBySlug(strapi: Core.Strapi, slug: string) {
   return pages[0] ?? null;
 }
 
-async function upsertPage(strapi: Core.Strapi, data: typeof canaryWavesPageData) {
+async function upsertPage(strapi: Core.Strapi, data: Record<string, unknown> & { slug: string }) {
   const payload = JSON.parse(JSON.stringify(data));
   const existing = await findPageBySlug(strapi, payload.slug);
 
@@ -33,15 +34,28 @@ async function upsertPage(strapi: Core.Strapi, data: typeof canaryWavesPageData)
   strapi.log.info(`[seed] Created page: ${payload.slug}`);
 }
 
-export async function seedCanaryWavesPage(strapi: Core.Strapi) {
+async function seedPage(strapi: Core.Strapi, data: Record<string, unknown> & { slug: string }) {
   try {
-    await upsertPage(strapi, canaryWavesPageData);
+    await upsertPage(strapi, data);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     const details =
       error && typeof error === "object" && "details" in error
         ? JSON.stringify((error as { details?: unknown }).details)
         : "";
-    strapi.log.error(`[seed] Failed to seed canary-waves page: ${message} ${details}`);
+    strapi.log.error(`[seed] Failed to seed ${data.slug}: ${message} ${details}`);
   }
+}
+
+export async function seedCanaryWavesPage(strapi: Core.Strapi) {
+  await seedPage(strapi, canaryWavesPageData as unknown as Record<string, unknown> & { slug: string });
+}
+
+export async function seedVisionAiPage(strapi: Core.Strapi) {
+  await seedPage(strapi, visionAiPageData as unknown as Record<string, unknown> & { slug: string });
+}
+
+export async function seedProductPages(strapi: Core.Strapi) {
+  await seedCanaryWavesPage(strapi);
+  await seedVisionAiPage(strapi);
 }

@@ -106,6 +106,54 @@ const CW_SECTION_POPULATE: SectionPopulateMap = {
   },
 };
 
+const VA_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.va-hero": {
+    populate: "*",
+  },
+  "sections.va-insight": {
+    populate: true,
+  },
+  "sections.va-build": {
+    populate: {
+      cards: {
+        populate: ["image"],
+      },
+    },
+  },
+  "sections.va-examples": {
+    populate: {
+      sectionConfig: true,
+      cards: true,
+    },
+  },
+  "sections.va-lens": {
+    populate: {
+      cards: true,
+    },
+  },
+  "sections.va-audience": {
+    populate: {
+      cards: true,
+    },
+  },
+  "sections.va-workflow": {
+    populate: {
+      steps: true,
+    },
+  },
+  "sections.va-quote": {
+    populate: true,
+  },
+  "sections.va-faq": {
+    populate: {
+      items: true,
+    },
+  },
+  "sections.va-cta": {
+    populate: true,
+  },
+};
+
 function buildPagePopulateQuery(sectionPopulate: SectionPopulateMap) {
   return qs.stringify(
     {
@@ -180,6 +228,7 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
   const sectionPopulate: SectionPopulateMap = {
     ...BASE_SECTION_POPULATE,
     ...CW_SECTION_POPULATE,
+    ...VA_SECTION_POPULATE,
   };
 
   try {

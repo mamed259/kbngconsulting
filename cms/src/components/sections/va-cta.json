@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_va_ctas",
+  "info": {
+    "displayName": "VA CTA",
+    "icon": "cursor",
+    "description": "Vision AI closing CTA"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    }
+  }
+}

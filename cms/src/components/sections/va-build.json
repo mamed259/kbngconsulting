@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_va_builds",
+  "info": {
+    "displayName": "VA Build",
+    "icon": "picture",
+    "description": "What we build section"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "promise": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.va-build-card"
+    }
+  }
+}
