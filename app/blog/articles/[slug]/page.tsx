@@ -1,26 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getArticleBySlug } from "@/lib/api";
 import { getFallbackArticleBySlug } from "@/content/blog-fallback";
-import { getStrapiMedia } from "@/lib/utils";
-import { MarketingEffects } from "@/components/MarketingEffects";
-import { MarkdownBody } from "@/components/blog/MarkdownBody";
+import { getStrapiMedia, extractStrapiImageUrl } from "@/lib/utils";
+import { ArticleBody } from "@/components/blog/ArticleBody";
+import { formatBlogDate } from "@/components/blog/BlogCards";
 import "../../../blog.css";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
-}
-
-function formatDate(dateString: string): string {
-  const date = new Date(`${dateString}T00:00:00Z`);
-  if (Number.isNaN(date.getTime())) return dateString;
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(date);
 }
 
 async function resolveArticle(slug: string) {
@@ -61,46 +51,37 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const cover = extractStrapiImageUrl(article.coverImage || article.coverImageUrl);
+
   return (
     <div className="article-page">
-      <MarketingEffects />
-      <section className="article-hero">
-        <div className="wrap">
-          <Link className="article-back" href="/blog">
-            ← Back to Blog
-          </Link>
-          <span className="article-date">{formatDate(article.publishedOn)}</span>
-          <h1>{article.title}</h1>
-          {article.excerpt ? <p className="article-excerpt">{article.excerpt}</p> : null}
+      <article className="article-shell">
+        <Link className="article-back" href="/blog">
+          ← Back to Blog
+        </Link>
+        <time className="article-date" dateTime={article.publishedOn}>
+          {formatBlogDate(article.publishedOn)}
+        </time>
+        <h1>{article.title}</h1>
+        <div className="article-cover">
+          {cover ? (
+            <Image
+              src={cover}
+              alt={article.coverImageAlt || article.title}
+              fill
+              sizes="(min-width: 860px) 760px, 100vw"
+              priority
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <span className="blog-cover-fallback" aria-hidden="true" />
+          )}
         </div>
-      </section>
-
-      <section className="article-body">
-        <div className="wrap">
-          <MarkdownBody content={article.body} />
+        {article.excerpt ? <p className="article-lead">{article.excerpt}</p> : null}
+        <div className="article-body">
+          <ArticleBody content={article.body} />
         </div>
-      </section>
-
-      <section className="article-cta">
-        <div className="wrap">
-          <h2>Let&rsquo;s Talk</h2>
-          <p>
-            If you&rsquo;re ready to modernize your sales engine, digitize your operations, or
-            co-found the next tool for your industry — KB&amp;G® is your partner.
-          </p>
-          <div className="article-cta-actions">
-            <a className="btn btn-primary" href="https://kbngconsulting.com/contacts">
-              Book a Call
-            </a>
-            <a className="btn btn-ghost" href="https://kbngconsulting.com/consulting-services">
-              See Our Work
-            </a>
-          </div>
-          <p className="article-cta-contact">
-            Contact us · <a href="mailto:julia@kbngconsulting.com">julia@kbngconsulting.com</a>
-          </p>
-        </div>
-      </section>
+      </article>
     </div>
   );
 }

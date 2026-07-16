@@ -315,7 +315,9 @@ async function fetchStrapi<T>(path: string, query?: string): Promise<T> {
 
   const response = await fetch(url.toString(), {
     headers,
-    next: { revalidate: STRAPI_REVALIDATE_SECONDS },
+    ...(STRAPI_REVALIDATE_SECONDS === 0
+      ? { cache: "no-store" as const }
+      : { next: { revalidate: STRAPI_REVALIDATE_SECONDS } }),
   });
 
   if (!response.ok) {
@@ -425,7 +427,8 @@ export async function getArticles(): Promise<ArticleData[]> {
       query,
     );
 
-    return response.data ?? [];
+    const articles = response.data ?? [];
+    return articles;
   } catch (error) {
     console.error("Failed to fetch articles from Strapi:", error);
     return [];

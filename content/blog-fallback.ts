@@ -114,6 +114,7 @@ interface FallbackSeed {
   slug: string;
   excerpt: string;
   publishedOn: string;
+  topics?: string[];
   body?: string;
 }
 
@@ -121,6 +122,7 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "SaaS Founders Training",
     slug: "saas-founders-training",
+    topics: ["AI","Training"],
     excerpt:
       "Learn why SaaS founders training matters, how it accelerates product-market fit, and why guessing your way through growth quietly limits your SaaS business.",
     publishedOn: "2026-06-21",
@@ -129,6 +131,7 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Skills Training Communication",
     slug: "skills-training-communication",
+    topics: ["AI","Training"],
     excerpt:
       "Why communication skills training is a lever for safer, faster-moving industrial teams.",
     publishedOn: "2026-06-17",
@@ -136,12 +139,14 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Robots in Mining",
     slug: "robots-in-mining",
+    topics: ["Mining","AI"],
     excerpt: "How robotics is reshaping safety, output, and labor in modern mining operations.",
     publishedOn: "2026-06-13",
   },
   {
     title: "Training Vision AI Model",
     slug: "training-vision-ai-model",
+    topics: ["AI","Training"],
     excerpt:
       "What it actually takes to train a computer vision model for industrial and safety use cases.",
     publishedOn: "2026-05-16",
@@ -149,18 +154,21 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Customer Success Burnout",
     slug: "customer-success-burnout",
+    topics: ["People"],
     excerpt: "Why customer success teams burn out fast, and how leaders can fix the root causes.",
     publishedOn: "2026-05-09",
   },
   {
     title: "Mining Safety Equipment",
     slug: "mining-safety-equipment",
+    topics: ["Mining","Safety"],
     excerpt: "A practical look at the safety equipment every modern mining operation needs.",
     publishedOn: "2026-04-07",
   },
   {
     title: "Soft Skills Training for Managers",
     slug: "soft-skills-training-for-managers",
+    topics: ["AI","Training"],
     excerpt:
       "Why soft skills training for managers pays off in retention, morale, and performance.",
     publishedOn: "2026-03-31",
@@ -168,12 +176,14 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Overburden in Mining: Meaning and Management",
     slug: "overburden-in-mining-meaning-and-management",
+    topics: ["Mining","People"],
     excerpt: "What overburden means in mining and how operations manage it efficiently and safely.",
     publishedOn: "2026-03-24",
   },
   {
     title: "Call Center Training in 2026: Build a High-Performance Agent Training Program",
     slug: "call-center-training-in-2026-build-a-high-performance-agent-training-program",
+    topics: ["AI","Training"],
     excerpt:
       "How to design a call center agent training program built for 2026 performance standards.",
     publishedOn: "2026-03-17",
@@ -181,12 +191,14 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Mine EX-Plorers EP53: Waste From Mining to Intelligence",
     slug: "mine-ex-plorers-ep53-waste-from-mining-to-intelligence",
+    topics: ["Mining","AI"],
     excerpt: "Turning mining waste streams into intelligence with data and AI.",
     publishedOn: "2026-03-03",
   },
   {
     title: "Management Burnout Is a System Problem, Not a Personal One",
     slug: "management-burnout-is-a-system-problem-not-a-personal-one",
+    topics: ["People"],
     excerpt:
       "Why management burnout is a structural, systemic issue rather than an individual failing.",
     publishedOn: "2026-02-24",
@@ -194,36 +206,42 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Strategic HR Practices That Drive Business Success",
     slug: "strategic-hr-practices-that-drive-business-success",
+    topics: ["People"],
     excerpt: "The HR practices that separate high-performing organizations from the rest.",
     publishedOn: "2026-02-17",
   },
   {
     title: "Process Hazard Analysis in Mining: PHA Meaning and Requirements",
     slug: "process-hazard-analysis-in-mining-pha-meaning-and-requirements",
+    topics: ["Mining","Safety"],
     excerpt: "What process hazard analysis means in mining and what it requires in practice.",
     publishedOn: "2026-02-10",
   },
   {
     title: "Protecting Workers Underground: A Practical Guide to Safety in Mining",
     slug: "protecting-workers-underground-a-practical-guide-to-safety-in-mining",
+    topics: ["Mining","Safety"],
     excerpt: "A practical guide to protecting underground workers in mining operations.",
     publishedOn: "2026-02-03",
   },
   {
     title: "Industry Accidents: What History's Worst Disasters Teach Us",
     slug: "industry-accidents-what-historys-worst-disasters-teach-us",
+    topics: ["Mining","Safety"],
     excerpt: "Lessons from history's worst industrial disasters and what they teach us today.",
     publishedOn: "2026-01-29",
   },
   {
     title: "Mining Rescue: How Teams Respond When Things Go Wrong Underground",
     slug: "mining-rescue-how-teams-respond-when-things-go-wrong-underground",
+    topics: ["Mining","Safety"],
     excerpt: "How mining rescue teams respond when things go wrong underground.",
     publishedOn: "2026-01-22",
   },
   {
     title: "HRM Challenges in Modern Workplaces: From Resource Strain to Difficult Conversations",
     slug: "hrm-challenges-in-modern-workplaces-from-resource-strain-to-difficult-conversations",
+    topics: ["AI","Training","People"],
     excerpt:
       "The HRM challenges modern workplaces face, from resource strain to difficult conversations.",
     publishedOn: "2026-01-15",
@@ -231,12 +249,14 @@ const SEEDS: FallbackSeed[] = [
   {
     title: "Burnout Stats in 2026: What the Numbers Say About Modern Work",
     slug: "burnout-stats-in-2026-what-the-numbers-say-about-modern-work",
+    topics: ["People"],
     excerpt: "What the latest burnout statistics reveal about modern work in 2026.",
     publishedOn: "2026-01-15",
   },
   {
     title: "We normalized stress but when it becomes the norm, performance breaks",
     slug: "we-normalized-stress-but-when-it-becomes-the-norm-performance-breaks",
+    topics: ["People"],
     excerpt:
       "We normalized stress at work, but when stress becomes the norm, performance breaks down.",
     publishedOn: "2025-09-22",
@@ -249,6 +269,7 @@ export const fallbackArticles: ArticleData[] = SEEDS.map((seed) => ({
   title: seed.title,
   excerpt: seed.excerpt,
   publishedOn: seed.publishedOn,
+  topics: seed.topics,
   body: seed.body ?? shortBody(seed.title, seed.excerpt),
   seo: {
     metaTitle: seed.slug === "saas-founders-training" ? "SaaS Founders Training: Why You Need It to Scale Faster" : seed.title,
