@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getArticles } from "@/lib/api";
 import { fallbackArticles } from "@/content/blog-fallback";
 import { BlogIndex } from "@/components/blog/BlogIndex";
-import "../blog.css";
+import "../../blog.css";
 
 export const metadata: Metadata = {
   title: "Industrial Innovation Resources | KB&G",

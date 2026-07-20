@@ -10,12 +10,12 @@ import { innovationStudioFallbackSections } from "@/content/innovation-studio-fa
 import { consultingServicesFallbackSections } from "@/content/consulting-services-fallback";
 import { aboutUsFallbackSections } from "@/content/about-us-fallback";
 import { georgiaFallbackSections } from "@/content/georgia-fallback";
-import "../canary-waves.css";
-import "../vision-ai.css";
-import "../innovation-studio.css";
-import "../consulting-services.css";
-import "../about-us.css";
-import "../georgia.css";
+import "../../canary-waves.css";
+import "../../vision-ai.css";
+import "../../innovation-studio.css";
+import "../../consulting-services.css";
+import "../../about-us.css";
+import "../../georgia.css";
 
 interface PageProps {
   params: Promise<{ slug: string }>;

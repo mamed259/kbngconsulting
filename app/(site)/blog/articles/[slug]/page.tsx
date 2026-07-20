@@ -7,7 +7,7 @@ import { getFallbackArticleBySlug } from "@/content/blog-fallback";
 import { getStrapiMedia, extractStrapiImageUrl } from "@/lib/utils";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { formatBlogDate } from "@/components/blog/BlogCards";
-import "../../../blog.css";
+import "../../../../blog.css";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
