@@ -5,6 +5,7 @@ import { innovationStudioPageData } from "../data/innovation-studio-page";
 import { consultingServicesPageData } from "../data/consulting-services-page";
 import { aboutUsPageData } from "../data/about-us-page";
 import { georgiaPageData } from "../data/georgia-page";
+import { founderDiagnosticPageData } from "../data/founder-diagnostic-page";
 
 const PAGE_UID = "api::page.page" as const;
 
@@ -91,6 +92,13 @@ export async function seedGeorgiaPage(strapi: Core.Strapi) {
   await seedPage(strapi, georgiaPageData as unknown as Record<string, unknown> & { slug: string });
 }
 
+export async function seedFounderDiagnosticPage(strapi: Core.Strapi) {
+  await seedPage(
+    strapi,
+    founderDiagnosticPageData as unknown as Record<string, unknown> & { slug: string },
+  );
+}
+
 export async function seedProductPages(strapi: Core.Strapi) {
   await seedCanaryWavesPage(strapi);
   await seedVisionAiPage(strapi);
@@ -98,4 +106,5 @@ export async function seedProductPages(strapi: Core.Strapi) {
   await seedConsultingServicesPage(strapi);
   await seedAboutUsPage(strapi);
   await seedGeorgiaPage(strapi);
+  await seedFounderDiagnosticPage(strapi);
 }

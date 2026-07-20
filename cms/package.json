@@ -16,6 +16,7 @@
     "seed:consulting-services": "node scripts/seed-consulting-services.mjs",
     "seed:about-us": "node scripts/seed-about-us.mjs",
     "seed:georgia": "node scripts/seed-georgia.mjs",
+    "seed:founder-diagnostic": "node scripts/seed-founder-diagnostic.mjs",
     "seed:articles": "node scripts/seed-articles.mjs",
     "start": "strapi start",
     "strapi": "strapi",
