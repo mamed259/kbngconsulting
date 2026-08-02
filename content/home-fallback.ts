@@ -35,6 +35,7 @@ const solutions: SolutionsSectionData = {
         "Canary Waves turns the two-way radio traffic already running across a site into real-time safety intelligence, surfacing collision risks, flagged hazards, and missed protocols to leadership before they reach the incident report. It runs passively on existing infrastructure, with no change to frontline operations.",
       href: "https://canary-waves.com/",
       accentTheme: "yellow",
+      imageUrl: "/images/home/flagship-1.jpg",
     },
     {
       id: 2,
@@ -43,24 +44,28 @@ const solutions: SolutionsSectionData = {
         "Georgia is an AI role-play platform that trains teams for high-stakes moments: holding price under pressure, de-escalating an unhappy client before they walk away, giving feedback before it becomes a crisis. Knowing what to say is not the same as saying it under pressure, so Georgia builds the skill through short, personalized practice. Built in the field, for construction, mining, and building materials.",
       href: "https://www.georgia-app.com/",
       accentTheme: "green",
+      imageUrl: "/images/home/flagship-2.jpg",
     },
     {
       id: 3,
       title: "Vision AI",
       body: "Real-time safety and PPE monitoring via existing camera systems.",
       accentTheme: "yellow",
+      imageUrl: "/images/home/tile-vision.jpg",
     },
     {
       id: 4,
       title: "Market Analysis",
       body: "Localized demand and pricing intelligence for aggregates.",
       accentTheme: "green",
+      imageUrl: "/images/home/tile-market.jpg",
     },
     {
       id: 5,
       title: "Configure Price Quote",
       body: "End-to-end building-materials quoting and pricing.",
       accentTheme: "coral",
+      imageUrl: "/images/home/tile-cpq.jpg",
     },
   ],
 };
@@ -110,12 +115,36 @@ const sectors: SectorsSectionData = {
   id: 4,
   heading: "Sectors we serve",
   items: [
-    { id: 1, label: "Construction Materials" },
-    { id: 2, label: "Mining & Quarrying" },
-    { id: 3, label: "Infrastructure" },
-    { id: 4, label: "Manufacturing" },
-    { id: 5, label: "Industrial Operations" },
-    { id: 6, label: "Multi-Site Enterprises" },
+    {
+      id: 1,
+      label: "Construction Materials",
+      imageUrl: "/images/home/sector-construction-materials.jpg",
+    },
+    {
+      id: 2,
+      label: "Mining & Quarrying",
+      imageUrl: "/images/home/sector-mining-quarrying.jpg",
+    },
+    {
+      id: 3,
+      label: "Infrastructure",
+      imageUrl: "/images/home/sector-infrastructure.jpg",
+    },
+    {
+      id: 4,
+      label: "Manufacturing",
+      imageUrl: "/images/home/sector-manufacturing.jpg",
+    },
+    {
+      id: 5,
+      label: "Industrial Operations",
+      imageUrl: "/images/home/sector-industrial-operations.jpg",
+    },
+    {
+      id: 6,
+      label: "Multi-Site Enterprises",
+      imageUrl: "/images/home/sector-multi-site.jpg",
+    },
   ],
 };
 

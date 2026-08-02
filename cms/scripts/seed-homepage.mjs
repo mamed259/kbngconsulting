@@ -18,15 +18,74 @@ if (!STRAPI_TOKEN) {
   process.exit(1);
 }
 
-async function buildHomeData() {
-  const id = await uploadMediaFile({
+async function upload(relPath, fileName, alt) {
+  const result = await uploadMediaFile({
     strapiUrl: STRAPI_URL,
     token: STRAPI_TOKEN,
-    filePath: join(ROOT, "public/images/home/heart.png"),
-    fileName: "home-heart.png",
-    alt: "KB&G industrial innovation",
+    filePath: join(ROOT, relPath),
+    fileName,
+    alt,
   });
-  const heartId = id?.id || null;
+  if (!result?.id) {
+    console.warn(`[home] missing media for ${relPath}`);
+    return null;
+  }
+  console.log(`[home] uploaded ${fileName} -> ${result.id}`);
+  return result.id;
+}
+
+async function buildHomeData() {
+  const [
+    heartId,
+    flagship1Id,
+    flagship2Id,
+    tileVisionId,
+    tileMarketId,
+    tileCpqId,
+    sectorConstructionId,
+    sectorMiningId,
+    sectorInfraId,
+    sectorMfgId,
+    sectorIndustrialId,
+    sectorMultiId,
+  ] = await Promise.all([
+    upload("public/images/home/heart.png", "home-heart.png", "KB&G industrial innovation"),
+    upload("public/images/home/flagship-1.jpg", "home-flagship-canary.jpg", "Canary Waves"),
+    upload("public/images/home/flagship-2.jpg", "home-flagship-georgia.jpg", "Georgia"),
+    upload("public/images/home/tile-vision.jpg", "home-tile-vision.jpg", "Vision AI"),
+    upload("public/images/home/tile-market.jpg", "home-tile-market.jpg", "Market Analysis"),
+    upload("public/images/home/tile-cpq.jpg", "home-tile-cpq.jpg", "Configure Price Quote"),
+    upload(
+      "public/images/home/sector-construction-materials.jpg",
+      "home-sector-construction.jpg",
+      "Construction Materials",
+    ),
+    upload(
+      "public/images/home/sector-mining-quarrying.jpg",
+      "home-sector-mining.jpg",
+      "Mining & Quarrying",
+    ),
+    upload(
+      "public/images/home/sector-infrastructure.jpg",
+      "home-sector-infrastructure.jpg",
+      "Infrastructure",
+    ),
+    upload(
+      "public/images/home/sector-manufacturing.jpg",
+      "home-sector-manufacturing.jpg",
+      "Manufacturing",
+    ),
+    upload(
+      "public/images/home/sector-industrial-operations.jpg",
+      "home-sector-industrial.jpg",
+      "Industrial Operations",
+    ),
+    upload(
+      "public/images/home/sector-multi-site.jpg",
+      "home-sector-multi-site.jpg",
+      "Multi-Site Enterprises",
+    ),
+  ]);
 
   return {
     title: "Home",
@@ -62,6 +121,7 @@ async function buildHomeData() {
               "Canary Waves turns the two-way radio traffic already running across a site into real-time safety intelligence, surfacing collision risks, flagged hazards, and missed protocols to leadership before they reach the incident report. It runs passively on existing infrastructure, with no change to frontline operations.",
             href: "https://canary-waves.com/",
             accentTheme: "yellow",
+            ...(flagship1Id ? { image: flagship1Id } : {}),
           },
           {
             title: "Georgia",
@@ -69,21 +129,25 @@ async function buildHomeData() {
               "Georgia is an AI role-play platform that trains teams for high-stakes moments: holding price under pressure, de-escalating an unhappy client before it becomes a crisis. Knowing what to say is not the same as saying it under pressure, so Georgia builds the skill through short, personalized practice. Built in the field, for construction, mining, and building materials.",
             href: "https://www.georgia-app.com/",
             accentTheme: "green",
+            ...(flagship2Id ? { image: flagship2Id } : {}),
           },
           {
             title: "Vision AI",
             body: "Real-time safety and PPE monitoring via existing camera systems.",
             accentTheme: "yellow",
+            ...(tileVisionId ? { image: tileVisionId } : {}),
           },
           {
             title: "Market Analysis",
             body: "Localized demand and pricing intelligence for aggregates.",
             accentTheme: "green",
+            ...(tileMarketId ? { image: tileMarketId } : {}),
           },
           {
             title: "Configure Price Quote",
             body: "End-to-end building-materials quoting and pricing.",
             accentTheme: "coral",
+            ...(tileCpqId ? { image: tileCpqId } : {}),
           },
         ],
       },
@@ -125,12 +189,30 @@ async function buildHomeData() {
         __component: "sections.sectors",
         heading: "Sectors we serve",
         items: [
-          { label: "Construction Materials" },
-          { label: "Mining & Quarrying" },
-          { label: "Infrastructure" },
-          { label: "Manufacturing" },
-          { label: "Industrial Operations" },
-          { label: "Multi-Site Enterprises" },
+          {
+            label: "Construction Materials",
+            ...(sectorConstructionId ? { image: sectorConstructionId } : {}),
+          },
+          {
+            label: "Mining & Quarrying",
+            ...(sectorMiningId ? { image: sectorMiningId } : {}),
+          },
+          {
+            label: "Infrastructure",
+            ...(sectorInfraId ? { image: sectorInfraId } : {}),
+          },
+          {
+            label: "Manufacturing",
+            ...(sectorMfgId ? { image: sectorMfgId } : {}),
+          },
+          {
+            label: "Industrial Operations",
+            ...(sectorIndustrialId ? { image: sectorIndustrialId } : {}),
+          },
+          {
+            label: "Multi-Site Enterprises",
+            ...(sectorMultiId ? { image: sectorMultiId } : {}),
+          },
         ],
       },
       {
