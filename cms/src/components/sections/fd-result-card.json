@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_fd_result_cards",
+  "info": {
+    "displayName": "FD Result Card",
+    "icon": "picture",
+    "description": "Founder outcome / proof card"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "niche": {
+      "type": "string"
+    },
+    "blindSpot": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "changeLabel": {
+      "type": "string"
+    },
+    "changeBody": {
+      "type": "text"
+    }
+  }
+}

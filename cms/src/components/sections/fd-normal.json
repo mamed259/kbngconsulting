@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_fd_normals",
+  "info": {
+    "displayName": "FD Normal",
+    "icon": "contrast",
+    "description": "Not-normal vs normal before/after"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lede": {
+      "type": "text"
+    },
+    "leftTitle": {
+      "type": "string"
+    },
+    "leftBody": {
+      "type": "text"
+    },
+    "rightTitle": {
+      "type": "string"
+    },
+    "rightBody": {
+      "type": "text"
+    }
+  }
+}

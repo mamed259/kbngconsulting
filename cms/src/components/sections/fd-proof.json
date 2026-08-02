@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_fd_proofs",
+  "info": {
+    "displayName": "FD Proof",
+    "icon": "trophy",
+    "description": "Founder results / social proof"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-result-card"
+    }
+  }
+}

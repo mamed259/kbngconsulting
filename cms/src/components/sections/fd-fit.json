@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_sections_fd_fits",
+  "info": {
+    "displayName": "FD Fit",
+    "icon": "filter",
+    "description": "Eligibility fit / not-fit lists"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lede": {
+      "type": "text"
+    },
+    "eligibleHeading": {
+      "type": "string"
+    },
+    "eligibleItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-fit-item"
+    },
+    "notEligibleHeading": {
+      "type": "string"
+    },
+    "notEligibleItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-fit-item"
+    }
+  }
+}

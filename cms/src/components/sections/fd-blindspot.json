@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_sections_fd_blindspots",
+  "info": {
+    "displayName": "FD Blind Spot",
+    "icon": "eye",
+    "description": "Blind spot thesis with burden card"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lede": {
+      "type": "text"
+    },
+    "cardTitle": {
+      "type": "string"
+    },
+    "cardBody": {
+      "type": "text"
+    },
+    "chips": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-chip"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

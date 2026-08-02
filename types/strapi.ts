@@ -911,6 +911,197 @@ export interface GeCtaSectionData {
   secondaryCtaHref?: string;
 }
 
+export interface FdReadingRowData {
+  id: number;
+  youSaid: string;
+  diagnosis: string;
+}
+
+export interface FdSignalItemData {
+  id: number;
+  label: string;
+  quote: string;
+}
+
+export interface FdChipData {
+  id: number;
+  label: string;
+}
+
+export interface FdStepData {
+  id: number;
+  title: string;
+  body?: string;
+}
+
+export interface FdStatData {
+  id: number;
+  value: string;
+  label: string;
+}
+
+export interface FdResultCardData {
+  id: number;
+  name: string;
+  niche?: string;
+  blindSpot?: string;
+  body?: string;
+  changeLabel?: string;
+  changeBody?: string;
+}
+
+export interface FdFitItemData {
+  id: number;
+  text: string;
+}
+
+export interface FdHeroSectionData {
+  __component: "sections.fd-hero";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  headingAccent?: string;
+  lede?: string;
+  ledeBold?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  chartEyebrow?: string;
+  chartTitle?: string;
+  chartFoot?: string;
+  readings?: FdReadingRowData[];
+}
+
+export interface FdSignalsSectionData {
+  __component: "sections.fd-signals";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  items?: FdSignalItemData[];
+  closing?: string;
+}
+
+export interface FdBlindspotSectionData {
+  __component: "sections.fd-blindspot";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lede?: string;
+  cardTitle?: string;
+  cardBody?: string;
+  chips?: FdChipData[];
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export interface FdNormalSectionData {
+  __component: "sections.fd-normal";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lede?: string;
+  leftTitle?: string;
+  leftBody?: string;
+  rightTitle?: string;
+  rightBody?: string;
+}
+
+export interface FdCaseSectionData {
+  __component: "sections.fd-case";
+  id: number;
+  sectionConfig?: SectionConfig;
+  kicker?: string;
+  heading: string;
+  subheading?: string;
+  story?: string;
+  outcome?: string;
+  quote?: string;
+}
+
+export interface FdMethodSectionData {
+  __component: "sections.fd-method";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lede?: string;
+  steps?: FdStepData[];
+}
+
+export interface FdExaminerSectionData {
+  __component: "sections.fd-examiner";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  stats?: FdStatData[];
+  image?: StrapiMediaField;
+  imageUrl?: string;
+  imageAlt?: string;
+  linkedInUrl?: string;
+  linkedInLabel?: string;
+}
+
+export interface FdProofSectionData {
+  __component: "sections.fd-proof";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  cards?: FdResultCardData[];
+}
+
+export interface FdHowSectionData {
+  __component: "sections.fd-how";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lede?: string;
+  steps?: FdStepData[];
+}
+
+export interface FdFitSectionData {
+  __component: "sections.fd-fit";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  lede?: string;
+  eligibleHeading?: string;
+  eligibleItems?: FdFitItemData[];
+  notEligibleHeading?: string;
+  notEligibleItems?: FdFitItemData[];
+}
+
+export interface FdMidCtaSectionData {
+  __component: "sections.fd-mid-cta";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  body?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  note?: string;
+}
+
+export interface FdFaqSectionData {
+  __component: "sections.fd-faq";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  items: FaqItemData[];
+}
+
+export interface FdBookSectionData {
+  __component: "sections.fd-book";
+  id: number;
+  sectionConfig?: SectionConfig;
+  heading: string;
+  metaLine?: string;
+  guarantee?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
 export type StrapiSection =
   | HeroSectionData
   | SolutionsSectionData
@@ -967,4 +1158,17 @@ export type StrapiSection =
   | GeQuoteSectionData
   | GeRoleSectionData
   | GeFaqSectionData
-  | GeCtaSectionData;
+  | GeCtaSectionData
+  | FdHeroSectionData
+  | FdSignalsSectionData
+  | FdBlindspotSectionData
+  | FdNormalSectionData
+  | FdCaseSectionData
+  | FdMethodSectionData
+  | FdExaminerSectionData
+  | FdProofSectionData
+  | FdHowSectionData
+  | FdFitSectionData
+  | FdMidCtaSectionData
+  | FdFaqSectionData
+  | FdBookSectionData;

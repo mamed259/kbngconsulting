@@ -598,6 +598,19 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.ge-role',
         'sections.ge-faq',
         'sections.ge-cta',
+        'sections.fd-hero',
+        'sections.fd-signals',
+        'sections.fd-blindspot',
+        'sections.fd-normal',
+        'sections.fd-case',
+        'sections.fd-method',
+        'sections.fd-examiner',
+        'sections.fd-proof',
+        'sections.fd-how',
+        'sections.fd-fit',
+        'sections.fd-mid-cta',
+        'sections.fd-faq',
+        'sections.fd-book',
       ]
     >;
     seo: Schema.Attribute.Component<'shared.seo', false>;

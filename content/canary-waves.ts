@@ -40,7 +40,7 @@ export const canaryWavesContent = {
       "Two-way radio has not fundamentally changed since the 1970s. What you can do with it has. The intelligence that prevents the next incident is already in your daily radio traffic. It has just never been captured, structured, or put in front of the people who can act on it. Without it, teams on high-risk worksites stay reactive to operational errors and safety violations.",
     image: "/images/canary-waves/insight.jpg",
     imageAlt:
-      "Two two-way radios facing each other with a voice-data waveform running between them, with a lit mine headframe behind.",
+      "Illustrated yellow two-way radios on a worksite, representing the radio traffic Canary Waves turns into safety intelligence.",
     gapStrip: [
       { num: "50+ years", text: "of two-way radio your crews rely on every shift." },
       { num: "0", text: "safety intelligence extracted from it.", until: "Until now." },

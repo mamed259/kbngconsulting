@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_fd_hows",
+  "info": {
+    "displayName": "FD How",
+    "icon": "walk",
+    "description": "Process steps how it works"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lede": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-step"
+    }
+  }
+}

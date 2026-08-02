@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_fd_signals",
+  "info": {
+    "displayName": "FD Signals",
+    "icon": "alien",
+    "description": "Founder symptom signals grid"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-signal-item"
+    },
+    "closing": {
+      "type": "text"
+    }
+  }
+}

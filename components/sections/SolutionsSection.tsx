@@ -138,6 +138,11 @@ export function SolutionsSection({ heading, intro, cards }: SolutionsSectionProp
                 solution, not the obvious one.
               </p>
             </div>
+            <p className="reveal" style={{ marginTop: "28px" }}>
+              <a className="founder-link" href="/founder-diagnostic">
+                Building a startup? Take the Founder Diagnostic &#8599;
+              </a>
+            </p>
           </>
         ) : null}
       </Container>

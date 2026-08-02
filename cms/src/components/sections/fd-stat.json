@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_fd_stats",
+  "info": {
+    "displayName": "FD Stat",
+    "icon": "chartBubble",
+    "description": "Examiner credential stat"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

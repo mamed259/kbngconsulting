@@ -7,6 +7,8 @@ export interface BlogArticleSeed {
   publishedOn: string;
   topics?: string[];
   body: string;
+  coverImageUrl?: string | null;
+  coverImageAlt?: string | null;
   seo: {
     metaTitle: string;
     metaDescription: string;

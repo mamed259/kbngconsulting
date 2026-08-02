@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_fd_steps",
+  "info": {
+    "displayName": "FD Step",
+    "icon": "bulletList",
+    "description": "Method or process step"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_fd_reading_rows",
+  "info": {
+    "displayName": "FD Reading Row",
+    "icon": "bulletList",
+    "description": "Hero chart you-said / diagnosis row"
+  },
+  "options": {},
+  "attributes": {
+    "youSaid": {
+      "type": "string",
+      "required": true
+    },
+    "diagnosis": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

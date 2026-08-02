@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_fd_methods",
+  "info": {
+    "displayName": "FD Method",
+    "icon": "puzzle",
+    "description": "How the diagnostic works"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "lede": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-step"
+    }
+  }
+}

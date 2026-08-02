@@ -55,6 +55,21 @@ import { GeQuoteSection } from "@/components/sections/ge/GeQuoteSection";
 import { GeRoleSection } from "@/components/sections/ge/GeRoleSection";
 import { GeFaqSection } from "@/components/sections/ge/GeFaqSection";
 import { GeCtaSection } from "@/components/sections/ge/GeCtaSection";
+import {
+  FdHero,
+  FdSignals,
+  FdBlindspot,
+  FdNormal,
+  FdCase,
+  FdMethod,
+  FdExaminer,
+  FdProof,
+  FdHow,
+  FdFit,
+  FdMidCta,
+  FdFaq,
+  FdBook,
+} from "@/components/founder-diagnostic";
 
 interface DynamicRendererProps {
   sections: StrapiSection[];
@@ -82,6 +97,10 @@ export function isAboutUsPage(sections: StrapiSection[]): boolean {
 
 export function isGeorgiaPage(sections: StrapiSection[]): boolean {
   return sections.some((section) => section.__component.startsWith("sections.ge-"));
+}
+
+export function isFounderDiagnosticPage(sections: StrapiSection[]): boolean {
+  return sections.some((section) => section.__component.startsWith("sections.fd-"));
 }
 
 function renderSection(section: StrapiSection, index: number): React.ReactNode {
@@ -310,15 +329,76 @@ function renderSection(section: StrapiSection, index: number): React.ReactNode {
       const { __component, ...props } = section;
       return <GeCtaSection key={`${__component}-${index}`} {...props} />;
     }
+    case "sections.fd-hero": {
+      const { __component, ...props } = section;
+      return <FdHero key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-signals": {
+      const { __component, ...props } = section;
+      return <FdSignals key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-blindspot": {
+      const { __component, ...props } = section;
+      return <FdBlindspot key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-normal": {
+      const { __component, ...props } = section;
+      return <FdNormal key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-case": {
+      const { __component, ...props } = section;
+      return <FdCase key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-method": {
+      const { __component, ...props } = section;
+      return <FdMethod key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-examiner": {
+      const { __component, ...props } = section;
+      return <FdExaminer key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-proof": {
+      const { __component, ...props } = section;
+      return <FdProof key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-how": {
+      const { __component, ...props } = section;
+      return <FdHow key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-fit": {
+      const { __component, ...props } = section;
+      return <FdFit key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-mid-cta": {
+      const { __component, ...props } = section;
+      return <FdMidCta key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-faq": {
+      const { __component, ...props } = section;
+      return <FdFaq key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.fd-book": {
+      const { __component, ...props } = section;
+      return <FdBook key={`${__component}-${index}`} {...props} />;
+    }
     default:
       return null;
   }
 }
 
-export function DynamicRenderer({ sections }: DynamicRendererProps) {
+export function renderSections(sections: StrapiSection[]) {
+  if (!sections?.length) return null;
+  return <>{sections.map(renderSection)}</>;
+}
+
+export async function DynamicRenderer({ sections }: DynamicRendererProps) {
   if (!sections?.length) return null;
 
-  const content = <>{sections.map(renderSection)}</>;
+  const content = renderSections(sections);
+
+  if (isFounderDiagnosticPage(sections)) {
+    return content;
+  }
 
   if (isCanaryWavesPage(sections)) {
     return <main className="cw-page">{content}</main>;

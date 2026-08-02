@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_fd_fit_items",
+  "info": {
+    "displayName": "FD Fit Item",
+    "icon": "check",
+    "description": "Eligibility / fit list item"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

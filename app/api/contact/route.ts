@@ -40,14 +40,37 @@ function toStringRecord(value: unknown) {
   >;
 }
 
+function matchesAny(normalized: string, patterns: string[]) {
+  return patterns.some((pattern) => normalized === pattern || normalized.includes(pattern));
+}
+
+function isNameKey(normalized: string) {
+  if (!normalized) return false;
+  // "company" contains the substring "name" — never treat it as a name field
+  if (normalized.includes("company") || normalized.includes("organization") || normalized.includes("firm")) {
+    return false;
+  }
+  return (
+    normalized === "name" ||
+    normalized === "fullname" ||
+    normalized === "yourname" ||
+    normalized.includes("fullname") ||
+    normalized.includes("yourname") ||
+    (normalized.includes("name") && !normalized.includes("username"))
+  );
+}
+
 function inferFieldValue(
   values: Record<string, string>,
   fields: FormFieldMeta[],
-  options: { types?: string[]; labelIncludes?: string[]; keyIncludes?: string[] },
+  options: {
+    types?: string[];
+    patterns?: string[];
+    isMatch?: (normalized: string) => boolean;
+  },
 ) {
   const lowerTypes = new Set((options.types || []).map((item) => item.toLowerCase()));
-  const labelPatterns = (options.labelIncludes || []).map(normalizeKey);
-  const keyPatterns = (options.keyIncludes || []).map(normalizeKey);
+  const patterns = (options.patterns || []).map(normalizeKey);
 
   for (const field of fields) {
     const normalizedLabel = normalizeKey(field.label || "");
@@ -57,8 +80,11 @@ function inferFieldValue(
 
     if (!value) continue;
     if (field.type && lowerTypes.has(field.type.toLowerCase())) return value;
-    if (labelPatterns.some((pattern) => normalizedLabel.includes(pattern))) return value;
-    if (keyPatterns.some((pattern) => normalizedFieldKey.includes(pattern))) return value;
+    if (options.isMatch) {
+      if (options.isMatch(normalizedLabel) || options.isMatch(normalizedFieldKey)) return value;
+      continue;
+    }
+    if (matchesAny(normalizedLabel, patterns) || matchesAny(normalizedFieldKey, patterns)) return value;
   }
 
   for (const [key, rawValue] of Object.entries(values)) {
@@ -66,7 +92,11 @@ function inferFieldValue(
     if (!value) continue;
 
     const normalizedFieldKey = normalizeKey(key);
-    if (keyPatterns.some((pattern) => normalizedFieldKey.includes(pattern))) return value;
+    if (options.isMatch) {
+      if (options.isMatch(normalizedFieldKey)) return value;
+      continue;
+    }
+    if (matchesAny(normalizedFieldKey, patterns)) return value;
   }
 
   return "";
@@ -78,23 +108,17 @@ export async function POST(request: NextRequest) {
     const values = body.values ? toStringRecord(body.values) : toStringRecord(body);
     const fields = Array.isArray(body.fields) ? body.fields : [];
 
-    const name = inferFieldValue(values, fields, {
-      labelIncludes: ["name", "fullname", "yourname"],
-      keyIncludes: ["name", "fullname", "yourname"],
-    });
+    const name = inferFieldValue(values, fields, { isMatch: isNameKey });
     const email = inferFieldValue(values, fields, {
       types: ["email"],
-      labelIncludes: ["email", "businessemail", "workemail"],
-      keyIncludes: ["email", "businessemail", "workemail"],
+      patterns: ["email", "businessemail", "workemail"],
     });
     const company = inferFieldValue(values, fields, {
-      labelIncludes: ["company", "organization", "business", "firm"],
-      keyIncludes: ["company", "organization", "business", "firm"],
+      patterns: ["company", "organization", "firm"],
     });
     const message = inferFieldValue(values, fields, {
       types: ["textarea"],
-      labelIncludes: ["message", "details", "help", "comment", "notes", "inquiry"],
-      keyIncludes: ["message", "details", "help", "comment", "notes", "inquiry"],
+      patterns: ["message", "details", "help", "comment", "notes", "inquiry"],
     });
 
     if (!name || !email) {

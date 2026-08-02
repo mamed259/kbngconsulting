@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_fd_faqs",
+  "info": {
+    "displayName": "FD FAQ",
+    "icon": "question",
+    "description": "Founder Diagnostic FAQ"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.faq-item"
+    }
+  }
+}

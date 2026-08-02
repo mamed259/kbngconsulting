@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_fd_signal_items",
+  "info": {
+    "displayName": "FD Signal Item",
+    "icon": "bulletList",
+    "description": "Founder signal / symptom card"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "quote": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

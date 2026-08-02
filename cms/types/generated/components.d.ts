@@ -616,6 +616,324 @@ export interface SectionsFaqItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsFdBlindspot extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_blindspots';
+  info: {
+    description: 'Blind spot thesis with burden card';
+    displayName: 'FD Blind Spot';
+    icon: 'eye';
+  };
+  attributes: {
+    cardBody: Schema.Attribute.Text;
+    cardTitle: Schema.Attribute.String;
+    chips: Schema.Attribute.Component<'sections.fd-chip', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    lede: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdBook extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_books';
+  info: {
+    description: 'Booking / offer closing section';
+    displayName: 'FD Book';
+    icon: 'shoppingCart';
+  };
+  attributes: {
+    ctaHref: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    guarantee: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    metaLine: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdCase extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_cases';
+  info: {
+    description: 'Founder case study';
+    displayName: 'FD Case';
+    icon: 'file';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    kicker: Schema.Attribute.String;
+    outcome: Schema.Attribute.Text;
+    quote: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    story: Schema.Attribute.Text;
+    subheading: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsFdChip extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_chips';
+  info: {
+    description: 'Blind spot consequence chip';
+    displayName: 'FD Chip';
+    icon: 'priceTag';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsFdExaminer extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_examiners';
+  info: {
+    description: 'Examiner bio and credentials';
+    displayName: 'FD Examiner';
+    icon: 'user';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    linkedInLabel: Schema.Attribute.String;
+    linkedInUrl: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    stats: Schema.Attribute.Component<'sections.fd-stat', true>;
+  };
+}
+
+export interface SectionsFdFaq extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_faqs';
+  info: {
+    description: 'Founder Diagnostic FAQ';
+    displayName: 'FD FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'sections.faq-item', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdFit extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_fits';
+  info: {
+    description: 'Eligibility fit / not-fit lists';
+    displayName: 'FD Fit';
+    icon: 'filter';
+  };
+  attributes: {
+    eligibleHeading: Schema.Attribute.String;
+    eligibleItems: Schema.Attribute.Component<'sections.fd-fit-item', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lede: Schema.Attribute.Text;
+    notEligibleHeading: Schema.Attribute.String;
+    notEligibleItems: Schema.Attribute.Component<'sections.fd-fit-item', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdFitItem extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_fit_items';
+  info: {
+    description: 'Eligibility / fit list item';
+    displayName: 'FD Fit Item';
+    icon: 'check';
+  };
+  attributes: {
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsFdHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_heroes';
+  info: {
+    description: 'Founder Diagnostic hero with chart readings';
+    displayName: 'FD Hero';
+    icon: 'star';
+  };
+  attributes: {
+    chartEyebrow: Schema.Attribute.String;
+    chartFoot: Schema.Attribute.String;
+    chartTitle: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    headingAccent: Schema.Attribute.String;
+    lede: Schema.Attribute.Text;
+    ledeBold: Schema.Attribute.String;
+    primaryCtaHref: Schema.Attribute.String;
+    primaryCtaText: Schema.Attribute.String;
+    readings: Schema.Attribute.Component<'sections.fd-reading-row', true>;
+    secondaryCtaHref: Schema.Attribute.String;
+    secondaryCtaText: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdHow extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_hows';
+  info: {
+    description: 'Process steps how it works';
+    displayName: 'FD How';
+    icon: 'walk';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lede: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    steps: Schema.Attribute.Component<'sections.fd-step', true>;
+  };
+}
+
+export interface SectionsFdMethod extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_methods';
+  info: {
+    description: 'How the diagnostic works';
+    displayName: 'FD Method';
+    icon: 'puzzle';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lede: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+    steps: Schema.Attribute.Component<'sections.fd-step', true>;
+  };
+}
+
+export interface SectionsFdMidCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_mid_ctas';
+  info: {
+    description: 'Mid-page CTA band';
+    displayName: 'FD Mid CTA';
+    icon: 'cursor';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    ctaHref: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    note: Schema.Attribute.Text;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdNormal extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_normals';
+  info: {
+    description: 'Not-normal vs normal before/after';
+    displayName: 'FD Normal';
+    icon: 'contrast';
+  };
+  attributes: {
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    lede: Schema.Attribute.Text;
+    leftBody: Schema.Attribute.Text;
+    leftTitle: Schema.Attribute.String;
+    rightBody: Schema.Attribute.Text;
+    rightTitle: Schema.Attribute.String;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdProof extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_proofs';
+  info: {
+    description: 'Founder results / social proof';
+    displayName: 'FD Proof';
+    icon: 'trophy';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'sections.fd-result-card', true>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdReadingRow extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_reading_rows';
+  info: {
+    description: 'Hero chart you-said / diagnosis row';
+    displayName: 'FD Reading Row';
+    icon: 'bulletList';
+  };
+  attributes: {
+    diagnosis: Schema.Attribute.Text & Schema.Attribute.Required;
+    youSaid: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsFdResultCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_result_cards';
+  info: {
+    description: 'Founder outcome / proof card';
+    displayName: 'FD Result Card';
+    icon: 'picture';
+  };
+  attributes: {
+    blindSpot: Schema.Attribute.String;
+    body: Schema.Attribute.Text;
+    changeBody: Schema.Attribute.Text;
+    changeLabel: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    niche: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsFdSignalItem extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_signal_items';
+  info: {
+    description: 'Founder signal / symptom card';
+    displayName: 'FD Signal Item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    quote: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsFdSignals extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_signals';
+  info: {
+    description: 'Founder symptom signals grid';
+    displayName: 'FD Signals';
+    icon: 'alien';
+  };
+  attributes: {
+    closing: Schema.Attribute.Text;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'sections.fd-signal-item', true>;
+    sectionConfig: Schema.Attribute.Component<'shared.section-config', false>;
+  };
+}
+
+export interface SectionsFdStat extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_stats';
+  info: {
+    description: 'Examiner credential stat';
+    displayName: 'FD Stat';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsFdStep extends Struct.ComponentSchema {
+  collectionName: 'components_sections_fd_steps';
+  info: {
+    description: 'Method or process step';
+    displayName: 'FD Step';
+    icon: 'bulletList';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsFormField extends Struct.ComponentSchema {
   collectionName: 'components_sections_form_fields';
   info: {
@@ -1486,6 +1804,26 @@ declare module '@strapi/strapi' {
       'sections.cw-workflow': SectionsCwWorkflow;
       'sections.cw-workflow-step': SectionsCwWorkflowStep;
       'sections.faq-item': SectionsFaqItem;
+      'sections.fd-blindspot': SectionsFdBlindspot;
+      'sections.fd-book': SectionsFdBook;
+      'sections.fd-case': SectionsFdCase;
+      'sections.fd-chip': SectionsFdChip;
+      'sections.fd-examiner': SectionsFdExaminer;
+      'sections.fd-faq': SectionsFdFaq;
+      'sections.fd-fit': SectionsFdFit;
+      'sections.fd-fit-item': SectionsFdFitItem;
+      'sections.fd-hero': SectionsFdHero;
+      'sections.fd-how': SectionsFdHow;
+      'sections.fd-method': SectionsFdMethod;
+      'sections.fd-mid-cta': SectionsFdMidCta;
+      'sections.fd-normal': SectionsFdNormal;
+      'sections.fd-proof': SectionsFdProof;
+      'sections.fd-reading-row': SectionsFdReadingRow;
+      'sections.fd-result-card': SectionsFdResultCard;
+      'sections.fd-signal-item': SectionsFdSignalItem;
+      'sections.fd-signals': SectionsFdSignals;
+      'sections.fd-stat': SectionsFdStat;
+      'sections.fd-step': SectionsFdStep;
       'sections.form-field': SectionsFormField;
       'sections.ge-abe': SectionsGeAbe;
       'sections.ge-audience': SectionsGeAudience;

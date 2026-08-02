@@ -14,9 +14,26 @@ interface ArticlePageProps {
 }
 
 async function resolveArticle(slug: string) {
-  const article = await getArticleBySlug(slug);
-  if (article) return article;
-  return getFallbackArticleBySlug(slug) ?? null;
+  const remote = await getArticleBySlug(slug);
+  const fallback = getFallbackArticleBySlug(slug) ?? null;
+  if (!remote && !fallback) return null;
+  if (!remote) return fallback;
+  if (!fallback) return remote;
+
+  const remoteBody = remote.body?.length ?? 0;
+  const fallbackBody = fallback.body?.length ?? 0;
+  const coverFromRemote = extractStrapiImageUrl(remote.coverImage || remote.coverImageUrl);
+
+  return {
+    ...fallback,
+    ...remote,
+    id: remote.id,
+    body: remoteBody > fallbackBody ? remote.body : fallback.body,
+    coverImageUrl: coverFromRemote || fallback.coverImageUrl,
+    coverImageAlt: remote.coverImageAlt || fallback.coverImageAlt,
+    excerpt: remote.excerpt || fallback.excerpt,
+    seo: remote.seo || fallback.seo,
+  };
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {

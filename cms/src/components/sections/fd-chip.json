@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_fd_chips",
+  "info": {
+    "displayName": "FD Chip",
+    "icon": "priceTag",
+    "description": "Blind spot consequence chip"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

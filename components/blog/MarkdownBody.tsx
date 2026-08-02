@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 interface MarkdownBodyProps {
@@ -43,6 +44,16 @@ function isHr(line: string): boolean {
   return /^(-{3,}|\*{3,}|_{3,})$/.test(line.trim());
 }
 
+function isImageLine(line: string): boolean {
+  return /^!\[[^\]]*\]\([^)]+\)$/.test(line.trim());
+}
+
+function parseImage(line: string): { alt: string; src: string } | null {
+  const match = line.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+  if (!match) return null;
+  return { alt: match[1], src: match[2] };
+}
+
 export function MarkdownBody({ content, className }: MarkdownBodyProps) {
   const blocks = content
     .split(/\n\s*\n/)
@@ -56,6 +67,25 @@ export function MarkdownBody({ content, className }: MarkdownBodyProps) {
 
     if (lines.length === 1 && isHr(lines[0])) {
       nodes.push(<hr key={blockIndex} />);
+      return;
+    }
+
+    if (lines.length === 1 && isImageLine(lines[0])) {
+      const image = parseImage(lines[0]);
+      if (image) {
+        nodes.push(
+          <figure key={blockIndex} className="article-figure">
+            <Image
+              src={image.src}
+              alt={image.alt || ""}
+              width={1200}
+              height={675}
+              sizes="(min-width: 900px) 720px, 100vw"
+              style={{ width: "100%", height: "auto", borderRadius: 16 }}
+            />
+          </figure>,
+        );
+      }
       return;
     }
 
@@ -80,7 +110,16 @@ export function MarkdownBody({ content, className }: MarkdownBodyProps) {
       return;
     }
 
-    nodes.push(<p key={blockIndex}>{renderInline(lines.join(" "))}</p>);
+    nodes.push(
+      <p key={blockIndex}>
+        {lines.map((line, lineIndex) => (
+          <span key={lineIndex}>
+            {lineIndex > 0 ? <br /> : null}
+            {renderInline(line)}
+          </span>
+        ))}
+      </p>,
+    );
   });
 
   return <div className={className}>{nodes}</div>;

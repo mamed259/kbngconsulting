@@ -1,37 +1,35 @@
+import Link from "next/link";
 import type { ResourceCardData, ResourcesSectionData } from "@/types/strapi";
 import { Container } from "@/components/ui/Container";
 import { extractStrapiImageUrl } from "@/lib/utils";
+import { getArticles } from "@/lib/api";
+import { fallbackArticles } from "@/content/blog-fallback";
 
 type ResourcesSectionProps = Omit<ResourcesSectionData, "__component">;
 
-const resourceCardDefaults: Array<Pick<ResourceCardData, "title" | "excerpt" | "tag">> = [
-  {
-    title: "Vision AI for Dummies: From Gold Mines to Luxury Bags",
-    excerpt: "Training Vision AI Model",
-    tag: "KB&G - CONSULTING",
-  },
-  {
-    title: "The Hidden Cause of Customer Success Burnout",
-    excerpt: "Customer Success Burnout",
-    tag: "KB&G - CONSULTING",
-  },
-  {
-    title: "Essential Solutions for Safer Mining Operations",
-    excerpt: "Mining Safety Equipment",
-    tag: "KB&G - CONSULTING",
-  },
-];
+export async function ResourcesSection({ heading, cards }: ResourcesSectionProps) {
+  const articles = await getArticles();
+  const list = (articles.length > 0 ? articles : fallbackArticles).slice(0, 3);
 
-function getResourceCard(card: ResourceCardData, index: number) {
-  const defaults = resourceCardDefaults[index];
-  return {
-    title: card.title || defaults?.title || "",
-    excerpt: card.excerpt || defaults?.excerpt || "",
-    tag: card.tag || defaults?.tag || "KB&G - CONSULTING",
-  };
-}
+  const items =
+    list.length > 0
+      ? list.map((article, index) => ({
+          id: article.id ?? index,
+          title: article.title,
+          excerpt: article.excerpt || "",
+          tag: "KB&G · BLOG",
+          href: `/blog/articles/${article.slug}`,
+          imageUrl: extractStrapiImageUrl(article.coverImage || article.coverImageUrl),
+        }))
+      : cards.map((card: ResourceCardData, index) => ({
+          id: card.id ?? index,
+          title: card.title,
+          excerpt: card.excerpt || "",
+          tag: card.tag || "KB&G - CONSULTING",
+          href: card.href || "/blog",
+          imageUrl: extractStrapiImageUrl(card.image || card.imageUrl),
+        }));
 
-export function ResourcesSection({ heading, cards }: ResourcesSectionProps) {
   return (
     <section id="resources">
       <Container>
@@ -41,20 +39,22 @@ export function ResourcesSection({ heading, cards }: ResourcesSectionProps) {
             Guides, case studies, and practical resources on industrial innovation, safety, pricing,
             and digital transformation.
           </p>
+          <div className="res-links">
+            <Link href="/blog">View all blogs &rarr;</Link>
+            <Link href="/founder-diagnostic">Founder Diagnostic &rarr;</Link>
+          </div>
         </div>
 
         <div className="rgrid">
-          {cards.map((card, index) => {
-            const imageUrl = extractStrapiImageUrl(card.image || card.imageUrl);
-            const content = getResourceCard(card, index);
-            return (
-              <figure className="res reveal" key={card.id}>
+          {items.map((item) => (
+            <Link className="res reveal" href={item.href} key={item.id}>
+              <figure>
                 <div
                   className="thumb"
                   style={
-                    imageUrl
+                    item.imageUrl
                       ? {
-                          backgroundImage: `url("${imageUrl}")`,
+                          backgroundImage: `url("${item.imageUrl}")`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }
@@ -63,14 +63,14 @@ export function ResourcesSection({ heading, cards }: ResourcesSectionProps) {
                 >
                   <span className="tag">
                     <span className="flag" />
-                    {content.tag}
+                    {item.tag}
                   </span>
-                  <h3>{content.title}</h3>
+                  <h3>{item.title}</h3>
                 </div>
-                {content.excerpt ? <figcaption>{content.excerpt}</figcaption> : null}
+                {item.excerpt ? <figcaption>{item.excerpt}</figcaption> : null}
               </figure>
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </Container>
     </section>

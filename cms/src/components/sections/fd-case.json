@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_fd_cases",
+  "info": {
+    "displayName": "FD Case",
+    "icon": "file",
+    "description": "Founder case study"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "story": {
+      "type": "text"
+    },
+    "outcome": {
+      "type": "text"
+    },
+    "quote": {
+      "type": "text"
+    }
+  }
+}

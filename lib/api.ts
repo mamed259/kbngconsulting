@@ -326,6 +326,86 @@ const GE_SECTION_POPULATE: SectionPopulateMap = {
   },
 };
 
+const FD_SECTION_POPULATE: SectionPopulateMap = {
+  "sections.fd-hero": {
+    populate: {
+      sectionConfig: true,
+      readings: true,
+    },
+  },
+  "sections.fd-signals": {
+    populate: {
+      sectionConfig: true,
+      items: true,
+    },
+  },
+  "sections.fd-blindspot": {
+    populate: {
+      sectionConfig: true,
+      chips: true,
+      image: true,
+    },
+  },
+  "sections.fd-normal": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.fd-case": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.fd-method": {
+    populate: {
+      sectionConfig: true,
+      steps: true,
+    },
+  },
+  "sections.fd-examiner": {
+    populate: {
+      sectionConfig: true,
+      stats: true,
+      image: true,
+    },
+  },
+  "sections.fd-proof": {
+    populate: {
+      sectionConfig: true,
+      cards: true,
+    },
+  },
+  "sections.fd-how": {
+    populate: {
+      sectionConfig: true,
+      steps: true,
+    },
+  },
+  "sections.fd-fit": {
+    populate: {
+      sectionConfig: true,
+      eligibleItems: true,
+      notEligibleItems: true,
+    },
+  },
+  "sections.fd-mid-cta": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+  "sections.fd-faq": {
+    populate: {
+      sectionConfig: true,
+      items: true,
+    },
+  },
+  "sections.fd-book": {
+    populate: {
+      sectionConfig: true,
+    },
+  },
+};
+
 function buildPagePopulateQuery(sectionPopulate: SectionPopulateMap) {
   return qs.stringify(
     {
@@ -407,6 +487,7 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
     ...CS_SECTION_POPULATE,
     ...AU_SECTION_POPULATE,
     ...GE_SECTION_POPULATE,
+    ...FD_SECTION_POPULATE,
   };
 
   try {

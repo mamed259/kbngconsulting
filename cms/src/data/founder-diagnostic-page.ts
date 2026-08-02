@@ -1,13 +1,334 @@
 export const founderDiagnosticPageData = {
-  title: "Founder Diagnostic",
+  title: "Founder Blind Spot Diagnostic",
   slug: "founder-diagnostic",
   seo: {
-    metaTitle: "The Founder Diagnostic | Startup Witch by KB&G",
+    metaTitle: "Founder Blind Spot Diagnostic | Startup Witch by KB&G",
     metaDescription:
-      "You built something real. So why is nobody buying? An adversarial read of your startup in 14 days. EUR 750, fully refundable.",
+      "You built something real. So why is nobody buying? The Blind Spot Diagnostic reads your startup in 14 days and names the one thing blocking growth. EUR 750, fully refundable.",
     canonicalUrl: "https://kbngconsulting.com/founder-diagnostic",
   },
-  // Rendered by a dedicated Next.js route (app/founder-diagnostic), not DynamicRenderer.
-  // Entry exists in CMS for SEO metadata / Pages list; sections stay empty until FD components are ported.
-  sections: [],
+  sections: [
+    {
+      __component: "sections.fd-hero",
+      sectionConfig: { sectionId: "top", theme: "dark" },
+      heading: "You built something real. So why is",
+      headingAccent: "nobody buying?",
+      ledeBold: "The Blind Spot Diagnostic",
+      lede:
+        ", for founders who already shipped. In 14 days you get a written diagnosis: the one thing blocking your startup's growth, named. What to fix first. And what to stop doing.",
+      primaryCtaText: "Book Your Diagnostic",
+      primaryCtaHref: "#book",
+      secondaryCtaText: "Read a Real Case",
+      secondaryCtaHref: "#case",
+      chartEyebrow: "Startup № 047",
+      chartTitle: "Blind Spot Diagnostic",
+      chartFoot: "8 blind spots checked",
+      readings: [
+        {
+          youSaid: 'you said: "a growth hacker told me to do more outreach. so I did."',
+          diagnosis: "You amplified the wrong message.",
+        },
+        {
+          youSaid: 'you said: "eighteen calls, zero contracts."',
+          diagnosis: "Nobody can repeat what you do.",
+        },
+        {
+          youSaid: 'you said: "we\'re small, we need more features."',
+          diagnosis: "You're hiding behind the roadmap.",
+        },
+      ],
+    },
+    {
+      __component: "sections.fd-signals",
+      sectionConfig: { theme: "dark" },
+      heading: "Which of these was your last month?",
+      items: [
+        {
+          label: "Low conversion",
+          quote: "Every call went well. Nobody signed.",
+        },
+        {
+          label: "Poor storytelling",
+          quote:
+            "An investor asked who my customer was. I talked for two minutes and said nothing.",
+        },
+        {
+          label: "Sales reluctance",
+          quote: "I said I'd start selling this month. I've been saying that since March.",
+        },
+        {
+          label: "Co-founder misalignment",
+          quote:
+            "My co-founder and I split the equity before either of us knew what we'd do. Now I'm not sure I trust him.",
+        },
+        {
+          label: "Bad business model",
+          quote: "I ran the real numbers. I'd been spending on hope.",
+        },
+        {
+          label: "The hardest question",
+          quote:
+            "What if I'm just not startup material? Nine founders in ten cannot tell a broken business from a broken founder, and that difference takes about two weeks to establish.",
+        },
+      ],
+      closing:
+        'The good news: most founders never get past "it\'s been rough." Naming it puts you ahead of most founders.',
+    },
+    {
+      __component: "sections.fd-blindspot",
+      sectionConfig: { sectionId: "blindspot", theme: "dark" },
+      heading: "Being right about one dimension can hide all the others.",
+      lede:
+        "You're skilled. Smart. Competent. You know your industry and you know your core. Then the last nine months changed the game: building got cheap, attention got expensive, and the dimension that decides everything now is the one nobody ever trained you in. So your ICP becomes everyone. Your messaging becomes everything. And your pipeline becomes nothing.",
+      cardTitle: "15 founders this year.",
+      cardBody:
+        "Every single one had misread their use case. That one mistake produced all of this:",
+      chips: [
+        { label: "Broad roadmap" },
+        { label: "Wasted effort" },
+        { label: "Hated sales" },
+      ],
+      imageUrl: "/images/founder-diagnostic/funnel.jpg",
+      imageAlt: "Two founders looking up at someone who has already reached the summit",
+    },
+    {
+      __component: "sections.fd-normal",
+      sectionConfig: { theme: "dark" },
+      heading: "You shouldn't have to wonder whether you're building the wrong company.",
+      lede:
+        "You can know exactly who it's for and what to say to them. Every feature you build has a reason you could defend out loud. And you know this year is going somewhere.\n\nStartup culture calls the first one normal. It doesn't have to be. It can be a lot quieter than this.",
+      leftTitle: "Not normal",
+      leftBody: "Chaotic moves. Demos and sales attempts, hoping one of them lands.",
+      rightTitle: "Normal",
+      rightBody: "Clarity about the direction. The use case. The next moves, in order.",
+    },
+    {
+      __component: "sections.fd-case",
+      sectionConfig: { sectionId: "case", theme: "dark" },
+      kicker: "Case study",
+      heading: "28 years in construction. Still no first customer.",
+      subheading:
+        "Why am I so sure? Because cases like this one are not exceptions. They are the norm after a proper diagnostic.",
+      story:
+        "Alex built an AI tool for construction project management. Real product, real problem. Contractors with $1B backlogs were taking his calls. He was accepted into a world-famous incubator.\n\nNothing converted. He was working 60-hour weeks and going nowhere. Every conversation felt promising. Every week he wondered whether the problem was the market, the product, or himself.\n\nHe thought he needed more features. More meetings. Maybe €60M to build it properly. He would not show the product without an NDA, so almost nobody ever got close enough to buy it.\n\nWhat I asked — Who is your user? \"The whole company.\" What is your business? \"The tool.\" What is your IP? \"The code.\"\n\nWhat was actually true — His user was one specific person on one specific job. His business was 28 years of knowing where construction projects bleed money. His IP was his own pattern recognition. The code just delivered it.",
+      quote: "When can we start the beta?",
+      outcome:
+        "Same product. Same founder. Same network. Different clarity.\n\nAnd for the first time in months, Alex stopped wondering whether he was building the wrong company.",
+    },
+    {
+      __component: "sections.fd-method",
+      sectionConfig: { sectionId: "method", theme: "dark" },
+      heading: "How I do this. No magic.",
+      lede:
+        "I start with a deep dive into your strategy. Then I quiz you and your co-founders, because the gap between your answers is often the whole diagnosis. Then I test your pitch. Then I get into the product myself and hit whatever your buyer hits. Four angles, eight blind spots. Several will be open. I name the one to close first, and the order for the rest.\n\nIt works like a Chinese medicine consultation. Headaches are digestion. Insomnia is liver. The symptom is rarely where the problem lives.",
+      steps: [
+        {
+          title: "Strategy deep dive",
+          body: "I start with a deep dive into your strategy.",
+        },
+        {
+          title: "Founder interviews",
+          body:
+            "I quiz you and your co-founders, because the gap between your answers is often the whole diagnosis.",
+        },
+        {
+          title: "Pitch test",
+          body: "Then I test your pitch.",
+        },
+        {
+          title: "Product walkthrough",
+          body:
+            "I get into the product myself and hit whatever your buyer hits. Four angles, eight blind spots. Several will be open. I name the one to close first, and the order for the rest.",
+        },
+      ],
+    },
+    {
+      __component: "sections.fd-examiner",
+      sectionConfig: { sectionId: "examiner", theme: "dark" },
+      heading: "Why founders trust me.",
+      body:
+        "I am Julia Georgi. I have been in your seat: four startups, one failed, one exited, two growing right now, Georgia and Canary Waves. Behind that sit 15 years inside complex B2B systems and training at Strategy& at PwC, where wrong positioning costs millions.\n\nSo I have seen both sides: raising money, hiring the wrong people, building features nobody bought, and finding out far too late that the product was never the problem. I did not read about this in a book. I am still doing it now.\n\nWhy did I start the Blind Spot Diagnostic?\nI watched a founder spend €4,000 a month on marketing. It bought 10,000 visits and two sales. Every consultant told him the same thing: you need more traffic.\n\nNobody checked the funnel above the funnel. His two co-founders had never agreed on who the buyer was. One sold B2B offline and quietly brought in most of the pipeline. The other ran the ads. So the site spoke to one buyer but not to the cold traffic, and more traffic would only have bought more of the wrong people.\n\nSo why don't I just fix it for you?\nHire someone experienced enough to do the work and you outsource the one skill your startup cannot survive without, right up until they leave. Name every blind spot once, early, and you close them yourself.",
+      stats: [
+        {
+          value: "4",
+          label: "startups built. One failed, one exited, two growing.",
+        },
+        {
+          value: "€800K",
+          label: "in services sold inside my own companies.",
+        },
+        {
+          value: "€15M",
+          label: "in top-line growth delivered for world-leading B2B companies.",
+        },
+        {
+          value: "Risk free",
+          label: "Fully refundable. Win-win relationships only.",
+        },
+      ],
+      imageUrl: "/images/founder-diagnostic/julia.png",
+      imageAlt: "Julia, founder of Startup Witch",
+      linkedInUrl: "https://www.linkedin.com/in/juliagulin/",
+      linkedInLabel: "Julia Georgi on LinkedIn",
+    },
+    {
+      __component: "sections.fd-proof",
+      sectionConfig: { sectionId: "proof", theme: "dark" },
+      heading: "What changed for founders I worked with.",
+      cards: [
+        {
+          name: "Alex",
+          niche: "Construction AI",
+          blindSpot: "Product scope",
+          body: "28 years in his industry, and nobody understood what he was selling.",
+          changeLabel: "First POC demand the same week.",
+          changeBody:
+            "He cut features to the critical use cases and reduced monthly burn by 50%, which saved the company from bankruptcy.",
+        },
+        {
+          name: "Kirill",
+          niche: "B2B SaaS",
+          blindSpot: "ICP",
+          body: "Building whatever clients asked for, running a SaaS that operated like an agency.",
+          changeLabel: "Investor-ready in 2 months",
+          changeBody: "In two months he realigned the process across his teams around one buyer.",
+        },
+        {
+          name: "Marie",
+          niche: "SME change management",
+          blindSpot: "Positioning",
+          body: "An excellent product, described in corporate language nobody understood.",
+          changeLabel: "3 clients in 3 months",
+          changeBody: "She rebuilt her positioning around the customer's real job.",
+        },
+      ],
+    },
+    {
+      __component: "sections.fd-how",
+      sectionConfig: { sectionId: "how", theme: "dark" },
+      heading: "How does it work?",
+      lede: "Sixty to ninety minutes of your time. The rest is mine.",
+      steps: [
+        {
+          title: "You submit",
+          body:
+            "Pay €750 by card or EU/US bank transfer. A light service agreement arrives automatically and I sign an NDA. Then you upload your landing, deck, and numbers, and fill the intake.",
+        },
+        {
+          title: "Conflict check",
+          body:
+            "I review for any conflict with current or past clients. If there is one, I tell you immediately and refund you in full.",
+        },
+        {
+          title: "I investigate",
+          body:
+            "I send all my data requests at once. Once you have completed them, the work starts. If I need clarification I reach out, otherwise you hear nothing until it lands.",
+        },
+        {
+          title: "Your diagnosis lands",
+          body:
+            "In 14 days: the detailed written report, a walkthrough if you want one, and lifetime WhatsApp access for any questions after.",
+        },
+      ],
+    },
+    {
+      __component: "sections.fd-fit",
+      sectionConfig: { sectionId: "fit", theme: "dark" },
+      heading: "The Blind Spot Diagnostic is not for everyone.",
+      lede: "Only for founders who want the truth, and who are serious about their business.",
+      eligibleHeading: "Eligible if",
+      eligibleItems: [
+        {
+          text:
+            "You have a product, MVP or beyond. Pre-MVP works too, if you have a bulletproof roadmap for a genuinely technical product.",
+        },
+        { text: "You have users, or are actively acquiring them." },
+        { text: "You're open to uncomfortable truths." },
+        { text: "You want clarity and you are serious about your business." },
+      ],
+      notEligibleHeading: "Not eligible if",
+      notEligibleItems: [
+        { text: "You want motivation or coaching." },
+        { text: "You want validation or reassurance." },
+        { text: "You have a fragile ego." },
+        { text: "You want someone to do the work for you." },
+      ],
+    },
+    {
+      __component: "sections.fd-mid-cta",
+      sectionConfig: { theme: "dark" },
+      heading: "Ready to stop guessing?",
+      body:
+        "Every month you wait, you spend another month of runway in a direction nobody has checked. Burn €5,000 a month, and three months of guessing costs you €15,000. The diagnosis costs €750, and it is refundable.",
+      ctaText: "I'm in",
+      ctaHref: "#book",
+      note: "Two spots left this month. Five a month, no exceptions.",
+    },
+    {
+      __component: "sections.fd-faq",
+      sectionConfig: { sectionId: "faq", theme: "dark" },
+      heading: "Fair questions. Straight answers.",
+      items: [
+        {
+          question: "Why €750?",
+          answer:
+            "Because I can't keep watching smart founders make the same mistakes, burning months and runway in the dark. It is deliberately low-entry and fully refundable, so a serious read reaches founders earlier, at a fraction of an agency retainer or a month of the wrong hire. It replaces months of guessing, hours of late-night searching, and mentor calls that contradict each other because they answer with 2022 playbooks. If it doesn't open your eyes, you don't pay.",
+        },
+        {
+          question: "What exactly do you look at?",
+          answer:
+            "Eight blind spots: positioning, pricing, ICP, channel, product scope, motivation, co-founder, and stage fit. I read everything you send and use the product live, signing up and onboarding as a real user. Then I name which one to close first, and the order for the rest. It works like a Chinese medicine consultation: headaches are digestion, insomnia is liver. The symptom is rarely the problem.",
+        },
+        {
+          question: "What will I actually know at the end?",
+          answer:
+            "Who your customer actually is, and the two to stop chasing. What is broken first, and the order to fix it in. What to do on Monday, sequenced into Month 1, 2 and 3. What to stop doing. What the real co-founder argument is about. Which mentor advice to trust, because most of it contradicts. And whether to scale, pivot, or stop.",
+        },
+        {
+          question: "What lands in your inbox?",
+          answer:
+            "An 8 to 12 page written report: what is broken, in what order to fix it, and what to leave alone. A 30-minute Loom where I talk you through it line by line, so nothing gets lost in translation. Lifetime follow-up on WhatsApp or Telegram, with no clock running. And a free check-in at day 30: what did you implement, what got stuck, what changed. The effect runs 3 to 12 months depending on your stage and your willingness to act. The document is yours forever, and most founders re-read it in month 2 and again in month 3.",
+        },
+        {
+          question: "I can just ask ChatGPT. Why pay?",
+          answer:
+            "I'm sure you already did. Look where you are now. What you get here are perspectives you didn't think to ask for, in a read that cannot be reused on another founder.",
+        },
+        {
+          question: "I already have an advisor or mentor.",
+          answer:
+            "A coach makes you better at what you are already doing. An advisor helps you pick what to do next. Both leave the broken thing exactly where it is, because neither one goes looking for it. I diagnose. That is the whole job. And it works without me ever meeting you, so I am as objective as a stranger. My personal opinion of you never enters the room.",
+        },
+        {
+          question: "What if the diagnosis is useless?",
+          answer:
+            'Then you don\'t pay. Reply "refund" and the money is back in 48 hours. No retention call. The risk sits with me.',
+        },
+        {
+          question: "I want a live conversation, not a document.",
+          answer:
+            "We can arrange that if you insist, and when a recommendation is pivotal enough to be misread in writing, I'll book the call myself. But I'll tell you upfront: the document is yours forever. A call evaporates by morning.",
+        },
+        {
+          question: "I've burned money on consultants. Why are you different?",
+          answer:
+            'I\'ve burned money too, many times more than €750. So I know exactly what templated advice looks like, with its "insert founder name here" energy. Mine cannot be applied to another startup. If a single paragraph could be reused for another founder, you get a refund.',
+        },
+        {
+          question: "I don't have €750 right now.",
+          answer: "Email me. We can discuss payment terms.",
+        },
+      ],
+    },
+    {
+      __component: "sections.fd-book",
+      sectionConfig: { sectionId: "book", theme: "dark" },
+      heading: "Don't spend another year guessing.",
+      metaLine: "EUR 750 · 14 days · fully refundable · lifetime follow-up",
+      guarantee:
+        "If you do not walk away with more clarity than you have had in months, you get your money back. No pitch. No generic frameworks.",
+      ctaText: "Book Your Diagnostic",
+      ctaHref: "https://startup-witch.com/diagnostic",
+    },
+  ],
 };

@@ -1,0 +1,55 @@
+{
+  "collectionName": "components_sections_fd_heroes",
+  "info": {
+    "displayName": "FD Hero",
+    "icon": "star",
+    "description": "Founder Diagnostic hero with chart readings"
+  },
+  "options": {},
+  "attributes": {
+    "sectionConfig": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-config"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "headingAccent": {
+      "type": "string"
+    },
+    "lede": {
+      "type": "text"
+    },
+    "ledeBold": {
+      "type": "string"
+    },
+    "primaryCtaText": {
+      "type": "string"
+    },
+    "primaryCtaHref": {
+      "type": "string"
+    },
+    "secondaryCtaText": {
+      "type": "string"
+    },
+    "secondaryCtaHref": {
+      "type": "string"
+    },
+    "chartEyebrow": {
+      "type": "string"
+    },
+    "chartTitle": {
+      "type": "string"
+    },
+    "chartFoot": {
+      "type": "string"
+    },
+    "readings": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.fd-reading-row"
+    }
+  }
+}

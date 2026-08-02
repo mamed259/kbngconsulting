@@ -31,6 +31,7 @@ const homeData = {
       primaryCtaHref: "#book",
       secondaryCtaText: "See what we build",
       secondaryCtaHref: "#solutions",
+      imageUrl: "/images/home/heart.png",
     },
     {
       __component: "sections.solutions",

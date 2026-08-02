@@ -7,6 +7,7 @@ import { extractStrapiImageUrl } from "@/lib/utils";
 type HeroSectionProps = Omit<HeroSectionData, "__component">;
 
 const heroHighlight = "real-world systems that elevate your teams";
+const DEFAULT_HEART = "/images/home/heart.png";
 
 function renderSubtitle(subtitle: string) {
   const index = subtitle.toLowerCase().indexOf(heroHighlight);
@@ -35,7 +36,7 @@ export function HeroSection({
   image,
   imageUrl,
 }: HeroSectionProps) {
-  const heroImageUrl = extractStrapiImageUrl(image || imageUrl);
+  const heroImageUrl = extractStrapiImageUrl(image || imageUrl) || DEFAULT_HEART;
 
   return (
     <section className="hero">
@@ -51,20 +52,17 @@ export function HeroSection({
           ) : null}
         </div>
       </Container>
-      {heroImageUrl ? (
-        <div className="hero-visual" aria-hidden>
-          <Image
-            className="hero-visual-img"
-            src={heroImageUrl}
-            alt=""
-            width={500}
-            height={500}
-            sizes="(min-width: 1100px) 38vw, 0px"
-            priority
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      ) : null}
+      <div className="hero-visual" aria-hidden>
+        <Image
+          className="hero-visual-img hero-heart"
+          src={heroImageUrl}
+          alt=""
+          width={500}
+          height={500}
+          sizes="(min-width: 1100px) 38vw, 0px"
+          priority
+        />
+      </div>
     </section>
   );
 }

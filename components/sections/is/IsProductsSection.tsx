@@ -108,7 +108,7 @@ export function IsProductsSection({
               {spineYear}
               {spineLabel ? <small>{spineLabel}</small> : null}
             </span>
-            <span className="rule" />
+            {spineYear !== "The toolkit" ? <span className="rule" /> : null}
           </div>
         )}
         <div className="sec-head" style={{ marginBottom: "2rem" }}>

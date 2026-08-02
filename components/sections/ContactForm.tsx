@@ -8,6 +8,10 @@ interface ContactFormProps {
   fields: FormFieldData[];
 }
 
+function fieldName(label: string) {
+  return label.toLowerCase().replace(/\s+/g, "_");
+}
+
 export function ContactForm({ fields }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string>("");
@@ -41,15 +45,12 @@ export function ContactForm({ fields }: ContactFormProps) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ maxWidth: "640px", margin: "0 auto", display: "grid", gap: "14px" }}
-    >
+    <form className="contact-form" onSubmit={handleSubmit}>
       {fields.map((field) => (
         <FormField
           key={field.id}
           label={field.label}
-          name={field.label.toLowerCase().replace(/\s+/g, "_")}
+          name={fieldName(field.label)}
           type={field.type}
           placeholder={field.placeholder}
           required={field.required}
@@ -58,7 +59,7 @@ export function ContactForm({ fields }: ContactFormProps) {
       <button type="submit" className="btn btn-solid" disabled={loading}>
         {loading ? "Submitting..." : "Send"}
       </button>
-      {message ? <p style={{ margin: 0, color: "var(--muted)" }}>{message}</p> : null}
+      {message ? <p className="contact-form-msg">{message}</p> : null}
     </form>
   );
 }
