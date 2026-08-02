@@ -2,6 +2,7 @@ import process from "node:process";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { hydrateImageUrls } from "./lib/hydrate-images.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const innovationStudioPageData = JSON.parse(
@@ -59,9 +60,15 @@ async function run() {
   const existing = await strapiRequest(`/api/pages?${findQuery.toString()}`);
   const first = existing?.data?.[0];
 
+  const hydrated = await hydrateImageUrls(innovationStudioPageData, {
+    strapiUrl: STRAPI_URL,
+    token: STRAPI_TOKEN,
+    rootDir: join(__dirname, "../.."),
+  });
+
   const payload = {
     data: {
-      ...innovationStudioPageData,
+      ...hydrated,
       publishedAt: new Date().toISOString(),
     },
   };

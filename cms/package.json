@@ -18,6 +18,7 @@
     "seed:georgia": "node scripts/seed-georgia.mjs",
     "seed:founder-diagnostic": "node scripts/seed-founder-diagnostic.mjs",
     "seed:articles": "node scripts/seed-articles.mjs",
+    "seed:page-media": "node scripts/seed-page-media.mjs",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

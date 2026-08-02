@@ -67,8 +67,27 @@ async function seedArticle(strapi: Core.Strapi, data: BlogArticleSeed) {
 }
 
 export async function seedBlogArticles(strapi: Core.Strapi) {
+  const allowed = new Set(blogArticles.map((article) => article.slug));
+
   for (const article of blogArticles) {
     await seedArticle(strapi, article);
+  }
+
+  try {
+    const remote = await strapi.documents(ARTICLE_UID).findMany({
+      status: "draft",
+      limit: 200,
+    });
+
+    for (const article of remote) {
+      if (!article.documentId || !article.slug) continue;
+      if (allowed.has(article.slug)) continue;
+      await strapi.documents(ARTICLE_UID).delete({ documentId: article.documentId });
+      strapi.log.info(`[seed] Deleted extra article: ${article.slug}`);
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    strapi.log.warn(`[seed] Could not prune extra articles: ${message}`);
   }
 }
 

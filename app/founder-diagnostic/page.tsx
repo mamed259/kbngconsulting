@@ -3,7 +3,7 @@ import { Caveat, Inter } from "next/font/google";
 import { FdHeader, FdFooter, FdReveal } from "@/components/founder-diagnostic";
 import { renderSections } from "@/components/DynamicRenderer";
 import { getPageBySlug } from "@/lib/api";
-import { getStrapiMedia } from "@/lib/utils";
+import { buildMetadataFromSeo } from "@/lib/seo";
 import { founderDiagnosticFallbackSections } from "@/content/founder-diagnostic-fallback";
 import "../founder-diagnostic.css";
 
@@ -26,40 +26,12 @@ const FALLBACK_SEO = {
   description:
     "You built something real. So why is nobody buying? The Blind Spot Diagnostic reads your startup in 14 days and names the one thing blocking growth. EUR 750, fully refundable.",
   url: "https://kbngconsulting.com/founder-diagnostic",
+  absoluteTitle: true,
 };
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("founder-diagnostic");
-
-  if (page?.seo) {
-    return {
-      title: { absolute: page.seo.metaTitle },
-      description: page.seo.metaDescription,
-      openGraph: {
-        title: page.seo.metaTitle,
-        description: page.seo.metaDescription,
-        type: "website",
-        url: page.seo.canonicalUrl || FALLBACK_SEO.url,
-        ...(page.seo.ogImage
-          ? { images: [{ url: getStrapiMedia(page.seo.ogImage.url) }] }
-          : {}),
-      },
-      ...(page.seo.canonicalUrl
-        ? { alternates: { canonical: page.seo.canonicalUrl } }
-        : {}),
-    };
-  }
-
-  return {
-    title: { absolute: FALLBACK_SEO.title },
-    description: FALLBACK_SEO.description,
-    openGraph: {
-      title: FALLBACK_SEO.title,
-      description: FALLBACK_SEO.description,
-      type: "website",
-      url: FALLBACK_SEO.url,
-    },
-  };
+  return buildMetadataFromSeo(page?.seo, FALLBACK_SEO);
 }
 
 export default async function FounderDiagnosticPage() {

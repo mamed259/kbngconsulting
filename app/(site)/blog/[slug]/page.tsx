@@ -4,8 +4,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getArticleBySlug } from "@/lib/api";
 import { getFallbackArticleBySlug } from "@/content/blog-fallback";
-import { getStrapiMedia, extractStrapiImageUrl } from "@/lib/utils";
+import { extractStrapiImageUrl } from "@/lib/utils";
 import { pickArticleBody } from "@/lib/article-body";
+import { buildArticleMetadata } from "@/lib/seo";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { formatBlogDate } from "@/components/blog/BlogCards";
 import "../../../blog.css";
@@ -48,23 +49,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   if (!article) return {};
 
-  const seo = article.seo;
-  const title = seo?.metaTitle ?? article.title;
-  const description = seo?.metaDescription ?? article.excerpt ?? article.title;
-  const url = articleUrl(slug, seo?.canonicalUrl);
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url,
-      ...(seo?.ogImage ? { images: [{ url: getStrapiMedia(seo.ogImage.url) }] } : {}),
-    },
-    alternates: { canonical: url },
-  };
+  return buildArticleMetadata({
+    seo: article.seo
+      ? {
+          ...article.seo,
+          canonicalUrl: articleUrl(slug, article.seo.canonicalUrl),
+        }
+      : null,
+    title: article.title,
+    description: article.excerpt || article.title,
+    slug,
+    coverImage: article.coverImage,
+    coverImageUrl: article.coverImageUrl,
+  });
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {

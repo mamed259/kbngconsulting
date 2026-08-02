@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { DynamicRenderer } from "@/components/DynamicRenderer";
 import { MarketingEffects } from "@/components/MarketingEffects";
 import { getPageBySlug } from "@/lib/api";
-import { getStrapiMedia } from "@/lib/utils";
+import { buildMetadataFromSeo } from "@/lib/seo";
 import { canaryWavesFallbackSections } from "@/content/canary-waves-fallback";
 import { visionAiFallbackSections } from "@/content/vision-ai-fallback";
 import { innovationStudioFallbackSections } from "@/content/innovation-studio-fallback";
@@ -88,35 +88,13 @@ const PAGE_FALLBACKS: Record<
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const page = await getPageBySlug(slug);
-
-  if (page?.seo) {
-    return {
-      title: page.seo.metaTitle,
-      description: page.seo.metaDescription,
-      openGraph: {
-        title: page.seo.metaTitle,
-        description: page.seo.metaDescription,
-        ...(page.seo.ogImage ? { images: [{ url: getStrapiMedia(page.seo.ogImage.url) }] } : {}),
-      },
-      ...(page.seo.canonicalUrl ? { alternates: { canonical: page.seo.canonicalUrl } } : {}),
-    };
-  }
-
   const fallback = PAGE_FALLBACKS[slug];
-  if (fallback) {
-    return {
-      title: fallback.title,
-      description: fallback.description,
-      openGraph: {
-        title: fallback.ogTitle ?? fallback.title,
-        description: fallback.ogDescription ?? fallback.description,
-        type: "website",
-        url: fallback.url,
-      },
-    };
-  }
 
-  return {};
+  return buildMetadataFromSeo(page?.seo, {
+    title: fallback?.ogTitle ?? fallback?.title ?? slug,
+    description: fallback?.ogDescription ?? fallback?.description ?? "",
+    url: page?.seo?.canonicalUrl || fallback?.url,
+  });
 }
 
 export default async function DynamicPage({ params }: PageProps) {
