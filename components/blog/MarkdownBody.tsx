@@ -56,14 +56,17 @@ function parseImage(line: string): { alt: string; src: string } | null {
 
 export function MarkdownBody({ content, className }: MarkdownBodyProps) {
   const blocks = content
+    .replace(/\nMeta title:[\s\S]*$/i, "")
+    .replace(/\nMeta description:[\s\S]*$/i, "")
     .split(/\n\s*\n/)
     .map((block) => block.trim())
-    .filter(Boolean);
+    .filter((block) => block && !/^Alt text:/i.test(block) && !/^Meta (title|description):/i.test(block));
 
   const nodes: ReactNode[] = [];
 
   blocks.forEach((block, blockIndex) => {
-    const lines = block.split("\n").map((line) => line.trim());
+    const lines = block.split("\n").map((line) => line.trim()).filter((line) => !/^Alt text:/i.test(line));
+    if (!lines.length) return;
 
     if (lines.length === 1 && isHr(lines[0])) {
       nodes.push(<hr key={blockIndex} />);

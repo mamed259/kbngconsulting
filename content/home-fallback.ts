@@ -146,7 +146,7 @@ const resources: ResourcesSectionData = {
       title: "Mining Safety Shares: Topics, Tips, and Best Practices",
       excerpt: "Mining Safety Shares: Topics, Tips, and Best Practices",
       tag: "KB&G · BLOG",
-      href: "/blog/articles/mining-safety-shares-topics-tips-and-best-practices",
+      href: "/blog/mining-safety-shares-topics-tips-and-best-practices",
       imageUrl: "/images/blog/mining-safety-shares-topics-tips-and-best-practices.png",
     },
     {
@@ -154,7 +154,7 @@ const resources: ResourcesSectionData = {
       title: "All About Mining: How the Mining Industry Powers the World",
       excerpt: "All About Mining: How the Mining Industry Powers the World",
       tag: "KB&G · BLOG",
-      href: "/blog/articles/all-about-mining-how-the-mining-industry-powers-the-world",
+      href: "/blog/all-about-mining-how-the-mining-industry-powers-the-world",
       imageUrl: "/images/blog/all-about-mining-how-the-mining-industry-powers-the-world.png",
     },
     {
@@ -162,7 +162,7 @@ const resources: ResourcesSectionData = {
       title: "Interpersonal Communication Skills in the Workplace: Why They Matter",
       excerpt: "Interpersonal Communication Skills in the Workplace: Why They Matter",
       tag: "KB&G · BLOG",
-      href: "/blog/articles/intepersonal-communication-skills-in-the-workplace",
+      href: "/blog/intepersonal-communication-skills-in-the-workplace",
       imageUrl: "/images/blog/intepersonal-communication-skills-in-the-workplace.png",
     },
   ],

@@ -19,7 +19,7 @@ export async function ResourcesSection({ heading, cards }: ResourcesSectionProps
           title: article.title,
           excerpt: article.excerpt || "",
           tag: "KB&G · BLOG",
-          href: `/blog/articles/${article.slug}`,
+          href: `/blog/${article.slug}`,
           imageUrl: extractStrapiImageUrl(article.coverImage || article.coverImageUrl),
         }))
       : cards.map((card: ResourceCardData, index) => ({
@@ -57,7 +57,7 @@ export async function ResourcesSection({ heading, cards }: ResourcesSectionProps
                       ? {
                           backgroundImage: `url("${item.imageUrl}")`,
                           backgroundSize: "cover",
-                          backgroundPosition: "center",
+                          backgroundPosition: "top",
                         }
                       : undefined
                   }

@@ -5,7 +5,7 @@
     "singularName": "article",
     "pluralName": "articles",
     "displayName": "Article",
-    "description": "Blog articles — each published entry appears on /blog and /blog/articles/{slug}"
+    "description": "Blog articles — each published entry appears on /blog and /blog/{slug}"
   },
   "options": {
     "draftAndPublish": true

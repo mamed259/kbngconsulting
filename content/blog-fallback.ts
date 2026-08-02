@@ -37,7 +37,7 @@ export const fallbackArticles: ArticleData[] = seeds.map((seed) => ({
   seo: {
     metaTitle: seed.seo?.metaTitle || seed.title,
     metaDescription: seed.seo?.metaDescription || seed.excerpt,
-    canonicalUrl: seed.seo?.canonicalUrl || `https://kbngconsulting.com/blog/articles/${seed.slug}`,
+    canonicalUrl: seed.seo?.canonicalUrl || `https://kbngconsulting.com/blog/${seed.slug}`,
   },
 }));
 

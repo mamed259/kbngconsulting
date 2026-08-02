@@ -1018,11 +1018,29 @@ section {
   position: relative;
   overflow: hidden;
   background: linear-gradient(150deg, #0c3a41, #082b31);
+  background-position: top;
+  background-size: cover;
   border: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   transition: transform 0.18s ease;
+}
+
+.res .thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 43, 49, 0.55) 0%,
+      rgba(8, 43, 49, 0.35) 35%,
+      rgba(4, 22, 26, 0.82) 100%
+    ),
+    rgba(8, 43, 49, 0.28);
 }
 
 .res:hover .thumb {
@@ -1033,6 +1051,7 @@ section {
   position: absolute;
   top: 14px;
   left: 18px;
+  z-index: 1;
   font-weight: 700;
   font-size: 0.62rem;
   letter-spacing: 0.06em;
@@ -1049,9 +1068,12 @@ section {
 }
 
 .res .thumb h3 {
+  position: relative;
+  z-index: 1;
   color: #fff;
   font-size: 1.06rem;
   max-width: 18ch;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
 .res figcaption {

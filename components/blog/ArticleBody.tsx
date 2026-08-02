@@ -1,27 +1,33 @@
 import { MarkdownBody } from "@/components/blog/MarkdownBody";
+import {
+  sanitizeArticleHtml,
+  stripDuplicateTitle,
+} from "@/lib/article-body";
 
 function looksLikeHtml(content: string): boolean {
   return /<\/?[a-z][\s\S]*>/i.test(content.trim());
 }
 
-function sanitizeArticleHtml(html: string): string {
-  return html
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
-}
-
 /** Renders CKEditor HTML or legacy markdown bodies. */
-export function ArticleBody({ content }: { content: string }) {
+export function ArticleBody({
+  content,
+  title,
+}: {
+  content: string;
+  title?: string;
+}) {
   if (!content?.trim()) return null;
 
-  if (looksLikeHtml(content)) {
+  const cleaned = stripDuplicateTitle(content, title);
+
+  if (looksLikeHtml(cleaned)) {
     return (
       <div
         className="article-richtext"
-        dangerouslySetInnerHTML={{ __html: sanitizeArticleHtml(content) }}
+        dangerouslySetInnerHTML={{ __html: sanitizeArticleHtml(cleaned) }}
       />
     );
   }
 
-  return <MarkdownBody content={content} />;
+  return <MarkdownBody content={cleaned} className="md-body" />;
 }

@@ -443,7 +443,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
-    description: 'Blog articles \u2014 each published entry appears on /blog and /blog/articles/{slug}';
+    description: 'Blog articles \u2014 each published entry appears on /blog and /blog/{slug}';
     displayName: 'Article';
     pluralName: 'articles';
     singularName: 'article';

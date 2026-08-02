@@ -50,8 +50,8 @@ export { formatBlogDate, coverSrc };
 
 export function FeaturedArticle({ article }: { article: ArticleData }) {
   return (
-    <Link className="blog-featured" href={`/blog/articles/${article.slug}`}>
-      <BlogCover article={article} className="blog-featured-media" sizes="(min-width: 900px) 52vw, 100vw" priority />
+    <Link className="blog-featured" href={`/blog/${article.slug}`}>
+      <BlogCover article={article} className="blog-featured-media" sizes="(min-width: 900px) 58vw, 100vw" priority />
       <div className="blog-featured-copy">
         <time dateTime={article.publishedOn}>{formatBlogDate(article.publishedOn)}</time>
         <h2>{article.title}</h2>
@@ -63,12 +63,12 @@ export function FeaturedArticle({ article }: { article: ArticleData }) {
 
 export function BlogListItem({ article }: { article: ArticleData }) {
   return (
-    <Link className="blog-item" href={`/blog/articles/${article.slug}`}>
+    <Link className="blog-item" href={`/blog/${article.slug}`}>
       <div className="blog-item-copy">
         <time dateTime={article.publishedOn}>{formatBlogDate(article.publishedOn)}</time>
         <h3>{article.title}</h3>
       </div>
-      <BlogCover article={article} className="blog-item-media" sizes="180px" />
+      <BlogCover article={article} className="blog-item-media" sizes="220px" />
     </Link>
   );
 }
