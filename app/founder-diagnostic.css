@@ -414,6 +414,23 @@
   .fd-page .tag{font-size:.88rem;font-weight:700;padding:9px 15px;border-radius:999px;background:var(--paper);
     border:1px solid rgba(255,90,117,.22);color:var(--teal)}
   .fd-page .tag b{color:var(--ink);font-weight:800;margin-right:6px}
+  /* live search sweep across the eight tags; one stays lit */
+  .fd-page .imb .tag{--i:0;transition:none;animation:fdSweep 5.4s linear infinite;
+    animation-delay:calc(var(--i) * .22s)}
+  @keyframes fdSweep{
+    0%,14%,100%{border-color:rgba(255,90,117,.22);background:var(--paper);box-shadow:none}
+    4%{border-color:rgba(255,90,117,.7);background:rgba(255,90,117,.09);
+      box-shadow:0 0 0 4px rgba(255,90,117,.07)}}
+  .fd-page .imb .tag.hit{animation:none;border-color:var(--coral);background:rgba(255,90,117,.13);
+    box-shadow:0 0 0 4px rgba(255,90,117,.09)}
+  .fd-page .imb .tag.hit::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--coral);margin-right:9px;vertical-align:middle;
+    animation:fdBlip 1.6s ease-in-out infinite}
+  @keyframes fdBlip{0%,100%{box-shadow:0 0 0 0 rgba(255,90,117,.6)}
+    70%{box-shadow:0 0 0 6px rgba(255,90,117,0)}}
+  @media(prefers-reduced-motion:reduce){
+    .fd-page .imb .tag,.fd-page .imb .tag.hit::before{animation:none}
+  }
 
   /* ---- deliverable cards ---- */
   .fd-page .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}

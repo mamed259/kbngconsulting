@@ -4,12 +4,13 @@ import { Container } from "@/components/ui/Container";
 import { extractStrapiImageUrl } from "@/lib/utils";
 import { getArticles } from "@/lib/api";
 import { fallbackArticles } from "@/content/blog-fallback";
+import { mergeArticles } from "@/lib/articles";
 
 type ResourcesSectionProps = Omit<ResourcesSectionData, "__component">;
 
 export async function ResourcesSection({ heading, cards }: ResourcesSectionProps) {
   const articles = await getArticles();
-  const list = (articles.length > 0 ? articles : fallbackArticles).slice(0, 3);
+  const list = mergeArticles(articles, fallbackArticles).slice(0, 3);
 
   const items =
     list.length > 0

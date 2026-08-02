@@ -57,9 +57,9 @@ export function HeroSection({
           className="hero-visual-img hero-heart"
           src={heroImageUrl}
           alt=""
-          width={500}
-          height={500}
-          sizes="(min-width: 1100px) 38vw, 0px"
+          width={340}
+          height={340}
+          sizes="(min-width: 1100px) 26vw, 0px"
           priority
         />
       </div>
