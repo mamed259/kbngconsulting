@@ -88,6 +88,10 @@ function inferFieldValue(
   const lowerTypes = new Set((options.types || []).map((type) => type.toLowerCase()));
   const labelPatterns = (options.labelIncludes || []).map(normalizeKey);
   const keyPatterns = (options.keyIncludes || []).map(normalizeKey);
+  const targetingEmail =
+    lowerTypes.has("email") ||
+    labelPatterns.some((pattern) => pattern.includes("email")) ||
+    keyPatterns.some((pattern) => pattern.includes("email"));
 
   for (const field of fields) {
     const normalizedLabel = normalizeKey(field.label || "");
@@ -96,6 +100,16 @@ function inferFieldValue(
     const value = getStringValue(values, fieldKey);
 
     if (!value) continue;
+
+    // "Business email" must not be treated as Company (label contains "business").
+    if (
+      !targetingEmail &&
+      (field.type?.toLowerCase() === "email" ||
+        normalizedLabel.includes("email") ||
+        normalizedKey.includes("email"))
+    ) {
+      continue;
+    }
 
     if (field.type && lowerTypes.has(field.type.toLowerCase())) return value;
     if (options.isMatch) {
@@ -111,6 +125,8 @@ function inferFieldValue(
     if (!value) continue;
 
     const normalizedKey = normalizeKey(key);
+    if (!targetingEmail && normalizedKey.includes("email")) continue;
+
     if (options.isMatch) {
       if (options.isMatch(normalizedKey)) return value;
       continue;
@@ -219,8 +235,8 @@ export async function POST(request: NextRequest) {
       keyIncludes: ["email", "businessemail", "workemail"],
     });
     const company = inferFieldValue(values, fields, {
-      labelIncludes: ["company", "organization", "business", "firm"],
-      keyIncludes: ["company", "organization", "business", "firm"],
+      labelIncludes: ["company", "organization", "organisation", "firm", "businessname"],
+      keyIncludes: ["company", "organization", "organisation", "firm", "businessname"],
     });
     const rawMessage = inferFieldValue(values, fields, {
       types: ["textarea"],
