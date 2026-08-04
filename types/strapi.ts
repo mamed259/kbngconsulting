@@ -48,6 +48,8 @@ export interface PageData {
   sections: StrapiSection[];
 }
 
+export type ArticleCategory = "founder-resources" | "industrial-innovation";
+
 export interface ArticleData {
   id: number;
   documentId?: string;
@@ -56,6 +58,7 @@ export interface ArticleData {
   excerpt?: string;
   publishedOn: string;
   topics?: string[] | unknown;
+  category?: ArticleCategory | string | null;
   coverImage?: StrapiMediaField;
   coverImageUrl?: string;
   coverImageAlt?: string;

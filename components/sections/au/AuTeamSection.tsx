@@ -1,35 +1,39 @@
+import Image from "next/image";
 import type { AuMemberData, AuTeamSectionData } from "@/types/strapi";
 import { Container } from "@/components/ui/Container";
 import { extractStrapiImageUrl } from "@/lib/utils";
-import Image from "next/image";
 
 type Props = Omit<AuTeamSectionData, "__component">;
 
 function getInitials(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);
-  const initials = words.slice(0, 2).map((word) => word[0]?.toUpperCase() ?? "");
-  return initials.join("");
+  return words
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase() ?? "")
+    .join("");
 }
 
-function MemberBand({ member }: { member: AuMemberData }) {
+function MemberCard({ member }: { member: AuMemberData }) {
   const src = extractStrapiImageUrl(member.image || member.imageUrl);
   const tone = member.accentTone || "yellow";
 
   return (
-    <div className={`member tone-${tone} reveal`}>
-      <div className="member-mark">
-        {src ? (
-          <Image src={src} alt={member.name} width={72} height={72} style={{ objectFit: "cover" }} />
-        ) : (
-          <span>{getInitials(member.name)}</span>
-        )}
+    <article className={`au-member tone-${tone} reveal`}>
+      <div className="au-member-top">
+        <div className="au-member-mark">
+          {src ? (
+            <Image src={src} alt={member.name} width={88} height={88} style={{ objectFit: "cover" }} />
+          ) : (
+            <span>{getInitials(member.name)}</span>
+          )}
+        </div>
+        <div>
+          <h3>{member.name}</h3>
+          <span className="au-member-role">{member.role}</span>
+        </div>
       </div>
-      <div className="member-copy">
-        <h3>{member.name}</h3>
-        <span className="member-role">{member.role}</span>
-        {member.bio ? <p className="member-bio">{member.bio}</p> : null}
-      </div>
-    </div>
+      {member.bio ? <p className="au-member-bio">{member.bio}</p> : null}
+    </article>
   );
 }
 
@@ -37,12 +41,16 @@ export function AuTeamSection({ heading, members }: Props) {
   if (!members?.length) return null;
 
   return (
-    <section className="team">
+    <section className="au-team">
       <Container>
+        <div className="kicker reveal" style={{ ["--t" as string]: "var(--yellow)" }}>
+          <span className="flag yellow" aria-hidden="true" />
+          People
+        </div>
         <h2 className="reveal">{heading}</h2>
-        <div className="member-list">
+        <div className="au-member-grid">
           {members.map((member) => (
-            <MemberBand member={member} key={member.id} />
+            <MemberCard member={member} key={member.id} />
           ))}
         </div>
       </Container>

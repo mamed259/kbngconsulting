@@ -121,9 +121,7 @@ function inferFieldValue(
   return "";
 }
 
-function buildMessageFromValues(values: Record<string, string>, fallback: string) {
-  if (fallback) return fallback;
-
+function buildFounderDiagnosticMessage(values: Record<string, string>) {
   const problem = getStringValue(values, "problem");
   const teamSize = getStringValue(values, "team_size");
   const canSignup = getStringValue(values, "can_signup");
@@ -131,12 +129,30 @@ function buildMessageFromValues(values: Record<string, string>, fallback: string
   if (!problem && !teamSize && !canSignup) return "";
 
   return [
-    problem ? `Problem / for whom / country:\n${problem}` : "",
-    teamSize ? `Team size: ${teamSize}` : "",
-    canSignup ? `Can someone sign up and use the product today?: ${canSignup}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+    "1. What problem do you solve, for whom, and in which country?",
+    problem || "—",
+    "",
+    "2. How many people are in the team?",
+    teamSize || "—",
+    "",
+    "3. Can someone sign up and use your product today?",
+    canSignup || "—",
+  ].join("\n");
+}
+
+function buildMessageFromValues(
+  values: Record<string, string>,
+  source: string,
+  inferredMessage: string,
+) {
+  if (source === "founder-diagnostic") {
+    const composed = buildFounderDiagnosticMessage(values);
+    if (composed) return composed;
+  }
+
+  const explicitMessage = getStringValue(values, "message");
+  if (explicitMessage) return explicitMessage;
+  return inferredMessage;
 }
 
 async function submitToStrapi(payload: StrapiSubmissionPayload) {
@@ -208,10 +224,10 @@ export async function POST(request: NextRequest) {
     });
     const rawMessage = inferFieldValue(values, fields, {
       types: ["textarea"],
-      labelIncludes: ["message", "details", "help", "comment", "notes", "inquiry", "problem"],
-      keyIncludes: ["message", "details", "help", "comment", "notes", "inquiry", "problem"],
+      labelIncludes: ["message", "details", "help", "comment", "notes", "inquiry"],
+      keyIncludes: ["message", "details", "help", "comment", "notes", "inquiry"],
     });
-    const message = buildMessageFromValues(values, rawMessage);
+    const message = buildMessageFromValues(values, source, rawMessage);
 
     if (!name || !email) {
       return NextResponse.json({ message: "Name and email are required" }, { status: 400 });

@@ -15,30 +15,37 @@ export function AuCtaSection({
   contactEmail,
 }: Props) {
   return (
-    <section className="cta">
+    <section className="au-cta" id="book">
       <Container>
-        <h2 className="reveal">{heading}</h2>
-        {body ? <p className="reveal">{body}</p> : null}
-        {(primaryCtaText || secondaryCtaText) && (
-          <div className="cta-actions reveal">
-            {primaryCtaText && primaryCtaHref ? (
-              <Link className="btn btn-primary" href={primaryCtaHref}>
-                {primaryCtaText}
-              </Link>
-            ) : null}
-            {secondaryCtaText && secondaryCtaHref ? (
-              <Link className="btn btn-ghost" href={secondaryCtaHref}>
-                {secondaryCtaText}
-              </Link>
-            ) : null}
+        <div className="au-cta-card reveal">
+          <div className="flag-row" aria-hidden="true">
+            <span className="flag mint" />
+            <span className="flag yellow" />
+            <span className="flag coral" />
           </div>
-        )}
-        {contactEmail ? (
-          <div className="cta-contact reveal">
-            {contactLabel ? <span className="contact-label">{contactLabel}</span> : null}
-            <Link href={`mailto:${contactEmail}`}>{contactEmail}</Link>
-          </div>
-        ) : null}
+          <h2>{heading}</h2>
+          {body ? <p>{body}</p> : null}
+          {(primaryCtaText || secondaryCtaText) && (
+            <div className="au-cta-actions">
+              {primaryCtaText && primaryCtaHref ? (
+                <a className="au-btn au-btn-solid" href={primaryCtaHref} data-contact-trigger>
+                  {primaryCtaText}
+                </a>
+              ) : null}
+              {secondaryCtaText && secondaryCtaHref ? (
+                <Link className="au-btn au-btn-ghost" href={secondaryCtaHref}>
+                  {secondaryCtaText}
+                </Link>
+              ) : null}
+            </div>
+          )}
+          {contactEmail ? (
+            <div className="au-cta-contact">
+              {contactLabel ? <span className="au-contact-label">{contactLabel}</span> : null}
+              <Link href={`mailto:${contactEmail}`}>{contactEmail}</Link>
+            </div>
+          ) : null}
+        </div>
       </Container>
     </section>
   );

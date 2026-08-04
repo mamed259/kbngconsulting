@@ -5,11 +5,17 @@ type Props = Omit<AuMissionSectionData, "__component">;
 
 export function AuMissionSection({ heading, body }: Props) {
   return (
-    <section className="mission">
+    <section className="au-mission">
       <Container>
-        <div className="mission-flag reveal" aria-hidden="true" />
-        {heading ? <span className="kicker reveal">{heading}</span> : null}
-        <p className="mission-statement reveal">{body}</p>
+        <div className="au-mission-inner">
+          {heading ? (
+            <div className="kicker reveal" style={{ ["--t" as string]: "var(--mint)" }}>
+              <span className="flag mint" aria-hidden="true" />
+              {heading}
+            </div>
+          ) : null}
+          <p className="au-mission-statement reveal">{body}</p>
+        </div>
       </Container>
     </section>
   );

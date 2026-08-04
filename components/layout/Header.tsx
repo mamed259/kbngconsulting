@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/components/layout/nav-links";
 
 const SCROLL_THRESHOLD = 72;
 
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -67,9 +70,15 @@ export function Header() {
           </Link>
 
           <div className="nav-actions">
-            <a className="btn btn-solid nav-cta" href="#book">
-              Let&apos;s talk
-            </a>
+            {isHome ? (
+              <a className="btn btn-solid nav-cta" href="#book">
+                Let&apos;s talk
+              </a>
+            ) : (
+              <a className="btn btn-solid nav-cta" href="#contact" data-contact-trigger>
+                Let&apos;s talk
+              </a>
+            )}
             <button
               type="button"
               className={`menu-btn ${isOpen ? "open" : ""}`}

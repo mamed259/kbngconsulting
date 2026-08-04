@@ -120,6 +120,8 @@
 
 .va-page .hero-art {
   position: relative;
+  width: 100%;
+  min-height: 280px;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 18px;
@@ -129,8 +131,11 @@
 }
 
 .va-page .hero-art img {
-  width: 100%;
-  height: 100%;
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
   object-fit: cover;
   display: block;
 }

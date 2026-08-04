@@ -479,6 +479,11 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     topics: Schema.Attribute.JSON;
+    category: Schema.Attribute.Enumeration<
+      ['founder-resources', 'industrial-innovation']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'industrial-innovation'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

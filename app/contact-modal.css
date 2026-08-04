@@ -1,0 +1,178 @@
+/* Global contact modal (Let's talk) */
+body.no-scroll {
+  overflow: hidden;
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(8, 43, 49, 0.72);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.contact-modal.is-visible {
+  opacity: 1;
+}
+
+.contact-modal-panel {
+  position: relative;
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100svh - 32px);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 242, 117, 0.16), transparent 40%),
+    linear-gradient(180deg, #0c3a41 0%, #082b31 100%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  padding: clamp(24px, 4vw, 36px);
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.contact-modal-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.contact-modal-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.contact-modal-eyebrow {
+  margin: 0 0 10px;
+  color: #fff275;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.contact-modal-title {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.contact-modal-copy {
+  max-width: 46ch;
+  margin: 12px 0 20px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.contact-modal-form {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-modal-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.contact-modal-form input,
+.contact-modal-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font: inherit;
+  padding: 12px 14px;
+  outline: none;
+  resize: vertical;
+}
+
+.contact-modal-form input::placeholder,
+.contact-modal-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.contact-modal-form input:focus,
+.contact-modal-form textarea:focus {
+  border-color: #68ffcf;
+  box-shadow: 0 0 0 3px rgba(104, 255, 207, 0.18);
+}
+
+.contact-modal-check {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  line-height: 1.45;
+}
+
+.contact-modal-check input {
+  width: auto !important;
+  margin-top: 3px;
+  accent-color: #fff275;
+}
+
+.contact-modal-error {
+  margin: 0;
+  color: #ff5a75;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.contact-modal-form .btn-solid {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.contact-modal-success {
+  padding: 18px 8px 8px;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.contact-modal-success h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #fff;
+}
+
+.contact-modal-success p {
+  margin: 0;
+  max-width: 38ch;
+  color: rgba(255, 255, 255, 0.72);
+}

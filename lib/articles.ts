@@ -20,6 +20,7 @@ export function mergeArticles(remote: ArticleData[], fallback: ArticleData[]): A
       coverImageAlt: live.coverImageAlt || fb.coverImageAlt,
       body: liveBody > fbBody ? live.body : fb.body,
       excerpt: live.excerpt || fb.excerpt,
+      category: live.category || fb.category,
       seo: live.seo || fb.seo,
     };
   });

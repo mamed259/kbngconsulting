@@ -52,11 +52,10 @@ export function VaHeroSection({
               <Image
                 src={src}
                 alt={imageAlt || ""}
-                width={960}
-                height={720}
+                fill
                 priority
                 sizes="(min-width: 920px) 45vw, 100vw"
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           ) : null}

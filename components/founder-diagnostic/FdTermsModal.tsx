@@ -58,9 +58,6 @@ export function FdTermsModal({ open, onClose }: Props) {
           src="/legal/terms-and-conditions.html"
         />
         <div className="fd-terms-foot">
-          <a href="/legal/terms-and-conditions.docx" download>
-            Download DOCX
-          </a>
           <button type="button" className="btn btn-green" onClick={onClose}>
             Close
           </button>

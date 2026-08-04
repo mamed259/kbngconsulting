@@ -31,6 +31,12 @@
     "topics": {
       "type": "json"
     },
+    "category": {
+      "type": "enumeration",
+      "enum": ["founder-resources", "industrial-innovation"],
+      "required": true,
+      "default": "industrial-innovation"
+    },
     "coverImage": {
       "type": "media",
       "multiple": false,

@@ -12,8 +12,9 @@ export const aboutUsPageData = {
       __component: "sections.au-hero",
       heading: "About",
       headingHighlight: "Us",
+      lead: "Industrial consulting and an Innovation Studio — built for teams that sell, operate, and lead in asset-heavy industries.",
       primaryCtaText: "Book a Call",
-      primaryCtaHref: "https://kbngconsulting.com/contacts",
+      primaryCtaHref: "#book",
     },
     {
       __component: "sections.au-mission",
@@ -94,9 +95,9 @@ export const aboutUsPageData = {
       body:
         "If you’re ready to modernize your sales engine, digitize your operations, or co-found the next tool for your industry — KB&G® is your partner.",
       primaryCtaText: "Book a Call",
-      primaryCtaHref: "https://kbngconsulting.com/contacts",
-      secondaryCtaText: "See Our Work",
-      secondaryCtaHref: "https://kbngconsulting.com/consulting-services",
+      primaryCtaHref: "#book",
+      secondaryCtaText: "Consulting Services",
+      secondaryCtaHref: "/consulting-services",
       contactLabel: "Contact us",
       contactEmail: "julia@kbngconsulting.com",
     },

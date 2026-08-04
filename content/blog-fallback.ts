@@ -12,6 +12,7 @@ interface BlogArticleSeed {
   excerpt: string;
   publishedOn: string;
   topics?: string[];
+  category?: "founder-resources" | "industrial-innovation";
   body: string;
   coverImageUrl?: string | null;
   coverImageAlt?: string | null;
@@ -31,6 +32,7 @@ export const fallbackArticles: ArticleData[] = seeds.map((seed) => ({
   excerpt: seed.excerpt,
   publishedOn: seed.publishedOn,
   topics: seed.topics,
+  category: seed.category,
   body: seed.body,
   coverImageUrl: seed.coverImageUrl || undefined,
   coverImageAlt: seed.coverImageAlt || seed.title,

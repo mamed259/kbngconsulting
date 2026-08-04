@@ -19,6 +19,7 @@ function escapeHtml(value: string) {
 function formatSource(source: string) {
   if (source === "founder-diagnostic") return "Founder Diagnostic";
   if (source === "website-contact") return "Contact section";
+  if (source === "contact-modal") return "Let's talk modal";
   return source.replace(/-/g, " ");
 }
 
@@ -52,24 +53,37 @@ export function buildContactNotificationText(data: ContactNotificationData) {
     "",
     `Name: ${data.name}`,
     `Email: ${data.email}`,
-    `Company: ${data.company || "—"}`,
+  ];
+
+  if (data.company) {
+    lines.push(`Company: ${data.company}`);
+  }
+
+  lines.push(
     `Source: ${formatSource(data.source)}`,
     `Submitted: ${formatSubmittedAt()} UTC`,
-  ];
+  );
 
   if (data.submittedFrom) {
     lines.push(`Page: ${data.submittedFrom}`);
   }
 
-  lines.push("", "Message:", data.message || "—", "", `Reply directly to ${data.email}`);
+  lines.push("", "Answers:", data.message || "—", "", `Reply directly to ${data.email}`);
 
   return lines.join("\n");
+}
+
+function detailBlock(label: string, value: string) {
+  return `<div style="padding:14px 16px;background:#F3F8F7;border-radius:12px;margin-bottom:12px;">
+  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A7A7E;font-weight:700;margin-bottom:4px;">${label}</div>
+  <div style="font-size:16px;font-weight:700;line-height:1.45;">${value}</div>
+</div>`;
 }
 
 export function buildContactNotificationHtml(data: ContactNotificationData) {
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
-  const safeCompany = escapeHtml(data.company || "Not provided");
+  const safeCompany = data.company ? escapeHtml(data.company) : "";
   const safeMessage = escapeHtml(data.message || "No message provided.").replace(/\n/g, "<br />");
   const safeSource = escapeHtml(formatSource(data.source));
   const safeSubmittedFrom = data.submittedFrom ? escapeHtml(data.submittedFrom) : "";
@@ -102,21 +116,12 @@ export function buildContactNotificationHtml(data: ContactNotificationData) {
             </tr>
             <tr>
               <td style="padding:28px 32px;">
-                <div style="padding:14px 16px;background:#F3F8F7;border-radius:12px;margin-bottom:12px;">
-                  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A7A7E;font-weight:700;margin-bottom:4px;">Name</div>
-                  <div style="font-size:16px;font-weight:700;">${safeName}</div>
-                </div>
-                <div style="padding:14px 16px;background:#F3F8F7;border-radius:12px;margin-bottom:12px;">
-                  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A7A7E;font-weight:700;margin-bottom:4px;">Email</div>
-                  <div style="font-size:16px;font-weight:700;"><a href="mailto:${safeEmail}" style="color:#0C5A4A;text-decoration:none;">${safeEmail}</a></div>
-                </div>
-                <div style="padding:14px 16px;background:#F3F8F7;border-radius:12px;margin-bottom:12px;">
-                  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A7A7E;font-weight:700;margin-bottom:4px;">Company</div>
-                  <div style="font-size:16px;font-weight:700;">${safeCompany}</div>
-                </div>
+                ${detailBlock("Name", safeName)}
+                ${detailBlock("Email", `<a href="mailto:${safeEmail}" style="color:#0C5A4A;text-decoration:none;">${safeEmail}</a>`)}
+                ${safeCompany ? detailBlock("Company", safeCompany) : ""}
                 <div style="padding:16px 18px;background:#FFF5F7;border:1px solid rgba(255,90,117,0.18);border-radius:12px;">
-                  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#FF5A75;font-weight:700;margin-bottom:8px;">Details</div>
-                  <div style="font-size:15px;line-height:1.7;">${safeMessage}</div>
+                  <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#FF5A75;font-weight:700;margin-bottom:8px;">${founder ? "Diagnostic answers" : "Details"}</div>
+                  <div style="font-size:15px;line-height:1.7;font-weight:500;">${safeMessage}</div>
                 </div>
                 <div style="text-align:center;margin-top:24px;">
                   <a href="mailto:${safeEmail}?subject=${encodeURIComponent(`Re: Founder Diagnostic — ${data.name}`)}"
