@@ -99,7 +99,6 @@ export function FdBookForm({ ctaText }: Props) {
     <>
       <form className="fd-book-form" onSubmit={handleSubmit}>
         <div className="fd-book-form-head">
-          <p className="fd-book-eyebrow">Before payment</p>
           <h3>A few details so the diagnostic lands where it should.</h3>
         </div>
 
@@ -182,7 +181,6 @@ export function FdBookForm({ ctaText }: Props) {
               </svg>
             ) : null}
           </button>
-          <p className="fd-book-note">You&apos;ll continue to Wise to complete payment.</p>
         </div>
       </form>
 
