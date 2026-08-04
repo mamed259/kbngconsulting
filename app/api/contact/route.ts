@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  isContactEmailConfigured,
+  sendContactNotificationEmail,
+} from "@/lib/email/send-contact-notification";
 
 function normalizeStrapiUrl(rawUrl?: string) {
   const fallback = "http://localhost:1337";
-
   if (!rawUrl) return fallback;
-
   return rawUrl.trim().replace(/\/+$/, "").replace(/\/admin$/, "").replace(/\/api$/, "");
 }
 
@@ -21,7 +23,17 @@ interface FormFieldMeta {
 interface ContactPayload {
   fields?: FormFieldMeta[];
   values?: Record<string, string>;
+  source?: string;
   [key: string]: unknown;
+}
+
+interface StrapiSubmissionPayload {
+  name: string;
+  email: string;
+  company: string;
+  message: string;
+  source: string;
+  payload: Record<string, unknown>;
 }
 
 function normalizeKey(value: string) {
@@ -32,22 +44,26 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function toStringRecord(value: unknown) {
-  if (!isRecord(value)) return {} as Record<string, string>;
-  return Object.fromEntries(Object.entries(value).filter(([, v]) => typeof v === "string")) as Record<
-    string,
-    string
-  >;
+function getStringValue(record: Record<string, string>, key: string) {
+  const value = record[key];
+  return typeof value === "string" ? value.trim() : "";
 }
 
-function matchesAny(normalized: string, patterns: string[]) {
-  return patterns.some((pattern) => normalized === pattern || normalized.includes(pattern));
+function toStringRecord(value: unknown) {
+  if (!isRecord(value)) return {} as Record<string, string>;
+  return Object.fromEntries(
+    Object.entries(value).filter(([, entryValue]) => typeof entryValue === "string"),
+  ) as Record<string, string>;
 }
 
 function isNameKey(normalized: string) {
   if (!normalized) return false;
-  // "company" contains the substring "name" — never treat it as a name field
-  if (normalized.includes("company") || normalized.includes("organization") || normalized.includes("firm")) {
+  if (
+    normalized.includes("company") ||
+    normalized.includes("organization") ||
+    normalized.includes("firm") ||
+    normalized.includes("username")
+  ) {
     return false;
   }
   return (
@@ -55,8 +71,7 @@ function isNameKey(normalized: string) {
     normalized === "fullname" ||
     normalized === "yourname" ||
     normalized.includes("fullname") ||
-    normalized.includes("yourname") ||
-    (normalized.includes("name") && !normalized.includes("username"))
+    (normalized.includes("name") && !normalized.includes("team"))
   );
 }
 
@@ -65,41 +80,110 @@ function inferFieldValue(
   fields: FormFieldMeta[],
   options: {
     types?: string[];
-    patterns?: string[];
+    labelIncludes?: string[];
+    keyIncludes?: string[];
     isMatch?: (normalized: string) => boolean;
   },
 ) {
-  const lowerTypes = new Set((options.types || []).map((item) => item.toLowerCase()));
-  const patterns = (options.patterns || []).map(normalizeKey);
+  const lowerTypes = new Set((options.types || []).map((type) => type.toLowerCase()));
+  const labelPatterns = (options.labelIncludes || []).map(normalizeKey);
+  const keyPatterns = (options.keyIncludes || []).map(normalizeKey);
 
   for (const field of fields) {
     const normalizedLabel = normalizeKey(field.label || "");
     const fieldKey = (field.label || "").toLowerCase().replace(/\s+/g, "_");
-    const normalizedFieldKey = normalizeKey(fieldKey);
-    const value = typeof values[fieldKey] === "string" ? values[fieldKey].trim() : "";
+    const normalizedKey = normalizeKey(fieldKey);
+    const value = getStringValue(values, fieldKey);
 
     if (!value) continue;
+
     if (field.type && lowerTypes.has(field.type.toLowerCase())) return value;
     if (options.isMatch) {
-      if (options.isMatch(normalizedLabel) || options.isMatch(normalizedFieldKey)) return value;
+      if (options.isMatch(normalizedLabel) || options.isMatch(normalizedKey)) return value;
       continue;
     }
-    if (matchesAny(normalizedLabel, patterns) || matchesAny(normalizedFieldKey, patterns)) return value;
+    if (labelPatterns.some((pattern) => normalizedLabel.includes(pattern))) return value;
+    if (keyPatterns.some((pattern) => normalizedKey.includes(pattern))) return value;
   }
 
   for (const [key, rawValue] of Object.entries(values)) {
     const value = typeof rawValue === "string" ? rawValue.trim() : "";
     if (!value) continue;
 
-    const normalizedFieldKey = normalizeKey(key);
+    const normalizedKey = normalizeKey(key);
     if (options.isMatch) {
-      if (options.isMatch(normalizedFieldKey)) return value;
+      if (options.isMatch(normalizedKey)) return value;
       continue;
     }
-    if (matchesAny(normalizedFieldKey, patterns)) return value;
+    if (keyPatterns.some((pattern) => normalizedKey.includes(pattern))) return value;
   }
 
   return "";
+}
+
+function buildMessageFromValues(values: Record<string, string>, fallback: string) {
+  if (fallback) return fallback;
+
+  const problem = getStringValue(values, "problem");
+  const teamSize = getStringValue(values, "team_size");
+  const canSignup = getStringValue(values, "can_signup");
+
+  if (!problem && !teamSize && !canSignup) return "";
+
+  return [
+    problem ? `Problem / for whom / country:\n${problem}` : "",
+    teamSize ? `Team size: ${teamSize}` : "",
+    canSignup ? `Can someone sign up and use the product today?: ${canSignup}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+async function submitToStrapi(payload: StrapiSubmissionPayload) {
+  const data = {
+    name: payload.name,
+    email: payload.email,
+    company: payload.company,
+    message: payload.message,
+    source: payload.source,
+    payload: payload.payload,
+  };
+
+  const jsonHeaders = { "Content-Type": "application/json" };
+  const attempts: Array<{ url: string; init: RequestInit }> = [];
+
+  if (STRAPI_TOKEN) {
+    attempts.push({
+      url: `${STRAPI_URL}/api/form-submissions`,
+      init: {
+        method: "POST",
+        headers: { ...jsonHeaders, Authorization: `Bearer ${STRAPI_TOKEN}` },
+        body: JSON.stringify({ data }),
+      },
+    });
+  }
+
+  attempts.push({
+    url: `${STRAPI_URL}/api/form-submissions`,
+    init: {
+      method: "POST",
+      headers: jsonHeaders,
+      body: JSON.stringify({ data }),
+    },
+  });
+
+  let lastResponse: Response | null = null;
+
+  for (const attempt of attempts) {
+    const response = await fetch(attempt.url, attempt.init);
+    lastResponse = response;
+    if (response.ok) return response;
+    if (response.status !== 404 && response.status !== 405 && response.status !== 403) {
+      return response;
+    }
+  }
+
+  return lastResponse ?? new Response(null, { status: 502 });
 }
 
 export async function POST(request: NextRequest) {
@@ -107,19 +191,27 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as ContactPayload;
     const values = body.values ? toStringRecord(body.values) : toStringRecord(body);
     const fields = Array.isArray(body.fields) ? body.fields : [];
+    const source =
+      request.headers.get("x-form-source")?.trim() ||
+      (typeof body.source === "string" && body.source.trim() ? body.source.trim() : "website-contact");
+    const submittedFrom = request.headers.get("origin") || request.headers.get("referer") || "";
 
     const name = inferFieldValue(values, fields, { isMatch: isNameKey });
     const email = inferFieldValue(values, fields, {
       types: ["email"],
-      patterns: ["email", "businessemail", "workemail"],
+      labelIncludes: ["email", "businessemail", "workemail"],
+      keyIncludes: ["email", "businessemail", "workemail"],
     });
     const company = inferFieldValue(values, fields, {
-      patterns: ["company", "organization", "firm"],
+      labelIncludes: ["company", "organization", "business", "firm"],
+      keyIncludes: ["company", "organization", "business", "firm"],
     });
-    const message = inferFieldValue(values, fields, {
+    const rawMessage = inferFieldValue(values, fields, {
       types: ["textarea"],
-      patterns: ["message", "details", "help", "comment", "notes", "inquiry"],
+      labelIncludes: ["message", "details", "help", "comment", "notes", "inquiry", "problem"],
+      keyIncludes: ["message", "details", "help", "comment", "notes", "inquiry", "problem"],
     });
+    const message = buildMessageFromValues(values, rawMessage);
 
     if (!name || !email) {
       return NextResponse.json({ message: "Name and email are required" }, { status: 400 });
@@ -129,41 +221,78 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Invalid email address" }, { status: 400 });
     }
 
-    if (!STRAPI_TOKEN) {
+    const emailConfigured = isContactEmailConfigured();
+    const strapiConfigured = Boolean(STRAPI_TOKEN);
+
+    if (!emailConfigured && !strapiConfigured) {
+      console.error("Missing RESEND_API_KEY / GMAIL_* and STRAPI_API_TOKEN in environment");
       return NextResponse.json({ message: "Server configuration error" }, { status: 500 });
     }
 
-    const response = await fetch(`${STRAPI_URL}/api/form-submissions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${STRAPI_TOKEN}`,
-      },
-      body: JSON.stringify({
-        data: {
-          name,
-          email,
-          company,
-          message,
-          source: "website-contact",
-          payload: {
-            values,
-            fields,
-            submittedFrom: request.headers.get("origin") || request.headers.get("referer") || "",
-          },
-        },
-      }),
-    });
+    const notificationData = {
+      name,
+      email,
+      company,
+      message,
+      source,
+      submittedFrom,
+    };
 
-    if (!response.ok) {
-      const bodyText = await response.text();
-      console.error("Strapi form submission failed:", response.status, bodyText);
-      return NextResponse.json({ message: "Failed to submit form" }, { status: 502 });
+    const strapiPayload = {
+      name,
+      email,
+      company,
+      message,
+      source,
+      payload: {
+        values,
+        fields,
+        submittedFrom,
+      },
+    };
+
+    const [strapiResponse, emailSent] = await Promise.all([
+      strapiConfigured ? submitToStrapi(strapiPayload) : Promise.resolve(new Response(null, { status: 503 })),
+      sendContactNotificationEmail(notificationData),
+    ]);
+
+    const strapiOk = strapiResponse.ok;
+    const deliveryOk = strapiOk || emailSent;
+
+    if (!deliveryOk) {
+      if (!strapiOk) {
+        const errorText = await strapiResponse.text();
+        console.error("Strapi submission failed:", {
+          status: strapiResponse.status,
+          body: errorText,
+          emailSent,
+        });
+      }
+
+      if (strapiResponse.status === 403) {
+        return NextResponse.json(
+          { message: "Form submission is blocked by Strapi permissions" },
+          { status: 502 },
+        );
+      }
+
+      return NextResponse.json(
+        { message: "Failed to submit form. Please try again." },
+        { status: 502 },
+      );
+    }
+
+    if (!strapiOk) {
+      console.warn("Strapi submission failed, but contact notification email was sent.");
+    }
+
+    if (!emailSent && emailConfigured) {
+      console.warn("Contact notification email failed, but Strapi submission succeeded.");
     }
 
     return NextResponse.json({ message: "Form submitted successfully" });
   } catch (error) {
-    console.error("Contact API error:", error);
+    console.error("Contact form error:", error);
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
