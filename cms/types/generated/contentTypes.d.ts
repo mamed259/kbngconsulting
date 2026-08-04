@@ -480,10 +480,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     topics: Schema.Attribute.JSON;
     category: Schema.Attribute.Enumeration<
-      ['founder-resources', 'industrial-innovation']
+      ['Founder Resources', 'Industrial Innovation']
     > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'industrial-innovation'>;
+      Schema.Attribute.DefaultTo<'Industrial Innovation'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

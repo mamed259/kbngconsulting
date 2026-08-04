@@ -348,13 +348,17 @@ section {
 }
 
 @media (min-width: 1100px) {
-  .hero {
+  /* Homepage heart-hero only — keep product pages (.cw-page etc.) full-width */
+  body:not(:has(.cw-page, .va-page, .ge-page, .cs-page, .is-page, .au-page, .fd-page, .blog-page, .article-page))
+    .hero {
     display: flex;
     align-items: center;
     min-height: 560px;
   }
 
-  .hero > .wrap {
+  body:not(:has(.cw-page, .va-page, .ge-page, .cs-page, .is-page, .au-page, .fd-page, .blog-page, .article-page))
+    .hero
+    > .wrap {
     padding-right: min(34vw, 400px);
   }
 }

@@ -56,7 +56,12 @@
 .ge-page .lets-talk{display:inline-flex;align-items:center;font-weight:700;font-size:1rem;color:var(--teal);background:var(--yellow);padding:11px 22px;border-radius:999px;transition:transform .2s}
 .ge-page .lets-talk:hover{transform:translateY(-2px)}
 /* Hero */
-.ge-page .hero{padding-top:120px;padding-bottom:30px}
+.ge-page .hero{display:block;min-height:0;padding-top:120px;padding-bottom:30px;background:none}
+.ge-page .hero > .wrap{padding-right:0}
+@media (min-width:1100px){
+  .ge-page .hero{display:block;min-height:0;align-items:stretch}
+  .ge-page .hero > .wrap{padding-right:0}
+}
 .ge-page .hero-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
 .ge-page .hero h1{font-size:clamp(2.7rem,7vw,4.6rem);color:var(--ink)}
 .ge-page .hero .sub{color:var(--muted);font-size:clamp(1rem,2vw,1.22rem);margin:14px 0 0}

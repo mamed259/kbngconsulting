@@ -1,7 +1,14 @@
-function BrandMark() {
+import Link from "next/link";
+
+function BrandLogo() {
   return (
-    <svg className="brand-mark" viewBox="0 0 29 26" aria-hidden="true">
-      <path d="M4 7 L25 2 L25 17 L14.5 12.5 L4 22 Z" fill="#68FFCF" />
+    <svg
+      className="brand-logo-svg"
+      viewBox="0 0 482 34"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden
+    >
+      <use href="#svg347873607_7690" />
     </svg>
   );
 }
@@ -11,10 +18,9 @@ export function FdFooter() {
     <footer className="fd-footer">
       <div className="wrap foot">
         <div className="foot-main">
-          <a className="brand" href="#top">
-            <BrandMark />
-            STARTUP&nbsp;WITCH <span className="by">by KB&amp;G</span>
-          </a>
+          <Link className="brand" href="/" aria-label="KB&G home">
+            <BrandLogo />
+          </Link>
           <div className="slogan">Stop building blind.</div>
           <nav className="foot-links" aria-label="Footer">
             <a href="#blindspot">The Blind Spot</a>

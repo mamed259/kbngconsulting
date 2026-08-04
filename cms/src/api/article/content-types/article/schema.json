@@ -33,9 +33,9 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": ["founder-resources", "industrial-innovation"],
-      "required": true,
-      "default": "industrial-innovation"
+      "enum": ["Founder Resources", "Industrial Innovation"],
+      "required": false,
+      "default": "Industrial Innovation"
     },
     "coverImage": {
       "type": "media",

@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ArticleCategory, ArticleData } from "@/types/strapi";
+import type { ArticleData } from "@/types/strapi";
 import { BlogListItem, FeaturedArticle } from "@/components/blog/BlogCards";
 
-type FilterKey = "all" | ArticleCategory;
+type FilterKey = "all" | "founder-resources" | "industrial-innovation";
 
 const FILTERS: Array<{ key: FilterKey; label: string }> = [
   { key: "all", label: "All" },
@@ -12,8 +12,11 @@ const FILTERS: Array<{ key: FilterKey; label: string }> = [
   { key: "industrial-innovation", label: "Industrial Innovation" },
 ];
 
-function normalizeCategory(value: ArticleData["category"]): ArticleCategory | null {
-  if (value === "founder-resources" || value === "industrial-innovation") return value;
+function normalizeCategory(value: ArticleData["category"]): FilterKey | null {
+  if (!value) return null;
+  const raw = String(value).trim().toLowerCase();
+  if (raw === "founder-resources" || raw === "founder resources") return "founder-resources";
+  if (raw === "industrial-innovation" || raw === "industrial innovation") return "industrial-innovation";
   return null;
 }
 

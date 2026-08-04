@@ -6,7 +6,7 @@ export interface BlogArticleSeed {
   excerpt: string;
   publishedOn: string;
   topics?: string[];
-  category?: "founder-resources" | "industrial-innovation";
+  category?: "Founder Resources" | "Industrial Innovation" | "founder-resources" | "industrial-innovation";
   body: string;
   coverImageUrl?: string | null;
   coverImageAlt?: string | null;

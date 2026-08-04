@@ -20,12 +20,13 @@ export function ContactForm({ fields, source = "website-contact" }: ContactFormP
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setLoading(true);
     setMessage("");
     setError("");
 
     try {
-      const formData = new FormData(event.currentTarget);
+      const formData = new FormData(form);
       const values = Object.fromEntries(formData.entries()) as Record<string, string>;
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -41,8 +42,8 @@ export function ContactForm({ fields, source = "website-contact" }: ContactFormP
         throw new Error(payload.message || "Failed to submit form");
       }
 
+      form.reset();
       setMessage("Thanks. We will contact you soon.");
-      event.currentTarget.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submission failed");
     } finally {

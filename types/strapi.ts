@@ -48,7 +48,7 @@ export interface PageData {
   sections: StrapiSection[];
 }
 
-export type ArticleCategory = "founder-resources" | "industrial-innovation";
+export type ArticleCategory = "Founder Resources" | "Industrial Innovation" | "founder-resources" | "industrial-innovation";
 
 export interface ArticleData {
   id: number;

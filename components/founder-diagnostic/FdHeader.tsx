@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NAV = [
@@ -11,10 +12,15 @@ const NAV = [
   { href: "#faq", label: "FAQ" },
 ] as const;
 
-function BrandMark() {
+function BrandLogo() {
   return (
-    <svg className="brand-mark" viewBox="0 0 29 26" aria-hidden="true">
-      <path d="M4 7 L25 2 L25 17 L14.5 12.5 L4 22 Z" fill="#68FFCF" />
+    <svg
+      className="brand-logo-svg"
+      viewBox="0 0 482 34"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden
+    >
+      <use href="#svg347873607_7690" />
     </svg>
   );
 }
@@ -42,10 +48,9 @@ export function FdHeader() {
   return (
     <header className="fd-header">
       <div className="wrap nav">
-        <a className="brand" href="#top" onClick={close}>
-          <BrandMark />
-          STARTUP&nbsp;WITCH <span className="by">by KB&amp;G</span>
-        </a>
+        <Link className="brand" href="/" aria-label="KB&G home" onClick={close}>
+          <BrandLogo />
+        </Link>
 
         <nav className="nav-links" aria-label="Primary">
           {NAV.map((item) => (

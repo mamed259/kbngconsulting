@@ -15,13 +15,11 @@ export function FdBook({
       <div className="wrap">
         <div className="offer-card reveal">
           <h2>{heading}</h2>
-          <div className="offer-bottom">
-            <div>
-              {metaLine ? <p className="terms">{metaLine}</p> : null}
-              {guarantee ? <p className="guar">{guarantee}</p> : null}
-            </div>
-            {ctaText ? <FdBookForm ctaText={ctaText} /> : null}
+          <div className="offer-meta">
+            {metaLine ? <p className="terms">{metaLine}</p> : null}
+            {guarantee ? <p className="guar">{guarantee}</p> : null}
           </div>
+          {ctaText ? <FdBookForm ctaText={ctaText} /> : null}
         </div>
       </div>
     </section>

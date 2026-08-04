@@ -52,13 +52,32 @@
 
 /* Hero */
 .cw-page .hero {
+  display: block;
+  min-height: 0;
   padding-top: calc(64px + 54px);
   padding-bottom: 30px;
+  background: none;
+}
+
+.cw-page .hero > .wrap {
+  padding-right: 0;
 }
 
 @media (min-width: 820px) {
   .cw-page .hero {
     padding-top: calc(68px + 54px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .cw-page .hero {
+    display: block;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .cw-page .hero > .wrap {
+    padding-right: 0;
   }
 }
 

@@ -84,36 +84,48 @@ export function FdBookForm({ ctaText }: Props) {
 
   if (!open) {
     return (
-      <button type="button" className="btn btn-green" onClick={() => setOpen(true)}>
-        {ctaText}
-        <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      </button>
+      <div className="offer-cta">
+        <button type="button" className="btn btn-green offer-cta-btn" onClick={() => setOpen(true)}>
+          {ctaText}
+          <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+      </div>
     );
   }
 
   return (
     <>
       <form className="fd-book-form" onSubmit={handleSubmit}>
-        <label className="fd-field">
-          <span>Full name</span>
-          <input name="name" type="text" required autoComplete="name" placeholder="Your name" />
-        </label>
+        <div className="fd-book-form-head">
+          <p className="fd-book-eyebrow">Before payment</p>
+          <h3>A few details so the diagnostic lands where it should.</h3>
+        </div>
 
-        <label className="fd-field">
-          <span>Email</span>
-          <input
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="you@company.com"
-          />
-        </label>
+        <div className="fd-book-grid">
+          <label className="fd-field">
+            <span>Full name</span>
+            <input name="name" type="text" required autoComplete="name" placeholder="Your name" />
+          </label>
 
-        <label className="fd-field">
-          <span>In a few words, what problem do you solve, for whom, and in which country?</span>
+          <label className="fd-field">
+            <span>Email</span>
+            <input
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="you@company.com"
+            />
+          </label>
+        </div>
+
+        <label className="fd-field fd-field-wide">
+          <span className="fd-q">
+            <em>01</em>
+            In a few words, what problem do you solve, for whom, and in which country?
+          </span>
           <textarea
             name="problem"
             required
@@ -122,22 +134,32 @@ export function FdBookForm({ ctaText }: Props) {
           />
         </label>
 
-        <label className="fd-field">
-          <span>How many people are in the team?</span>
-          <input name="team_size" type="text" required placeholder="e.g. 4" />
-        </label>
+        <div className="fd-book-grid">
+          <label className="fd-field">
+            <span className="fd-q">
+              <em>02</em>
+              How many people are in the team?
+            </span>
+            <input name="team_size" type="text" required placeholder="e.g. 4" />
+          </label>
 
-        <fieldset className="fd-field fd-radio-field">
-          <legend>Can someone sign up and use your product today?</legend>
-          <label className="fd-radio">
-            <input type="radio" name="can_signup" value="Yes" required />
-            <span>Yes</span>
-          </label>
-          <label className="fd-radio">
-            <input type="radio" name="can_signup" value="No" required />
-            <span>No</span>
-          </label>
-        </fieldset>
+          <fieldset className="fd-field fd-radio-field">
+            <legend className="fd-q">
+              <em>03</em>
+              Can someone sign up and use your product today?
+            </legend>
+            <div className="fd-radio-row">
+              <label className="fd-choice">
+                <input type="radio" name="can_signup" value="Yes" required />
+                <span>Yes</span>
+              </label>
+              <label className="fd-choice">
+                <input type="radio" name="can_signup" value="No" required />
+                <span>No</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
 
         <label className="fd-terms-check">
           <input type="checkbox" name="terms" required />
@@ -151,14 +173,17 @@ export function FdBookForm({ ctaText }: Props) {
 
         {error ? <p className="fd-form-error">{error}</p> : null}
 
-        <button type="submit" className="btn btn-green" disabled={loading}>
-          {loading ? "Sending..." : "Send & pay"}
-          {!loading ? (
-            <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          ) : null}
-        </button>
+        <div className="fd-book-actions">
+          <button type="submit" className="btn btn-green" disabled={loading}>
+            {loading ? "Sending..." : "Send & pay €750"}
+            {!loading ? (
+              <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            ) : null}
+          </button>
+          <p className="fd-book-note">You&apos;ll continue to Wise to complete payment.</p>
+        </div>
       </form>
 
       <FdTermsModal open={termsOpen} onClose={() => setTermsOpen(false)} />
