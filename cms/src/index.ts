@@ -7,6 +7,7 @@ import {
 import { seedProductPages } from "./bootstrap/seed-pages";
 import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
+import { publishDueScheduledArticles } from "../config/cron-tasks";
 
 /** Prevent "components in seo are not related to the entity" on save/update. */
 function registerSeoSanitizeMiddleware(strapi: Core.Strapi) {
@@ -41,5 +42,6 @@ export default {
     await seedBlogArticles(strapi);
     await repairArticleSeoLinks(strapi);
     await configureArticleListSort(strapi);
+    await publishDueScheduledArticles(strapi);
   },
 };

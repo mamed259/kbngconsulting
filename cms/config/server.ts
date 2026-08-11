@@ -8,7 +8,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Server =>
     keys: env.array('APP_KEYS'),
   },
   cron: {
-    enabled: env.bool('CRON_ENABLED', true),
+    enabled: true,
     tasks: cronTasks,
   },
 });
