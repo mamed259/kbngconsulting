@@ -274,9 +274,9 @@
 
 /* ---------- Detail ---------- */
 .article-shell {
-  padding: 132px 24px 96px;
-  max-width: var(--article-max);
   margin: 0 auto;
+  padding: 132px 24px 96px;
+  max-width: var(--maxw);
 }
 
 .article-back {

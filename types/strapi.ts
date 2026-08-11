@@ -57,6 +57,7 @@ export interface ArticleData {
   title: string;
   excerpt?: string;
   publishedOn: string;
+  scheduledAt?: string;
   topics?: string[] | unknown;
   category?: ArticleCategory | string | null;
   coverImage?: StrapiMediaField;

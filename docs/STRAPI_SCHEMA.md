@@ -152,3 +152,44 @@ Collection `form-submission` used by `POST /api/contact`:
 - `message`: text
 - `source`: string
 - `payload`: JSON
+
+## Article Scheduled Publishing Workflow
+
+Article schema (`cms/src/api/article/content-types/article/schema.json`) supports:
+
+- `scheduledAt`: datetime (optional) — when draft should be auto-published
+- `publishedOn`: date (required) — date shown on the website
+- `publishedAt`: Strapi system field — actual publish timestamp
+
+### Editor workflow in Strapi Admin
+
+1. Create or edit article content.
+2. Set `scheduledAt` to desired local date/time in the Strapi datetime picker.
+3. Set `publishedOn` (date displayed in blog cards/article page).
+4. Click **Save** and keep article as draft.
+5. Do not click **Publish** manually if you want timed publishing.
+
+### Cron behavior
+
+- Cron task file: `cms/config/cron-tasks.ts`
+- Config enablement: `cms/config/server.ts` with `CRON_ENABLED=true`
+- Rule: every 5 minutes (`*/5 * * * *`)
+- Task publishes draft articles where `scheduledAt <= now`
+
+### Optional instant frontend refresh
+
+To avoid waiting for ISR window (`STRAPI_REVALIDATE_SECONDS`), use:
+
+- Next.js endpoint: `POST /api/revalidate`
+- Secret env: `NEXT_REVALIDATE_SECRET`
+- Example:
+  - `POST https://kbngconsulting.com/api/revalidate?secret=...&paths=/blog,/blog/article-slug`
+
+### Manual test checklist
+
+1. Deploy Strapi with schema + cron changes.
+2. Create draft article with `scheduledAt` 10-15 minutes in the future.
+3. Save draft (no manual publish).
+4. Wait until schedule time + up to 5 minutes.
+5. Confirm article status is `Published` in Strapi.
+6. Trigger revalidation endpoint (or wait ISR) and confirm visibility on `/blog`.

@@ -161,7 +161,7 @@
 
 /* -------- Hero -------- */
 .au-page .au-hero {
-  padding-top: 54px;
+  padding-top: clamp(84px, 12vw, 128px);
   padding-bottom: 30px;
   background:
     radial-gradient(900px 420px at 88% 0%, rgba(255, 242, 117, 0.12), transparent 55%),
@@ -182,7 +182,7 @@
 }
 
 .au-page .au-hero h1 .hl {
-  color: var(--yellow);
+  color: inherit;
 }
 
 .au-page .au-hero .flag-row {
@@ -217,7 +217,7 @@
 }
 
 .au-page .au-mission-inner {
-  max-width: 920px;
+  max-width: 100%;
 }
 
 .au-page .au-mission-statement {

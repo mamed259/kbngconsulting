@@ -28,6 +28,10 @@
       "type": "date",
       "required": true
     },
+    "scheduledAt": {
+      "type": "datetime",
+      "required": false
+    },
     "topics": {
       "type": "json"
     },
