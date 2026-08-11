@@ -552,6 +552,7 @@ export async function getArticles(): Promise<ArticleData[]> {
   try {
     const query = qs.stringify(
       {
+        status: "published",
         sort: ["id:asc"],
         populate: ARTICLE_POPULATE,
         pagination: { pageSize: 100 },
@@ -576,6 +577,7 @@ export async function getArticleBySlug(slug: string): Promise<ArticleData | null
   try {
     const query = qs.stringify(
       {
+        status: "published",
         filters: {
           slug: {
             $eq: slug,
