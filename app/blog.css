@@ -79,9 +79,10 @@
 
 /* ---------- List ---------- */
 .blog-shell {
-  padding: 132px 24px 96px;
+  padding: 132px 32px 96px;
   max-width: var(--maxw);
   margin: 0 auto;
+  border-bottom: 1px solid var(--line);
 }
 
 .blog-heading {
@@ -262,7 +263,7 @@
 }
 
 .blog-item-media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
   width: 100%;
   min-height: 140px;
 }

@@ -21,7 +21,7 @@ const cronTasks: Core.Config.Server["cron"]["tasks"] = {
             $lte: now,
           },
         },
-        fields: ["slug", "scheduledAt", "publishedOn"],
+        fields: ["documentId", "slug", "scheduledAt", "publishedOn"],
       })) as ScheduledArticle[];
 
       if (!drafts.length) return;
