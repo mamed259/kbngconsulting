@@ -70,7 +70,7 @@ const PAGE_FALLBACKS: Record<
     title: "About KB&G Consulting – Industrial Innovation Experts",
     description:
       "KB&G combines industrial consulting, commodity pricing, and AI innovation to serve asset‑heavy industries like gold mining, quarrying, aggregates & building materials.",
-    url: "https://kbngconsulting.com/about-kbng",
+    url: "https://kbngconsulting.com/about-us",
     sections: aboutUsFallbackSections,
   },
   georgia: {
