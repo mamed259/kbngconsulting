@@ -9,6 +9,34 @@ import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
 import { publishDueScheduledArticles } from "../config/cron-tasks";
 
+const SCHEDULE_POLL_MS = 60_000;
+const schedulerGlobalKey = "__kbngScheduledPublisherStarted";
+
+function startScheduledPublisher(strapi: Core.Strapi) {
+  const globalState = globalThis as typeof globalThis & {
+    [schedulerGlobalKey]?: boolean;
+  };
+
+  if (globalState[schedulerGlobalKey]) {
+    strapi.log.info("[scheduler] Scheduled publisher already started");
+    return;
+  }
+
+  globalState[schedulerGlobalKey] = true;
+
+  setInterval(async () => {
+    try {
+      await publishDueScheduledArticles(strapi);
+    } catch (error) {
+      strapi.log.error(`[scheduler] Tick failed: ${String(error)}`);
+    }
+  }, SCHEDULE_POLL_MS);
+
+  strapi.log.info(
+    `[scheduler] Started scheduled publisher fallback (every ${SCHEDULE_POLL_MS / 1000}s)`,
+  );
+}
+
 /** Prevent "components in seo are not related to the entity" on save/update. */
 function registerSeoSanitizeMiddleware(strapi: Core.Strapi) {
   strapi.documents.use(async (ctx, next) => {
@@ -43,5 +71,6 @@ export default {
     await repairArticleSeoLinks(strapi);
     await configureArticleListSort(strapi);
     await publishDueScheduledArticles(strapi);
+    startScheduledPublisher(strapi);
   },
 };
