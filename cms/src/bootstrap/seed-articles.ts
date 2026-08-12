@@ -24,25 +24,27 @@ function sanitizeArticlePayload(data: BlogArticleSeed) {
 }
 
 async function findArticleBySlug(strapi: Core.Strapi, slug: string) {
-  const articles = await strapi.documents(ARTICLE_UID).findMany({
+  const draftArticles = await strapi.documents(ARTICLE_UID).findMany({
     filters: { slug: { $eq: slug } },
     status: "draft",
+    limit: 1,
   });
+  if (draftArticles[0]) return draftArticles[0];
 
-  return articles[0] ?? null;
+  const publishedArticles = await strapi.documents(ARTICLE_UID).findMany({
+    filters: { slug: { $eq: slug } },
+    status: "published",
+    limit: 1,
+  });
+  return publishedArticles[0] ?? null;
 }
 
-async function upsertArticle(strapi: Core.Strapi, data: BlogArticleSeed) {
+async function createArticleIfMissing(strapi: Core.Strapi, data: BlogArticleSeed) {
   const payload = sanitizeArticlePayload(data);
   const existing = await findArticleBySlug(strapi, payload.slug);
 
   if (existing?.documentId) {
-    await strapi.documents(ARTICLE_UID).update({
-      documentId: existing.documentId,
-      data: payload,
-      status: "published",
-    });
-    strapi.log.info(`[seed] Updated article: ${payload.slug}`);
+    strapi.log.info(`[seed] Skipped existing article: ${payload.slug}`);
     return;
   }
 
@@ -55,7 +57,7 @@ async function upsertArticle(strapi: Core.Strapi, data: BlogArticleSeed) {
 
 async function seedArticle(strapi: Core.Strapi, data: BlogArticleSeed) {
   try {
-    await upsertArticle(strapi, data);
+    await createArticleIfMissing(strapi, data);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     const details =
@@ -67,27 +69,8 @@ async function seedArticle(strapi: Core.Strapi, data: BlogArticleSeed) {
 }
 
 export async function seedBlogArticles(strapi: Core.Strapi) {
-  const allowed = new Set(blogArticles.map((article) => article.slug));
-
   for (const article of blogArticles) {
     await seedArticle(strapi, article);
-  }
-
-  try {
-    const remote = await strapi.documents(ARTICLE_UID).findMany({
-      status: "draft",
-      limit: 200,
-    });
-
-    for (const article of remote) {
-      if (!article.documentId || !article.slug) continue;
-      if (allowed.has(article.slug)) continue;
-      await strapi.documents(ARTICLE_UID).delete({ documentId: article.documentId });
-      strapi.log.info(`[seed] Deleted extra article: ${article.slug}`);
-    }
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    strapi.log.warn(`[seed] Could not prune extra articles: ${message}`);
   }
 }
 

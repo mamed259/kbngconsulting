@@ -1,7 +1,6 @@
 import type { Core } from "@strapi/strapi";
 import {
   seedBlogArticles,
-  repairArticleSeoLinks,
   configureArticleListSort,
 } from "./bootstrap/seed-articles";
 import { seedProductPages } from "./bootstrap/seed-pages";
@@ -78,7 +77,6 @@ export default {
     await ensureLocalReadToken(strapi);
     await seedProductPages(strapi);
     await seedBlogArticles(strapi);
-    await repairArticleSeoLinks(strapi);
     await configureArticleListSort(strapi);
     await publishDueScheduledArticles(strapi);
     startScheduledPublisher(strapi);

@@ -10,6 +10,13 @@ It is designed for remote Strapi usage and matches the frontend in this reposito
 - `STRAPI_API_TOKEN`
 - `STRAPI_REVALIDATE_SECONDS`
 
+## Content Seeding Policy
+
+- Bootstrap seeding is create-only: it creates initial records only when a matching `slug` does not exist.
+- Bootstrap never deletes extra editor-created content and never overwrites existing `articles`/`pages`.
+- Day-to-day content management (create/edit/publish) for `articles` and `pages` should be done in Strapi Admin.
+- If you need to force-sync seeded content from code, run manual scripts in `cms/scripts/seed-*.mjs`.
+
 ## Collection Type: `page`
 
 ```json

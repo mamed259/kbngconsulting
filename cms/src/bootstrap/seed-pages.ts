@@ -28,17 +28,15 @@ function sanitizePagePayload(data: Record<string, unknown> & { slug: string }) {
   return payload;
 }
 
-async function upsertPage(strapi: Core.Strapi, data: Record<string, unknown> & { slug: string }) {
+async function createPageIfMissing(
+  strapi: Core.Strapi,
+  data: Record<string, unknown> & { slug: string },
+) {
   const payload = sanitizePagePayload(data);
   const existing = await findPageBySlug(strapi, payload.slug);
 
   if (existing?.documentId) {
-    await strapi.documents(PAGE_UID).update({
-      documentId: existing.documentId,
-      data: payload as never,
-      status: "published",
-    });
-    strapi.log.info(`[seed] Updated page: ${payload.slug}`);
+    strapi.log.info(`[seed] Skipped existing page: ${payload.slug}`);
     return;
   }
 
@@ -51,7 +49,7 @@ async function upsertPage(strapi: Core.Strapi, data: Record<string, unknown> & {
 
 async function seedPage(strapi: Core.Strapi, data: Record<string, unknown> & { slug: string }) {
   try {
-    await upsertPage(strapi, data);
+    await createPageIfMissing(strapi, data);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     const details =
