@@ -9,7 +9,8 @@ import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
 import { publishDueScheduledArticles } from "../config/cron-tasks";
 
-const SCHEDULE_POLL_MS = 60_000;
+const ARTICLE_UID = "api::article.article";
+const SCHEDULE_POLL_MS = 3_600_000;
 const schedulerGlobalKey = "__kbngScheduledPublisherStarted";
 
 function startScheduledPublisher(strapi: Core.Strapi) {
@@ -51,6 +52,15 @@ function registerSeoSanitizeMiddleware(strapi: Core.Strapi) {
       if ("id" in seo || "documentId" in seo) {
         const { id: _id, documentId: _documentId, ...rest } = seo;
         data.seo = rest;
+      }
+    }
+
+    if (ctx.uid === ARTICLE_UID && typeof data.scheduledAt === "string") {
+      const scheduledDate = new Date(data.scheduledAt);
+      if (!Number.isNaN(scheduledDate.getTime())) {
+        // Normalize to exact hour so editors schedule by hour only.
+        scheduledDate.setUTCMinutes(0, 0, 0);
+        data.scheduledAt = scheduledDate.toISOString();
       }
     }
 

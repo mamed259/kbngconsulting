@@ -553,7 +553,7 @@ export async function getArticles(): Promise<ArticleData[]> {
     const query = qs.stringify(
       {
         status: "published",
-        sort: ["id:asc"],
+        sort: ["publishedOn:desc", "id:desc"],
         populate: ARTICLE_POPULATE,
         pagination: { pageSize: 100 },
       },

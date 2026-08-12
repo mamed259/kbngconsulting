@@ -80,7 +80,7 @@ const cronTasks: Core.Config.Server["cron"]["tasks"] = {
       await publishDueScheduledArticles(strapi);
     },
     options: {
-      rule: "*/1 * * * *",
+      rule: "0 * * * *",
     },
   },
 };

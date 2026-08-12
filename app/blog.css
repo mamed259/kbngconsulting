@@ -436,15 +436,60 @@
   .blog-shell,
   .article-shell {
     padding-top: 108px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .blog-heading {
+    margin-bottom: 28px;
+  }
+
+  .blog-intro {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .blog-item {
-    grid-template-columns: minmax(0, 1fr) 140px;
-    gap: 16px;
-    padding: 20px 0;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 18px 0;
+  }
+
+  .blog-item-media {
+    order: -1;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
   }
 
   .blog-featured {
     padding: 12px;
+  }
+
+  .blog-featured-copy p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .article-shell h1 {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+    margin-bottom: 20px;
+  }
+
+  .article-cover {
+    min-height: 190px;
+    margin-bottom: 22px;
+  }
+
+  .article-lead {
+    font-size: 1.06rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .article-richtext,
+  .article-body .md-body {
+    font-size: 1.02rem;
+    line-height: 1.72;
   }
 }

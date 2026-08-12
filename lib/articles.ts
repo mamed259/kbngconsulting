@@ -30,5 +30,10 @@ export function mergeArticles(remote: ArticleData[], fallback: ArticleData[]): A
     if (!known.has(article.slug)) merged.push(article);
   }
 
-  return merged;
+  return merged.sort((a, b) => {
+    const aTime = Date.parse(`${a.publishedOn}T00:00:00Z`);
+    const bTime = Date.parse(`${b.publishedOn}T00:00:00Z`);
+    if (aTime !== bTime) return bTime - aTime;
+    return Number(b.id ?? 0) - Number(a.id ?? 0);
+  });
 }

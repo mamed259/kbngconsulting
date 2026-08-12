@@ -120,7 +120,7 @@ export async function repairArticleSeoLinks(strapi: Core.Strapi) {
   strapi.log.info(`[repair] Relinked SEO on ${articles.length} article(s)`);
 }
 
-/** Content Manager: Articles list sorted by id ascending. */
+/** Content Manager: Articles list sorted by published date (newest first). */
 export async function configureArticleListSort(strapi: Core.Strapi) {
   try {
     const service = strapi.plugin("content-manager").service("content-types");
@@ -133,14 +133,14 @@ export async function configureArticleListSort(strapi: Core.Strapi) {
         ...current,
         settings: {
           ...current.settings,
-          defaultSortBy: "id",
-          defaultSortOrder: "ASC",
+          defaultSortBy: "publishedOn",
+          defaultSortOrder: "DESC",
           mainField: current.settings?.mainField ?? "title",
         },
       },
     );
 
-    strapi.log.info("[config] Article list default sort: id ASC");
+    strapi.log.info("[config] Article list default sort: publishedOn DESC");
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     strapi.log.warn(`[config] Could not set article list sort: ${message}`);
