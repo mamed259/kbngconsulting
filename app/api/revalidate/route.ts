@@ -1,21 +1,16 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import {
+  CMS_CACHE_TAG,
+  parseCmsWebhookPayload,
+  pathsForCmsEvent,
+} from "@/lib/cms-revalidate";
 
 function parsePathsFromQuery(request: NextRequest) {
   const raw = request.nextUrl.searchParams.get("paths");
   if (!raw) return [];
   return raw
     .split(",")
-    .map((path) => path.trim())
-    .filter((path) => path.startsWith("/"));
-}
-
-function parsePathsFromBody(body: unknown) {
-  if (!body || typeof body !== "object") return [];
-  const value = (body as { paths?: unknown }).paths;
-  if (!Array.isArray(value)) return [];
-  return value
-    .filter((path): path is string => typeof path === "string")
     .map((path) => path.trim())
     .filter((path) => path.startsWith("/"));
 }
@@ -37,24 +32,30 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ revalidated: false, message: "Invalid secret" }, { status: 401 });
   }
 
-  let bodyPaths: string[] = [];
+  let body: unknown = null;
   try {
-    const body = (await request.json()) as unknown;
-    bodyPaths = parsePathsFromBody(body);
+    body = await request.json();
   } catch {
-    bodyPaths = [];
+    body = null;
   }
 
+  const parsed = parseCmsWebhookPayload(body);
   const queryPaths = parsePathsFromQuery(request);
-  const mergedPaths = Array.from(new Set([...queryPaths, ...bodyPaths]));
-  const paths = mergedPaths.length ? mergedPaths : ["/blog"];
+  const paths = pathsForCmsEvent({
+    model: parsed.model,
+    slug: parsed.slug,
+    extraPaths: [...parsed.extraPaths, ...queryPaths],
+  });
 
+  revalidateTag(CMS_CACHE_TAG, { expire: 0 });
+  revalidatePath("/", "layout");
   for (const path of paths) {
     revalidatePath(path);
   }
 
   return NextResponse.json({
     revalidated: true,
+    tag: CMS_CACHE_TAG,
     paths,
     at: new Date().toISOString(),
   });

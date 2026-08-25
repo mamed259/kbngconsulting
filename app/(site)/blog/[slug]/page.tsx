@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { getArticleBySlug } from "@/lib/api";
 import { getFallbackArticleBySlug } from "@/content/blog-fallback";
 import { extractStrapiImageUrl } from "@/lib/utils";
-import { pickArticleBody } from "@/lib/article-body";
+import { mergeArticle } from "@/lib/articles";
 import { buildArticleMetadata } from "@/lib/seo";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { formatBlogDate } from "@/components/blog/BlogCards";
@@ -18,22 +18,7 @@ interface ArticlePageProps {
 async function resolveArticle(slug: string) {
   const remote = await getArticleBySlug(slug);
   const fallback = getFallbackArticleBySlug(slug) ?? null;
-  if (!remote && !fallback) return null;
-  if (!remote) return fallback;
-  if (!fallback) return remote;
-
-  const coverFromRemote = extractStrapiImageUrl(remote.coverImage || remote.coverImageUrl);
-
-  return {
-    ...fallback,
-    ...remote,
-    id: remote.id,
-    body: pickArticleBody(remote.body, fallback.body),
-    coverImageUrl: coverFromRemote || fallback.coverImageUrl,
-    coverImageAlt: remote.coverImageAlt || fallback.coverImageAlt,
-    excerpt: remote.excerpt || fallback.excerpt,
-    seo: remote.seo || fallback.seo,
-  };
+  return mergeArticle(remote, fallback);
 }
 
 function articleUrl(slug: string, canonical?: string | null) {

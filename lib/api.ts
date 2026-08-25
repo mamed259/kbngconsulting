@@ -1,5 +1,6 @@
 import qs from "qs";
 import type { ArticleData, PageData, StrapiCollectionResponse } from "@/types/strapi";
+import { CMS_CACHE_TAG } from "@/lib/cms-revalidate";
 import { getStrapiBaseUrl } from "@/lib/utils";
 
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -434,7 +435,7 @@ function extractInvalidPopulateKey(errorBody: unknown): string | null {
   return match?.[1] ?? null;
 }
 
-async function fetchStrapi<T>(path: string, query?: string): Promise<T> {
+async function fetchStrapi<T>(path: string, query?: string, tags: string[] = [CMS_CACHE_TAG]): Promise<T> {
   const url = new URL(`/api${path}`, getStrapiBaseUrl());
   if (query) {
     url.search = query;
@@ -448,11 +449,12 @@ async function fetchStrapi<T>(path: string, query?: string): Promise<T> {
     headers.Authorization = `Bearer ${STRAPI_TOKEN}`;
   }
 
+  const cacheTags = Array.from(new Set([CMS_CACHE_TAG, ...tags]));
   const response = await fetch(url.toString(), {
     headers,
     ...(STRAPI_REVALIDATE_SECONDS === 0
       ? { cache: "no-store" as const }
-      : { next: { revalidate: STRAPI_REVALIDATE_SECONDS } }),
+      : { next: { revalidate: STRAPI_REVALIDATE_SECONDS, tags: cacheTags } }),
   });
 
   if (!response.ok) {
@@ -494,6 +496,7 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
     for (let attempt = 0; attempt < 12; attempt += 1) {
       const query = `${qs.stringify(
         {
+          status: "published",
           filters: {
             slug: {
               $eq: slug,
@@ -507,6 +510,7 @@ export async function getPageBySlug(slug: string): Promise<PageData | null> {
         const response = await fetchStrapi<StrapiCollectionResponse<PageData>>(
           "/pages",
           query,
+          [CMS_CACHE_TAG, "cms-pages", `cms-page-${slug}`],
         );
 
         if (!response.data?.length) {
@@ -563,6 +567,7 @@ export async function getArticles(): Promise<ArticleData[]> {
     const response = await fetchStrapi<StrapiCollectionResponse<ArticleData>>(
       "/articles",
       query,
+      [CMS_CACHE_TAG, "cms-articles"],
     );
 
     const articles = response.data ?? [];
@@ -591,6 +596,7 @@ export async function getArticleBySlug(slug: string): Promise<ArticleData | null
     const response = await fetchStrapi<StrapiCollectionResponse<ArticleData>>(
       "/articles",
       query,
+      [CMS_CACHE_TAG, "cms-articles", `cms-article-${slug}`],
     );
 
     if (!response.data?.length) {

@@ -113,7 +113,7 @@ async function buildHomeData() {
         __component: "sections.solutions",
         heading: "Innovation Studio: Industrial AI and Human Performance at Work",
         intro:
-          "We work with asset-intensive operations to accelerate digital transformation and industrial AI adoption. Our innovation consulting and AI-powered training systems strengthen human performance and improve how teams learn, operate, and make decisions.",
+          "KB&G helps mining, quarrying, and other heavy operations deploy practical AI systems, strengthen workforce capability, and improve safety, decisions, and operational performance.",
         cards: [
           {
             title: "Canary Waves",

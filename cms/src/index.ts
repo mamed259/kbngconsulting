@@ -7,6 +7,7 @@ import { seedProductPages } from "./bootstrap/seed-pages";
 import { ensurePublicApiAccess } from "./bootstrap/ensure-permissions";
 import { ensureLocalReadToken } from "./bootstrap/ensure-token";
 import { publishDueScheduledArticles } from "../config/cron-tasks";
+import { notifyFrontend, shouldNotifyFrontend } from "./utils/notify-frontend";
 
 const ARTICLE_UID = "api::article.article";
 const SCHEDULE_POLL_MS = 3_600_000;
@@ -67,9 +68,20 @@ function registerSeoSanitizeMiddleware(strapi: Core.Strapi) {
   });
 }
 
+function registerFrontendRevalidateMiddleware(strapi: Core.Strapi) {
+  strapi.documents.use(async (ctx, next) => {
+    const result = await next();
+    if (shouldNotifyFrontend(ctx)) {
+      void notifyFrontend(strapi, ctx, result);
+    }
+    return result;
+  });
+}
+
 export default {
   register({ strapi }: { strapi: Core.Strapi }) {
     registerSeoSanitizeMiddleware(strapi);
+    registerFrontendRevalidateMiddleware(strapi);
   },
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {

@@ -1,29 +1,38 @@
-import type { ArticleData } from "@/types/strapi";
-import { extractStrapiImageUrl } from "@/lib/utils";
+import type { ArticleData } from "../types/strapi";
+import { pickArticleBody } from "./article-body";
+import { extractStrapiImageUrl } from "./utils";
 
-/** Prefer fallback order/content; enrich with live Strapi fields when present. */
+/** Live Strapi fields win; fallback fills gaps only. */
+export function mergeArticle(
+  remote?: ArticleData | null,
+  fallback?: ArticleData | null,
+): ArticleData | null {
+  if (!remote && !fallback) return null;
+  if (!remote) return fallback ?? null;
+  if (!fallback) return remote;
+
+  const coverFromLive = extractStrapiImageUrl(remote.coverImage || remote.coverImageUrl);
+
+  return {
+    ...fallback,
+    ...remote,
+    id: remote.id ?? fallback.id,
+    title: remote.title?.trim() || fallback.title,
+    excerpt: remote.excerpt || fallback.excerpt,
+    category: remote.category || fallback.category,
+    publishedOn: remote.publishedOn || fallback.publishedOn,
+    body: pickArticleBody(remote.body, fallback.body),
+    coverImage: remote.coverImage || fallback.coverImage,
+    coverImageUrl: coverFromLive || fallback.coverImageUrl,
+    coverImageAlt: remote.coverImageAlt || fallback.coverImageAlt,
+    seo: remote.seo || fallback.seo,
+  };
+}
+
+/** Prefer fallback order; enrich every known slug with live Strapi content. */
 export function mergeArticles(remote: ArticleData[], fallback: ArticleData[]): ArticleData[] {
   const remoteBySlug = new Map(remote.map((article) => [article.slug, article]));
-  const merged = fallback.map((fb) => {
-    const live = remoteBySlug.get(fb.slug);
-    if (!live) return fb;
-
-    const liveBody = live.body?.length ?? 0;
-    const fbBody = fb.body?.length ?? 0;
-    const coverFromLive = extractStrapiImageUrl(live.coverImage || live.coverImageUrl);
-
-    return {
-      ...fb,
-      id: live.id,
-      coverImage: live.coverImage,
-      coverImageUrl: coverFromLive || fb.coverImageUrl,
-      coverImageAlt: live.coverImageAlt || fb.coverImageAlt,
-      body: liveBody > fbBody ? live.body : fb.body,
-      excerpt: live.excerpt || fb.excerpt,
-      category: live.category || fb.category,
-      seo: live.seo || fb.seo,
-    };
-  });
+  const merged = fallback.map((fb) => mergeArticle(remoteBySlug.get(fb.slug), fb)!);
 
   const known = new Set(merged.map((article) => article.slug));
   for (const article of remote) {
