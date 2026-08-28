@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV = [
   { href: "#blindspot", label: "The Blind Spot" },
@@ -27,6 +27,9 @@ function BrandLogo() {
 
 export function FdHeader() {
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -43,10 +46,41 @@ export function FdHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const updateHeader = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY <= 72) {
+        setIsVisible(true);
+      } else if (delta > 6) {
+        setIsVisible(true);
+      } else if (delta < -6) {
+        setIsVisible(false);
+      }
+
+      lastScrollY.current = currentY;
+      ticking.current = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true;
+        window.requestAnimationFrame(updateHeader);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const close = () => setOpen(false);
+  const showHeader = open || isVisible;
 
   return (
-    <header className="fd-header">
+    <header className={`fd-header${showHeader ? " is-visible" : " is-hidden"}`}>
       <div className="wrap nav">
         <Link className="brand" href="/" aria-label="KB&G home" onClick={close}>
           <BrandLogo />

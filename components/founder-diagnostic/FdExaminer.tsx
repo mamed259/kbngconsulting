@@ -1,11 +1,40 @@
 import Image from "next/image";
 import type { FdExaminerSectionData } from "@/types/strapi";
+import { sanitizeArticleHtml } from "@/lib/article-body";
 import { extractStrapiImageUrl } from "@/lib/utils";
 
 type Props = Omit<FdExaminerSectionData, "__component">;
 
+function looksLikeHtml(content: string) {
+  return /<\/?[a-z][\s\S]*>/i.test(content.trim());
+}
+
+function stripTags(value: string) {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function linkifyMarkdown(value: string) {
+  return value.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_full, label: string, href: string) => {
+    const external = /^https?:\/\//i.test(href);
+    const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a href="${href}"${attrs}>${label}</a>`;
+  });
+}
+
 function splitParagraphs(text?: string) {
-  return (text || "")
+  const raw = (text || "").trim();
+  if (!raw) return [];
+
+  if (/<p\b/i.test(raw) || /<h[1-6]\b/i.test(raw)) {
+    const blocks = raw.match(/<(p|h[1-6])\b[^>]*>[\s\S]*?<\/\1>/gi);
+    if (blocks?.length) return blocks.map((block) => block.trim());
+  }
+
+  return raw
     .split(/\n\n+/)
     .map((part) => part.trim())
     .filter(Boolean);
@@ -23,11 +52,33 @@ function formatHeading(heading: string) {
 }
 
 function isSectionHeading(para: string) {
+  const plain = stripTags(para);
   return (
-    para.length < 90 &&
-    (/\?$/.test(para) || /^(Why did I|So why)/i.test(para)) &&
-    !para.includes(". ")
+    plain.length < 90 &&
+    (/\?$/.test(plain) || /^(Why did I|So why)/i.test(plain)) &&
+    !plain.includes(". ")
   );
+}
+
+function wrapHtml(html: string) {
+  const trimmed = html.trim();
+  if (/^<(p|h[1-6]|div|ul|ol)\b/i.test(trimmed)) return trimmed;
+  return `<p>${trimmed}</p>`;
+}
+
+function RichBlock({ html, className }: { html: string; className?: string }) {
+  const linked = linkifyMarkdown(html);
+  const markup = wrapHtml(looksLikeHtml(linked) ? linked : linked.replace(/\n/g, "<br />"));
+  return (
+    <div
+      className={className}
+      dangerouslySetInnerHTML={{ __html: sanitizeArticleHtml(markup) }}
+    />
+  );
+}
+
+function emphasizeJuliaLead(html: string) {
+  return html.replace(/(^|>)(\s*)I am Julia Georgi\./i, "$1$2<b>I am Julia Georgi.</b>");
 }
 
 export function FdExaminer({
@@ -92,22 +143,18 @@ export function FdExaminer({
           ) : null}
         </div>
 
-        <div className="reveal">
+        <div className="reveal exam-copy">
           <h2>{formatHeading(heading)}</h2>
-          {intro.map((para, index) => {
-            if (index === 0 && /^I am Julia Georgi\./i.test(para)) {
-              return (
-                <p key={index}>
-                  <b>I am Julia Georgi.</b> {para.replace(/^I am Julia Georgi\.\s*/i, "")}
-                </p>
-              );
-            }
-            return <p key={index}>{para}</p>;
-          })}
+          {intro.map((para, index) => (
+            <RichBlock
+              key={index}
+              html={index === 0 ? emphasizeJuliaLead(para) : para}
+            />
+          ))}
           {blocks.length ? (
             <div className="origin">
               {blocks.map((block, index) => (
-                <div className="oblock" key={block.title}>
+                <div className="oblock" key={stripTags(block.title) || index}>
                   <svg
                     className="oi"
                     viewBox="0 0 24 24"
@@ -130,9 +177,9 @@ export function FdExaminer({
                       </>
                     )}
                   </svg>
-                  <h3>{block.title}</h3>
-                  {block.paras.map((para) => (
-                    <p key={para.slice(0, 40)}>{para}</p>
+                  <h3>{stripTags(block.title)}</h3>
+                  {block.paras.map((para, paraIndex) => (
+                    <RichBlock key={`${stripTags(para).slice(0, 40)}-${paraIndex}`} html={para} />
                   ))}
                 </div>
               ))}

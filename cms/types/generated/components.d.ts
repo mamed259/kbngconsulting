@@ -691,7 +691,13 @@ export interface SectionsFdExaminer extends Struct.ComponentSchema {
     icon: 'user';
   };
   attributes: {
-    body: Schema.Attribute.Text;
+    body: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     heading: Schema.Attribute.String & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'>;
     imageAlt: Schema.Attribute.String;
