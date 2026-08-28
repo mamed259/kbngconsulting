@@ -19,7 +19,7 @@ export function FdBook({
             {metaLine ? <p className="terms">{metaLine}</p> : null}
             {guarantee ? <p className="guar">{guarantee}</p> : null}
           </div>
-          {ctaText ? <FdBookForm ctaText={ctaText} /> : null}
+          <FdBookForm ctaText={ctaText} />
         </div>
       </div>
     </section>

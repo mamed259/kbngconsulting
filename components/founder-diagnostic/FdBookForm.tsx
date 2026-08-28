@@ -14,11 +14,10 @@ const FORM_FIELDS = [
 ];
 
 type Props = {
-  ctaText: string;
+  ctaText?: string;
 };
 
-export function FdBookForm({ ctaText }: Props) {
-  const [open, setOpen] = useState(false);
+export function FdBookForm({ ctaText: _ctaText }: Props) {
   const [termsOpen, setTermsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -80,19 +79,6 @@ export function FdBookForm({ ctaText }: Props) {
       setError(err instanceof Error ? err.message : "Submission failed");
       setLoading(false);
     }
-  }
-
-  if (!open) {
-    return (
-      <div className="offer-cta">
-        <button type="button" className="btn btn-green offer-cta-btn" onClick={() => setOpen(true)}>
-          {ctaText}
-          <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        </button>
-      </div>
-    );
   }
 
   return (
