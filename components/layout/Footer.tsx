@@ -23,7 +23,8 @@ const sitemap = [
   {
     title: "Legal",
     links: [
-      { label: "Terms of Use", href: "https://kbngconsulting.com/terms-of-use" },
+      { label: "Terms of Use", href: "/terms-of-use" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Cookie Policy", href: "/cookie-policy" },
     ],
   },

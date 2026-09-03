@@ -58,10 +58,8 @@ export default function CookiePolicyPage() {
             <h2 style={{ color: "#fff", fontSize: "1.25rem", marginBottom: "8px" }}>Related</h2>
             <p>
               See also our{" "}
-              <a href="https://kbngconsulting.com/terms-of-use" target="_blank" rel="noopener noreferrer">
-                Terms of Use
-              </a>
-              .
+              <Link href="/privacy-policy">Privacy Policy</Link> and{" "}
+              <Link href="/terms-of-use">Terms of Use</Link>.
             </p>
             <p style={{ marginTop: "18px" }}>
               <Link href="/">← Back to home</Link>
