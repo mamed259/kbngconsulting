@@ -59,13 +59,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
     priority: 0.6,
   },
   {
-    url: `${BASE_URL}/privacy-policy`,
-    lastModified: new Date(),
-    changeFrequency: "yearly",
-    priority: 0.4,
-  },
-  {
-    url: `${BASE_URL}/terms-of-use`,
+    url: `${BASE_URL}/legal`,
     lastModified: new Date(),
     changeFrequency: "yearly",
     priority: 0.4,
