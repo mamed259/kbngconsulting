@@ -5,6 +5,7 @@ import { ConsultingSection } from "@/components/sections/ConsultingSection";
 import { SectorsSection } from "@/components/sections/SectorsSection";
 import { BookSection } from "@/components/sections/BookSection";
 import { ResourcesSection } from "@/components/sections/ResourcesSection";
+import { LegalDocumentsSection } from "@/components/sections/LegalDocumentsSection";
 import { CwHeroSection } from "@/components/sections/cw/CwHeroSection";
 import { CwStatsSection } from "@/components/sections/cw/CwStatsSection";
 import { CwInsightSection } from "@/components/sections/cw/CwInsightSection";
@@ -128,6 +129,10 @@ function renderSection(section: StrapiSection, index: number): React.ReactNode {
     case "sections.resources": {
       const { __component, ...props } = section;
       return <ResourcesSection key={`${__component}-${index}`} {...props} />;
+    }
+    case "sections.legal-documents": {
+      const { __component, ...props } = section;
+      return <LegalDocumentsSection key={`${__component}-${index}`} {...props} />;
     }
     case "sections.cw-hero": {
       const { __component, ...props } = section;

@@ -97,7 +97,8 @@
         "sections.fd-fit",
         "sections.fd-mid-cta",
         "sections.fd-faq",
-        "sections.fd-book"
+        "sections.fd-book",
+        "sections.legal-documents"
       ]
     }
   }

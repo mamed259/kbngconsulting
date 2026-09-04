@@ -1106,6 +1106,13 @@ export interface FdBookSectionData {
   ctaHref?: string;
 }
 
+export interface LegalDocumentsSectionData {
+  __component: "sections.legal-documents";
+  id: number;
+  privacyPolicy?: unknown;
+  termsOfUse?: unknown;
+}
+
 export type StrapiSection =
   | HeroSectionData
   | SolutionsSectionData
@@ -1175,4 +1182,5 @@ export type StrapiSection =
   | FdFitSectionData
   | FdMidCtaSectionData
   | FdFaqSectionData
-  | FdBookSectionData;
+  | FdBookSectionData
+  | LegalDocumentsSectionData;

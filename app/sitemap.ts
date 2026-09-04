@@ -58,12 +58,6 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
     changeFrequency: "yearly",
     priority: 0.6,
   },
-  {
-    url: `${BASE_URL}/legal`,
-    lastModified: new Date(),
-    changeFrequency: "yearly",
-    priority: 0.4,
-  },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
