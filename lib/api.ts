@@ -50,6 +50,9 @@ const BASE_SECTION_POPULATE: SectionPopulateMap = {
       },
     },
   },
+  "sections.legal-documents": {
+    populate: true,
+  },
 };
 
 const CW_SECTION_POPULATE: SectionPopulateMap = {

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FdTermsModal } from "@/components/founder-diagnostic/FdTermsModal";
 
-const WISE_PAYMENT_URL = "https://wise.com/pay/r/JPw0sCeiNgAZTLU";
+const WISE_PAYMENT_URL = "https://wise.com/pay/r/UOL92-IvG4jtAwk";
 
 const FORM_FIELDS = [
   { label: "Full name", type: "text" },
