@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DynamicRenderer } from "@/components/DynamicRenderer";
 import { MarketingEffects } from "@/components/MarketingEffects";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getPageBySlug } from "@/lib/api";
 import { buildMetadataFromSeo } from "@/lib/seo";
+import { serviceGraph } from "@/lib/structured-data";
 import { canaryWavesFallbackSections } from "@/content/canary-waves-fallback";
 import { visionAiFallbackSections } from "@/content/vision-ai-fallback";
 import { innovationStudioFallbackSections } from "@/content/innovation-studio-fallback";
@@ -110,8 +112,14 @@ export default async function DynamicPage({ params }: PageProps) {
   if (!page) {
     const fallback = PAGE_FALLBACKS[slug];
     if (fallback) {
+      const service = serviceGraph({
+        slug,
+        title: fallback.title,
+        seo: { metaTitle: fallback.title, metaDescription: fallback.description },
+      });
       return (
         <>
+          {service ? <JsonLd data={service} /> : null}
           <MarketingEffects />
           <DynamicRenderer sections={fallback.sections} />
         </>
@@ -121,8 +129,11 @@ export default async function DynamicPage({ params }: PageProps) {
     notFound();
   }
 
+  const service = serviceGraph(page);
+
   return (
     <>
+      {service ? <JsonLd data={service} /> : null}
       <MarketingEffects />
       <DynamicRenderer sections={page.sections} />
     </>

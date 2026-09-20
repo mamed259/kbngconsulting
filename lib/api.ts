@@ -561,6 +561,17 @@ export async function getArticles(): Promise<ArticleData[]> {
       {
         status: "published",
         sort: ["publishedOn:desc", "id:desc"],
+        fields: [
+          "title",
+          "slug",
+          "excerpt",
+          "publishedOn",
+          "scheduledAt",
+          "topics",
+          "category",
+          "coverImageUrl",
+          "coverImageAlt",
+        ],
         populate: ARTICLE_POPULATE,
         pagination: { pageSize: 100 },
       },

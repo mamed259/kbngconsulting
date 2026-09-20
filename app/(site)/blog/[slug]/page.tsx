@@ -9,6 +9,8 @@ import { mergeArticle } from "@/lib/articles";
 import { buildArticleMetadata } from "@/lib/seo";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { formatBlogDate } from "@/components/blog/BlogCards";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { blogPostingGraph } from "@/lib/structured-data";
 import "../../../blog.css";
 
 interface ArticlePageProps {
@@ -61,6 +63,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="article-page">
+      <JsonLd data={blogPostingGraph(article)} />
       <article className="article-shell">
         <Link className="article-back" href="/blog">
           ← Back to Blog

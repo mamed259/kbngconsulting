@@ -26,6 +26,17 @@ function stripBrandSuffix(title: string): string {
   return title.replace(/\s*\|\s*KB&G\s*$/i, "").trim();
 }
 
+/** Clamp CMS descriptions to the ~155 chars Google typically displays. */
+export function clampMetaDescription(text: string, max = 155): string {
+  const trimmed = text.trim();
+  if (!trimmed || trimmed.length <= max) return trimmed;
+
+  const slice = trimmed.slice(0, max);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > 110 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.replace(/[\s.,;:–—-]+$/u, "")}…`;
+}
+
 /** Build Next.js Metadata from Strapi shared.seo, with code fallbacks. */
 export function buildMetadataFromSeo(
   seo: SeoData | null | undefined,
@@ -33,7 +44,9 @@ export function buildMetadataFromSeo(
   options?: { fallbackOgImage?: unknown },
 ): Metadata {
   const rawTitle = seo?.metaTitle?.trim() || fallback.title;
-  const description = seo?.metaDescription?.trim() || fallback.description;
+  const description = clampMetaDescription(
+    seo?.metaDescription?.trim() || fallback.description,
+  );
   const canonical = seo?.canonicalUrl?.trim() || fallback.url;
   const ogImage = resolveOgImageUrl(seo, options?.fallbackOgImage) || fallback.ogImageUrl || undefined;
 
@@ -78,7 +91,9 @@ export function buildArticleMetadata(input: {
     `https://kbngconsulting.com/blog/${input.slug}`;
 
   const title = input.seo?.metaTitle?.trim() || input.title;
-  const description = input.seo?.metaDescription?.trim() || input.description;
+  const description = clampMetaDescription(
+    input.seo?.metaDescription?.trim() || input.description,
+  );
   const ogImage =
     resolveOgImageUrl(input.seo, input.coverImage) ||
     extractStrapiImageUrl(input.coverImageUrl) ||

@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { ArticleData } from "../types/strapi";
-import { mergeArticle, mergeArticles } from "./articles";
+import { mergeArticle, mergeArticles, toArticleSummary } from "./articles";
+import { clampMetaDescription } from "./seo";
 import { parseCmsWebhookPayload, pathForPageSlug, pathsForCmsEvent } from "./cms-revalidate";
 
 function article(partial: Partial<ArticleData> & Pick<ArticleData, "slug" | "title">): ArticleData {
@@ -61,6 +62,31 @@ describe("mergeArticles listing vs detail", () => {
     const list = mergeArticles(remote, fallback);
     assert.equal(list.find((item) => item.slug === "a")?.title, "Published A");
     assert.equal(list.find((item) => item.slug === "b")?.title, "Fallback B");
+  });
+});
+
+describe("toArticleSummary", () => {
+  it("drops the markdown body used only on article pages", () => {
+    const summary = toArticleSummary(
+      article({ slug: "x", title: "Title", body: "very long markdown body" }),
+    );
+    assert.equal(summary.title, "Title");
+    assert.equal("body" in summary, false);
+  });
+});
+
+describe("clampMetaDescription", () => {
+  it("keeps short Strapi descriptions unchanged", () => {
+    assert.equal(clampMetaDescription("Short copy."), "Short copy.");
+  });
+
+  it("trims long Strapi descriptions without splitting a word", () => {
+    const long =
+      "KB&G combines industrial consulting, commodity pricing, and AI innovation to serve asset-heavy industries like gold mining, quarrying, aggregates & building materials.";
+    const clamped = clampMetaDescription(long);
+    assert.ok(clamped.length <= 156);
+    assert.ok(clamped.endsWith("…"));
+    assert.equal(clamped.includes(" building"), false);
   });
 });
 

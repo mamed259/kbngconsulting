@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ArticleData } from "@/types/strapi";
+import type { ArticleSummary } from "@/types/strapi";
 import { extractStrapiImageUrl } from "@/lib/utils";
 
 function formatBlogDate(dateString: string): string {
@@ -12,7 +12,7 @@ function formatBlogDate(dateString: string): string {
   return `${day}. ${month}. ${year}`;
 }
 
-function coverSrc(article: ArticleData): string | null {
+function coverSrc(article: ArticleSummary): string | null {
   return extractStrapiImageUrl(article.coverImage || article.coverImageUrl) || null;
 }
 
@@ -22,7 +22,7 @@ export function BlogCover({
   sizes,
   priority,
 }: {
-  article: ArticleData;
+  article: ArticleSummary;
   className?: string;
   sizes: string;
   priority?: boolean;
@@ -48,7 +48,7 @@ export function BlogCover({
 
 export { formatBlogDate, coverSrc };
 
-export function FeaturedArticle({ article }: { article: ArticleData }) {
+export function FeaturedArticle({ article }: { article: ArticleSummary }) {
   return (
     <Link className="blog-featured" href={`/blog/${article.slug}`}>
       <BlogCover article={article} className="blog-featured-media" sizes="(min-width: 900px) 58vw, 100vw" priority />
@@ -61,7 +61,7 @@ export function FeaturedArticle({ article }: { article: ArticleData }) {
   );
 }
 
-export function BlogListItem({ article }: { article: ArticleData }) {
+export function BlogListItem({ article }: { article: ArticleSummary }) {
   return (
     <Link className="blog-item" href={`/blog/${article.slug}`}>
       <div className="blog-item-copy">

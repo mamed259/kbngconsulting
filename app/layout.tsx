@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { BrandSymbolDefs } from "@/components/layout/BrandSymbolDefs";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { organizationGraph } from "@/lib/structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
+        <JsonLd data={organizationGraph()} />
         <BrandSymbolDefs />
         {children}
       </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ArticleData } from "@/types/strapi";
+import type { ArticleSummary } from "@/types/strapi";
 import { BlogListItem, FeaturedArticle } from "@/components/blog/BlogCards";
 
 type FilterKey = "all" | "founder-resources" | "industrial-innovation";
@@ -12,7 +12,7 @@ const FILTERS: Array<{ key: FilterKey; label: string }> = [
   { key: "industrial-innovation", label: "Industrial Innovation" },
 ];
 
-function normalizeCategory(value: ArticleData["category"]): FilterKey | null {
+function normalizeCategory(value: ArticleSummary["category"]): FilterKey | null {
   if (!value) return null;
   const raw = String(value).trim().toLowerCase();
   if (raw === "founder-resources" || raw === "founder resources") return "founder-resources";
@@ -20,7 +20,7 @@ function normalizeCategory(value: ArticleData["category"]): FilterKey | null {
   return null;
 }
 
-export function BlogIndex({ articles }: { articles: ArticleData[] }) {
+export function BlogIndex({ articles }: { articles: ArticleSummary[] }) {
   const [filter, setFilter] = useState<FilterKey>("all");
 
   const filtered = useMemo(() => {

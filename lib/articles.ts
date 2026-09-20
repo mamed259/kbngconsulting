@@ -1,4 +1,4 @@
-import type { ArticleData } from "../types/strapi";
+import type { ArticleData, ArticleSummary } from "../types/strapi";
 import { pickArticleBody } from "./article-body";
 import { extractStrapiImageUrl } from "./utils";
 
@@ -45,4 +45,9 @@ export function mergeArticles(remote: ArticleData[], fallback: ArticleData[]): A
     if (aTime !== bTime) return bTime - aTime;
     return Number(b.id ?? 0) - Number(a.id ?? 0);
   });
+}
+
+export function toArticleSummary(article: ArticleData): ArticleSummary {
+  const { body: _body, ...summary } = article;
+  return summary;
 }

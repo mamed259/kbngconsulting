@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { getArticles, getPageBySlug } from "@/lib/api";
 import { fallbackArticles } from "@/content/blog-fallback";
 import { BlogIndex } from "@/components/blog/BlogIndex";
-import { mergeArticles } from "@/lib/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { mergeArticles, toArticleSummary } from "@/lib/articles";
 import { buildMetadataFromSeo } from "@/lib/seo";
+import { blogItemListGraph } from "@/lib/structured-data";
 import "../../blog.css";
 
 const BLOG_FALLBACK = {
@@ -21,10 +23,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BlogPage() {
   const articles = await getArticles();
-  const list = mergeArticles(articles, fallbackArticles);
+  const list = mergeArticles(articles, fallbackArticles).map(toArticleSummary);
 
   return (
     <div className="blog-page">
+      <JsonLd data={blogItemListGraph(list)} />
       <BlogIndex articles={list} />
     </div>
   );

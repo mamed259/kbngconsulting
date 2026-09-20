@@ -67,6 +67,9 @@ export interface ArticleData {
   seo?: SeoData;
 }
 
+/** Listing payload: omit markdown body so /blog does not serialize ~1MB of RSC data. */
+export type ArticleSummary = Omit<ArticleData, "body">;
+
 export interface HeroSectionData {
   __component: "sections.hero";
   id: number;
