@@ -5,7 +5,7 @@ export const visionAiPageData = {
     metaTitle: "Vision AI: Custom Computer Vision Development | KB&G",
     metaDescription:
       "Vision AI for industrial safety and beyond. Custom Vision AI development and fine-tuned computer vision for environments and products where off-the-shelf models fall short.",
-    canonicalUrl: "https://kbngconsulting.com/kbng-innovation-studio/vision-ai",
+    canonicalUrl: "https://kbngconsulting.com/vision-ai",
   },
   sections: [
     {

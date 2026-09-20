@@ -319,6 +319,6 @@ export const georgiaFallbackSections: StrapiSection[] = [
     primaryCtaText: "Book a Call",
     primaryCtaHref: "https://kbngconsulting.com/contacts",
     secondaryCtaText: "See our work",
-    secondaryCtaHref: "https://kbngconsulting.com/kbng-innovation-studio",
+    secondaryCtaHref: "https://kbngconsulting.com/innovation-studio",
   },
 ];

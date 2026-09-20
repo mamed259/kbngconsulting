@@ -5,7 +5,7 @@ export const aboutUsPageData = {
     metaTitle: "About KB&G Consulting – Industrial Innovation Experts",
     metaDescription:
       "KB&G combines industrial consulting, commodity pricing, and AI innovation to serve asset‑heavy industries like gold mining, quarrying, aggregates & building materials.",
-    canonicalUrl: "https://kbngconsulting.com/about-kbng",
+    canonicalUrl: "https://kbngconsulting.com/about-us",
   },
   sections: [
     {

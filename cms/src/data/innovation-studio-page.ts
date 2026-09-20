@@ -5,7 +5,7 @@ export const innovationStudioPageData = {
     metaTitle: "KB&G Innovation Studio | Industrial AI Built for the Field",
     metaDescription:
       "KB&G Innovation Studio builds industrial AI and software products shaped by real operators and proven on a real site before they scale.",
-    canonicalUrl: "https://kbngconsulting.com/kbng-innovation-studio",
+    canonicalUrl: "https://kbngconsulting.com/innovation-studio",
   },
   sections: [
     {

@@ -21,22 +21,41 @@ function resolveOgImageUrl(
   return fromFallback || undefined;
 }
 
+/** Strip a trailing "| KB&G" so the root layout template doesn't double-brand. */
+function stripBrandSuffix(title: string): string {
+  return title.replace(/\s*\|\s*KB&G\s*$/i, "").trim();
+}
+
 /** Build Next.js Metadata from Strapi shared.seo, with code fallbacks. */
 export function buildMetadataFromSeo(
   seo: SeoData | null | undefined,
   fallback: SeoFallback,
   options?: { fallbackOgImage?: unknown },
 ): Metadata {
-  const title = seo?.metaTitle?.trim() || fallback.title;
+  const rawTitle = seo?.metaTitle?.trim() || fallback.title;
   const description = seo?.metaDescription?.trim() || fallback.description;
   const canonical = seo?.canonicalUrl?.trim() || fallback.url;
   const ogImage = resolveOgImageUrl(seo, options?.fallbackOgImage) || fallback.ogImageUrl || undefined;
 
+  // Avoid "Title | KB&G | KB&G" when CMS titles already include the brand suffix.
+  let title: Metadata["title"];
+  if (fallback.absoluteTitle) {
+    title = { absolute: rawTitle };
+  } else if (/\|\s*KB&G\s*$/i.test(rawTitle)) {
+    title = { absolute: rawTitle };
+  } else {
+    title = stripBrandSuffix(rawTitle);
+  }
+
+  const ogTitle = typeof title === "object" && title && "absolute" in title
+    ? title.absolute
+    : rawTitle;
+
   return {
-    title: fallback.absoluteTitle ? { absolute: title } : title,
+    title,
     description,
     openGraph: {
-      title,
+      title: ogTitle,
       description,
       type: "website",
       ...(canonical ? { url: canonical } : {}),

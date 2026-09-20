@@ -49,14 +49,14 @@ const PAGE_FALLBACKS: Record<
     title: "Vision AI: Custom Computer Vision Development | KB&G",
     description:
       "Vision AI for industrial safety and beyond. Custom Vision AI development and fine-tuned computer vision for environments and products where off-the-shelf models fall short.",
-    url: "https://kbngconsulting.com/kbng-innovation-studio/vision-ai",
+    url: "https://kbngconsulting.com/vision-ai",
     sections: visionAiFallbackSections,
   },
   "innovation-studio": {
     title: "KB&G Innovation Studio | Industrial AI Built for the Field",
     description:
       "KB&G Innovation Studio builds industrial AI and software products shaped by real operators and proven on a real site before they scale.",
-    url: "https://kbngconsulting.com/kbng-innovation-studio",
+    url: "https://kbngconsulting.com/innovation-studio",
     sections: innovationStudioFallbackSections,
   },
   "consulting-services": {
@@ -89,12 +89,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const page = await getPageBySlug(slug);
   const fallback = PAGE_FALLBACKS[slug];
+  // Always self-reference the live URL — never trust stale CMS canonicals
+  // (e.g. /about-kbng, /kbng-innovation-studio) that 404 and block indexing.
+  const canonicalUrl = fallback?.url ?? `https://kbngconsulting.com/${slug}`;
 
-  return buildMetadataFromSeo(page?.seo, {
-    title: fallback?.ogTitle ?? fallback?.title ?? slug,
-    description: fallback?.ogDescription ?? fallback?.description ?? "",
-    url: page?.seo?.canonicalUrl || fallback?.url,
-  });
+  return buildMetadataFromSeo(
+    page?.seo ? { ...page.seo, canonicalUrl } : undefined,
+    {
+      title: fallback?.ogTitle ?? fallback?.title ?? slug,
+      description: fallback?.ogDescription ?? fallback?.description ?? "",
+      url: canonicalUrl,
+    },
+  );
 }
 
 export default async function DynamicPage({ params }: PageProps) {

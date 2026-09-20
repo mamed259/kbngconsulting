@@ -19,9 +19,14 @@ export async function generateMetadata(): Promise<Metadata> {
     | { image?: unknown; imageUrl?: string }
     | undefined;
 
-  return buildMetadataFromSeo(page?.seo, HOME_FALLBACK, {
-    fallbackOgImage: hero?.image || hero?.imageUrl || "/images/home/heart.png",
-  });
+  const canonicalUrl = "https://kbngconsulting.com/";
+  return buildMetadataFromSeo(
+    page?.seo ? { ...page.seo, canonicalUrl } : undefined,
+    { ...HOME_FALLBACK, url: canonicalUrl },
+    {
+      fallbackOgImage: hero?.image || hero?.imageUrl || "/images/home/heart.png",
+    },
+  );
 }
 
 export default async function HomePage() {

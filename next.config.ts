@@ -11,6 +11,46 @@ const nextConfig: NextConfig = {
         destination: "/blog/:slug",
         permanent: true,
       },
+      // Legacy URLs that still appear in canonicals / external links
+      {
+        source: "/about-kbng",
+        destination: "/about-us",
+        permanent: true,
+      },
+      {
+        source: "/kbng-innovation-studio",
+        destination: "/innovation-studio",
+        permanent: true,
+      },
+      {
+        source: "/kbng-innovation-studio/vision-ai",
+        destination: "/vision-ai",
+        permanent: true,
+      },
+      {
+        source: "/contacts",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/contact",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source:
+          "/blog/burnout-in-constructio-stats-in-2026-what-the-numbers-say-about-modern-work",
+        destination:
+          "/blog/burnout-stats-in-2026-what-the-numbers-say-about-modern-work",
+        permanent: true,
+      },
+      // Consolidate www → non-www (hosting should also redirect HTTP→HTTPS)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.kbngconsulting.com" }],
+        destination: "https://kbngconsulting.com/:path*",
+        permanent: true,
+      },
     ];
   },
   images: {
